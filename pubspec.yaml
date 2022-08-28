@@ -3,7 +3,7 @@ description: Flutter application for checking out cool recipes
 
 publish_to: 'none'
 
-version: 1.0.6+7
+version: 1.1.0+8
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,23 +11,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  audioplayers: ^0.18.3
-  cupertino_icons: ^1.0.0
-  dio: ^4.0.0
-  dough: ^1.0.1
-  flutter_spinkit: ^5.0.0
-  get: ^4.1.4
-  shared_preferences: ^2.0.6
+  animations: ^2.0.4
+  audioplayers: ^1.0.1
+  dio: ^4.0.6
+  dough: ^1.0.3
+  flutter_dotenv: ^5.0.2
+  flutter_spinkit: ^5.1.0
+  get: ^4.6.5
+  google_nav_bar: ^5.0.6
+  shared_preferences: ^2.0.15
   shimmer: ^2.0.0
-  url_launcher: ^6.0.6
-  animations: ^2.0.0
-  google_nav_bar: ^5.0.5
+  url_launcher: ^6.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.0
-  flutter_native_splash: ^1.1.4+1
+  flutter_launcher_icons: ^0.10.0
+  flutter_native_splash: ^2.2.8
 
 flutter_icons:
   android: true

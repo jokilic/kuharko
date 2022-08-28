@@ -74,7 +74,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           child: GestureDetector(
             onLongPress: () {
               _themeController.toggleTheme();
-              _spoonacularController.audioPlayer.play('boom.wav');
+              _spoonacularController.audioPlayer.resume();
             },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
@@ -128,7 +128,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
             child: GestureDetector(
               onLongPress: () {
                 _themeController.toggleTheme();
-                _spoonacularController.audioPlayer.play('boom.wav');
+                _spoonacularController.audioPlayer.resume();
               },
               behavior: HitTestBehavior.translucent,
               child: PressableDough(
@@ -182,7 +182,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           child: GestureDetector(
             onLongPress: () {
               _themeController.toggleTheme();
-              _spoonacularController.audioPlayer.play('boom.wav');
+              _spoonacularController.audioPlayer.resume();
             },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(

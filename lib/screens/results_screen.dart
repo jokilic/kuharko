@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
+import './recipe_screen.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
@@ -12,7 +13,6 @@ import '../screens/recipe_screen.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/results_screen/recipe_result.dart';
 import '../widgets/search_widget.dart';
-import './recipe_screen.dart';
 
 class ResultsScreen extends StatelessWidget {
   static const String routeName = '/results-screen';

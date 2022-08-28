@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import './header_widget.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/theme_controller.dart';
-import './header_widget.dart';
 
 class ErrorDialog extends StatelessWidget {
   @override

@@ -8,7 +8,9 @@ import '../widgets/error_dialog.dart';
 
 class Api {
   final String baseUrl = 'https://api.spoonacular.com';
-  final String apiKey = '651a5342989c4dfbab4d1816234e6ba1';
+
+  /// TODO: Hide this key with `flutter_dotenv`
+  final String apiKey = '49da29911b994ad4b0eb9c0e4ca5c974';
 
   final Dio _dio = Dio();
 
