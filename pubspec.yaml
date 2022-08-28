@@ -58,6 +58,7 @@ flutter:
     - assets/icons/search/
     - assets/images/
     - assets/boom.wav
+    - .env
 
   fonts:
     - family: VisbyRound

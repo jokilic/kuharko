@@ -1,16 +1,14 @@
 import 'dart:convert';
-// import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart' as getx;
 
 import '../widgets/error_dialog.dart';
 
 class Api {
   final String baseUrl = 'https://api.spoonacular.com';
-
-  /// TODO: Hide this key with `flutter_dotenv`
-  final String apiKey = '49da29911b994ad4b0eb9c0e4ca5c974';
+  final String apiKey = dotenv.env['APIKEY'];
 
   final Dio _dio = Dio();
 
