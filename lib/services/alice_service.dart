@@ -11,7 +11,7 @@ class AliceService extends GetxService {
   /// VARIABLES
   ///
 
-  final alice = Alice();
+  final alice = Alice(showNotification: false);
 
   ///
   /// METHODS

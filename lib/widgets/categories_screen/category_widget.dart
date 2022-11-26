@@ -13,12 +13,14 @@ class CategoryWidget extends StatelessWidget {
   final String title;
   final Color color;
   final Function onTap;
+  final Function onLongPress;
 
   const CategoryWidget({
     @required this.icon,
     @required this.title,
     @required this.color,
     @required this.onTap,
+    this.onLongPress,
   });
 
   @override
@@ -27,6 +29,7 @@ class CategoryWidget extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
+      onLongPress: onLongPress,
       child: PressableDough(
         child: Obx(
           () => Container(
