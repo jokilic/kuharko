@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger_flutter_fork/logger_flutter_fork.dart';
 import 'package:logger_fork/logger_fork.dart';
 
 class LoggerService extends GetxService {
@@ -17,6 +19,7 @@ class LoggerService extends GetxService {
   @override
   void onInit() {
     super.onInit();
+
     logger = Logger(
       printer: PrettyPrinter(
         methodCount: 0,
@@ -25,6 +28,8 @@ class LoggerService extends GetxService {
         noBoxingByDefault: true,
       ),
     );
+
+    LogConsole.init();
   }
 
   ///
@@ -55,4 +60,7 @@ class LoggerService extends GetxService {
     final prettyString = const JsonEncoder.withIndent('  ').convert(object);
     isError ? logger.e(prettyString) : logger.v(prettyString);
   }
+
+  /// Opens [Logger] screen
+  void openLogger(BuildContext context) => LogConsole.open(context);
 }

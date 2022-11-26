@@ -2,23 +2,26 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get.dart' as getx;
+import 'package:get/get.dart' hide Response;
 
 import '../util/logger_interceptor.dart';
 import '../widgets/error_dialog.dart';
+import 'alice_service.dart';
 
 class Api {
   final String baseUrl = 'https://api.spoonacular.com';
   final String apiKey = dotenv.env['APIKEY'];
 
-  final Dio _dio = Dio()..interceptors.add(LoggerInterceptor());
+  final Dio _dio = Dio()
+    ..interceptors.add(LoggerInterceptor())
+    ..interceptors.add(Get.find<AliceService>().alice.getDioInterceptor());
 
   Future<Response<dynamic>> get(String path) async {
     try {
       final Response<dynamic> response = await _dio.get('$baseUrl/${path}apiKey=$apiKey');
       return response;
     } catch (e) {
-      await getx.Get.dialog(ErrorDialog());
+      await Get.dialog(ErrorDialog());
       return null;
     }
   }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
-import '../widgets/animated_column.dart';
-import '../widgets/animated_list_view.dart';
 import './recipe_screen.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -11,6 +9,8 @@ import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../models/recipe/recipe_search_result.dart';
+import '../widgets/animated_column.dart';
+import '../widgets/animated_list_view.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/results_screen/recipe_result.dart';
 import '../widgets/search_widget.dart';
