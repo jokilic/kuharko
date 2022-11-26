@@ -9,7 +9,6 @@ import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../models/recipe/recipe_search_result.dart';
-import '../screens/recipe_screen.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/results_screen/recipe_result.dart';
 import '../widgets/search_widget.dart';

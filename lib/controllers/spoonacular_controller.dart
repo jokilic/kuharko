@@ -8,6 +8,7 @@ import '../constants/colors.dart';
 import '../enums/cuisine.dart';
 import '../enums/meal_type.dart';
 import '../models/models.dart';
+import '../services/logger_service.dart';
 import '../services/network.dart';
 
 class SpoonacularController extends GetxController {

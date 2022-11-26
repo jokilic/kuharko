@@ -91,7 +91,7 @@ class RecipesWidget extends StatelessWidget {
                   child: BigRecipeWidget(
                     mealType: recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
                     image: recipe.image,
-                    score: recipe.spoonacularScore / 20 ?? 0.0,
+                    readyInMinutes: recipe.readyInMinutes,
                     title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
                     onTap: () {
                       _spoonacularController.getRecipeInformation(recipe.id);

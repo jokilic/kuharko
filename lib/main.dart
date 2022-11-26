@@ -3,9 +3,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 import './screens/screens.dart';
+import 'services/logger_service.dart';
 
 Future<void> main() async {
   await dotenv.load();
+  Get.put(LoggerService());
   runApp(Kuharko());
 }
 

@@ -12,7 +12,7 @@ class Recipe {
   bool lowFodmap;
   int aggregateLikes;
   double spoonacularScore;
-  double healthScore;
+  int healthScore;
   String creditsText;
   String license;
   String sourceName;
@@ -95,8 +95,7 @@ class Recipe {
     sourceName = json['sourceName'];
     pricePerServing = json['pricePerServing'];
     final List<dynamic> extendedIngredientsList = json['extendedIngredients'];
-    extendedIngredients =
-        extendedIngredientsList.map((extendedIngredient) => ExtendedIngredients.fromJson(extendedIngredient)).toList();
+    extendedIngredients = extendedIngredientsList.map((extendedIngredient) => ExtendedIngredients.fromJson(extendedIngredient)).toList();
     id = json['id'];
     title = json['title'];
     readyInMinutes = json['readyInMinutes'];

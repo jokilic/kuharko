@@ -22,8 +22,8 @@ class MyIcons {
   static const String clock = 'assets/icons/recipe/clock.png';
   static const String money = 'assets/icons/recipe/money.png';
   static const String recipeBook = 'assets/icons/recipe/recipe_book.png';
-  static const String favoriteOutline =
-      'assets/icons/recipe/favorite_outline.png';
+  static const String alarm = 'assets/icons/recipe/alarm.png';
+  static const String favoriteOutline = 'assets/icons/recipe/favorite_outline.png';
   static const String favoriteFull = 'assets/icons/recipe/favorite_full.png';
 
   static const String veganType = 'assets/icons/results/vegan.png';
@@ -48,13 +48,10 @@ class MyIcons {
   static const String cupcake = 'assets/icons/illustrations/cupcake.png';
   static const String egg = 'assets/icons/illustrations/egg.png';
   static const String friedEgg = 'assets/icons/illustrations/fried_egg.png';
-  static const String honeyDipper =
-      'assets/icons/illustrations/honey_dipper.png';
+  static const String honeyDipper = 'assets/icons/illustrations/honey_dipper.png';
   static const String milkBottle = 'assets/icons/illustrations/milk_bottle.png';
-  static const String recipeBook2 =
-      'assets/icons/illustrations/recipe_book2.png';
-  static const String cuttingBoard =
-      'assets/icons/illustrations/cutting_board.png';
+  static const String recipeBook2 = 'assets/icons/illustrations/recipe_book2.png';
+  static const String cuttingBoard = 'assets/icons/illustrations/cutting_board.png';
   static const String mixer = 'assets/icons/illustrations/mixer.png';
   static const String biscuit = 'assets/icons/illustrations/biscuit.png';
   static const String whisk = 'assets/icons/illustrations/whisk.png';

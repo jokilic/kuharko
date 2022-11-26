@@ -12,14 +12,14 @@ class BigRecipeWidget extends StatelessWidget {
   final String image;
   final String title;
   final String mealType;
-  final double score;
+  final int readyInMinutes;
 
   const BigRecipeWidget({
     @required this.onTap,
     @required this.image,
     @required this.title,
     @required this.mealType,
-    @required this.score,
+    @required this.readyInMinutes,
   });
 
   @override
@@ -80,9 +80,7 @@ class BigRecipeWidget extends StatelessWidget {
                               Text(
                                 mealType,
                                 style: MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
-                                  color: _themeController.darkTheme
-                                      ? DarkColors.textColor.withOpacity(0.4)
-                                      : LightColors.textColor.withOpacity(0.4),
+                                  color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
                                 ),
                               ),
                             ],
@@ -93,14 +91,13 @@ class BigRecipeWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset(
-                            MyIcons.favoriteOutline,
-                            width: 44.0,
-                            height: 44.0,
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            MyIcons.alarm,
+                            width: 42.0,
+                            height: 42.0,
                           ),
-                          const SizedBox(height: 4.0),
+                          const SizedBox(height: 8.0),
                           Text(
-                            '$score',
+                            "$readyInMinutes'",
                             style: MyTextStyles.bigRecipeWidgetRating.copyWith(
                               color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             ),

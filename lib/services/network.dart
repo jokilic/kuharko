@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response;
 
 import '../models/models.dart';
 import '../services/api.dart';
+import 'logger_service.dart';
 
 class Network {
   final Api _api = Api();
@@ -61,8 +63,7 @@ class Network {
 
   Future<RecipeSearchResult> searchRecipes(String query, {int number = 10}) async {
     try {
-      final Response<dynamic> _response =
-          await _api.get('/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&sort=random&');
+      final Response<dynamic> _response = await _api.get('/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&sort=random&');
       final RecipeSearchResult _recipeSearchResult = RecipeSearchResult.fromJson(_response.data);
 
       return _recipeSearchResult;
@@ -264,8 +265,7 @@ class Network {
 
   Future<MealPlanDay> getMealPlanDay({String diet, String exclude}) async {
     try {
-      final Response<dynamic> _response =
-          await _api.get('/mealplanner/generate?timeFrame=day&diet=$diet&exclude=$exclude&');
+      final Response<dynamic> _response = await _api.get('/mealplanner/generate?timeFrame=day&diet=$diet&exclude=$exclude&');
       final MealPlanDay _mealPlanDay = MealPlanDay.fromJson(_response.data);
 
       return _mealPlanDay;
@@ -276,8 +276,7 @@ class Network {
 
   Future<MealPlanWeek> getMealPlanWeek({String diet, String exclude}) async {
     try {
-      final Response<dynamic> _response =
-          await _api.get('/mealplanner/generate?timeFrame=week&diet=$diet&exclude=$exclude&');
+      final Response<dynamic> _response = await _api.get('/mealplanner/generate?timeFrame=week&diet=$diet&exclude=$exclude&');
       final MealPlanWeek _mealPlanWeek = MealPlanWeek.fromJson(_response.data);
 
       return _mealPlanWeek;
