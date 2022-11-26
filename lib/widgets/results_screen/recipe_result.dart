@@ -45,7 +45,6 @@ class RecipeResult extends StatelessWidget {
         () => Container(
           margin: const EdgeInsets.only(bottom: 20.0),
           width: double.infinity,
-          height: Get.height < 768 ? Get.height * 0.25 : Get.height * 0.18,
           decoration: BoxDecoration(
             color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
             borderRadius: BorderRadius.circular(16.0),
@@ -54,7 +53,7 @@ class RecipeResult extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                height: double.infinity,
+                height: 130.0,
                 width: 110.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
