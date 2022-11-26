@@ -75,15 +75,13 @@ class FavoritesScreen extends StatelessWidget {
 
                       return RecipeWidget(
                         color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                        title: favoriteRecipe[1].length > 24
-                            ? '${favoriteRecipe[1].substring(0, 24)}...'
-                            : favoriteRecipe[1],
+                        title: favoriteRecipe[1].length > 24 ? '${favoriteRecipe[1].substring(0, 24)}...' : favoriteRecipe[1],
                         image: favoriteRecipe[2],
                         onTap: () {
                           _spoonacularController.getRecipeInformation(int.parse(favoriteRecipe[0]));
                           Get.toNamed(RecipeScreen.routeName);
                         },
-                        score: double.parse(favoriteRecipe[3]) / 20 ?? 0.0,
+                        readyInMinutes: int.parse(favoriteRecipe[3]),
                       );
                     },
                   ),

@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Response;
 
 import '../models/models.dart';
 import '../services/api.dart';
-import 'logger_service.dart';
 
 class Network {
   final Api _api = Api();

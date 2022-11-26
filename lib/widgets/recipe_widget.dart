@@ -7,7 +7,7 @@ import '../constants/text_styles.dart';
 
 class RecipeWidget extends StatelessWidget {
   final String image;
-  final double score;
+  final int readyInMinutes;
   final String title;
   final Color color;
   final Function onTap;
@@ -17,7 +17,7 @@ class RecipeWidget extends StatelessWidget {
     @required this.title,
     @required this.onTap,
     @required this.color,
-    this.score,
+    this.readyInMinutes,
   });
 
   @override
@@ -38,11 +38,11 @@ class RecipeWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    if (score != null)
+                    if (readyInMinutes != null)
                       Row(
                         children: <Widget>[
                           Image.asset(
-                            MyIcons.star,
+                            MyIcons.clock,
                             width: 24.0,
                             height: 24.0,
                             color: color,
@@ -51,7 +51,7 @@ class RecipeWidget extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 1.0),
                             child: Text(
-                              '${score.toStringAsFixed(2)} / 5',
+                              "$readyInMinutes'",
                               style: MyTextStyles.overviewRecipeScore.copyWith(
                                 color: color,
                               ),

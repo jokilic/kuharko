@@ -46,7 +46,7 @@ class RecipesWidget extends StatelessWidget {
               return RecipeWidget(
                 color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                 image: recipe.image,
-                score: recipe.spoonacularScore / 20 ?? 0.0,
+                readyInMinutes: recipe.readyInMinutes,
                 title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                 onTap: () {
                   _spoonacularController.getRecipeInformation(recipe.id);
@@ -120,7 +120,7 @@ class RecipesWidget extends StatelessWidget {
                 child: RecipeWidget(
                   color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                   image: recipe.image,
-                  score: recipe.spoonacularScore / 20 ?? 0.0,
+                  readyInMinutes: recipe.readyInMinutes,
                   title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                   onTap: () {
                     _spoonacularController.getRecipeInformation(recipe.id);

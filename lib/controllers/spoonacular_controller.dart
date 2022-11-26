@@ -8,7 +8,6 @@ import '../constants/colors.dart';
 import '../enums/cuisine.dart';
 import '../enums/meal_type.dart';
 import '../models/models.dart';
-import '../services/logger_service.dart';
 import '../services/network.dart';
 
 class SpoonacularController extends GetxController {
@@ -283,7 +282,7 @@ class SpoonacularController extends GetxController {
       '${favoritedRecipe.id}',
       favoritedRecipe.title,
       favoritedRecipe.image,
-      '${favoritedRecipe.spoonacularScore}',
+      '${favoritedRecipe.readyInMinutes}',
     ];
 
     return _sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
