@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/text_styles.dart';
+import '../animated_column.dart';
 
 class RecipeGridWidget extends StatelessWidget {
   final Color color;
@@ -21,7 +22,7 @@ class RecipeGridWidget extends StatelessWidget {
           color: color.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16.0),
         ),
-        child: Column(
+        child: AnimatedColumn(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(

@@ -6,6 +6,7 @@ import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../controllers/theme_controller.dart';
+import 'animated_column.dart';
 
 class ErrorDialog extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class ErrorDialog extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: Column(
+              child: AnimatedColumn(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

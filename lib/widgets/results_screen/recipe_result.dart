@@ -6,6 +6,7 @@ import '../../constants/icons.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
 
 class RecipeResult extends StatelessWidget {
   final String title;
@@ -69,11 +70,11 @@ class RecipeResult extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
+                  child: AnimatedColumn(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column(
+                      AnimatedColumn(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(

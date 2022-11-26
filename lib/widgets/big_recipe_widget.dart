@@ -6,6 +6,7 @@ import '../constants/icons.dart';
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
 import '../controllers/theme_controller.dart';
+import 'animated_column.dart';
 
 class BigRecipeWidget extends StatelessWidget {
   final Function onTap;
@@ -66,7 +67,7 @@ class BigRecipeWidget extends StatelessWidget {
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Column(
+                          child: AnimatedColumn(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -87,7 +88,7 @@ class BigRecipeWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
+                      AnimatedColumn(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset(

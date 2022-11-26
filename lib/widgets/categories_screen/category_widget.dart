@@ -6,6 +6,7 @@ import '../../constants/colors.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String icon;
@@ -35,7 +36,7 @@ class CategoryWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.0),
               boxShadow: Shadows.myShadow,
             ),
-            child: Column(
+            child: AnimatedColumn(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(

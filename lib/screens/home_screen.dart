@@ -5,6 +5,7 @@ import '../constants/colors.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
+import '../widgets/animated_column.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/home_screen/recipes_widget.dart';
 import '../widgets/search_widget.dart';
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20.0),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              child: Column(
+              child: AnimatedColumn(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(height: 24.0),

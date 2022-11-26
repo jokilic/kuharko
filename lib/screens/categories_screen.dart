@@ -7,6 +7,7 @@ import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../models/category.dart';
 import '../screens/results_screen.dart';
+import '../widgets/animated_column.dart';
 import '../widgets/categories_screen/category_widget.dart';
 import '../widgets/header_widget.dart';
 
@@ -26,7 +27,7 @@ class CategoriesScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Column(
+            child: AnimatedColumn(
               children: <Widget>[
                 const SizedBox(height: 36.0),
                 const HeaderWidget(title: 'Search by category'),

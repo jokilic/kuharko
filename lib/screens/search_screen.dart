@@ -13,6 +13,7 @@ import '../enums/diets.dart';
 import '../enums/intolerance.dart';
 import '../enums/meal_type.dart';
 import '../screens/results_screen.dart';
+import '../widgets/animated_column.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/kuharko_button.dart';
 import '../widgets/search_screen/checkbox_dialog.dart';
@@ -34,7 +35,7 @@ class SearchScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Column(
+            child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 36.0),
@@ -53,9 +54,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedCuisines.isEmpty
-                              ? '_____'
-                              : _spoonacularController.wantedCuisines.toUpperCase(),
+                          text: _spoonacularController.wantedCuisines.isEmpty ? '_____' : _spoonacularController.wantedCuisines.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
@@ -66,8 +65,7 @@ class SearchScreen extends StatelessWidget {
                                     icon: MyIcons.randomIllustration,
                                     chosenEnums: cuisines,
                                     chosenControllerList: _spoonacularController.wantedCuisinesList,
-                                    setJoinedValues: (joinedValues) =>
-                                        _spoonacularController.wantedCuisines = joinedValues,
+                                    setJoinedValues: (joinedValues) => _spoonacularController.wantedCuisines = joinedValues,
                                   ),
                                 ),
                         ),
@@ -75,9 +73,7 @@ class SearchScreen extends StatelessWidget {
                           text: ' cuisines and I want the food to be ',
                         ),
                         TextSpan(
-                          text: _spoonacularController.wantedDiets.isEmpty
-                              ? '_____'
-                              : _spoonacularController.wantedDiets.toUpperCase(),
+                          text: _spoonacularController.wantedDiets.isEmpty ? '_____' : _spoonacularController.wantedDiets.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
@@ -89,8 +85,7 @@ class SearchScreen extends StatelessWidget {
                                     chosenEnums: diets,
                                     chosenControllerList: _spoonacularController.wantedDietsList,
                                     multiValue: false,
-                                    setJoinedValues: (String joinedValues) =>
-                                        _spoonacularController.wantedDiets = joinedValues,
+                                    setJoinedValues: (String joinedValues) => _spoonacularController.wantedDiets = joinedValues,
                                   ),
                                 ),
                         ),
@@ -111,9 +106,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.nonWantedIntolerances.isEmpty
-                              ? '_____'
-                              : _spoonacularController.nonWantedIntolerances.toUpperCase(),
+                          text: _spoonacularController.nonWantedIntolerances.isEmpty ? '_____' : _spoonacularController.nonWantedIntolerances.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
@@ -124,8 +117,7 @@ class SearchScreen extends StatelessWidget {
                                     icon: MyIcons.randomIllustration,
                                     chosenEnums: intolerances,
                                     chosenControllerList: _spoonacularController.intolerancesList,
-                                    setJoinedValues: (String joinedValues) =>
-                                        _spoonacularController.nonWantedIntolerances = joinedValues,
+                                    setJoinedValues: (String joinedValues) => _spoonacularController.nonWantedIntolerances = joinedValues,
                                   ),
                                 ),
                         ),
@@ -156,9 +148,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedIngredients.isEmpty
-                              ? '_____'
-                              : _spoonacularController.wantedIngredients.toUpperCase(),
+                          text: _spoonacularController.wantedIngredients.isEmpty ? '_____' : _spoonacularController.wantedIngredients.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
@@ -171,8 +161,7 @@ class SearchScreen extends StatelessWidget {
                                     hintIcon: MyIcons.ingredients,
                                     chosenTextController: _spoonacularController.ingredientsInKitchenController,
                                     chosenControllerList: _spoonacularController.ingredientsInKitchen,
-                                    setJoinedValues: (String joinedValues) =>
-                                        _spoonacularController.wantedIngredients = joinedValues,
+                                    setJoinedValues: (String joinedValues) => _spoonacularController.wantedIngredients = joinedValues,
                                   ),
                                 ),
                         ),
@@ -193,9 +182,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.nonWantedIngredients.isEmpty
-                              ? '_____'
-                              : _spoonacularController.nonWantedIngredients.toUpperCase(),
+                          text: _spoonacularController.nonWantedIngredients.isEmpty ? '_____' : _spoonacularController.nonWantedIngredients.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
@@ -208,8 +195,7 @@ class SearchScreen extends StatelessWidget {
                                     hintIcon: MyIcons.ingredients,
                                     chosenTextController: _spoonacularController.unwantedIngredientsInKitchenController,
                                     chosenControllerList: _spoonacularController.unwantedIngredientsInKitchen,
-                                    setJoinedValues: (String joinedValues) =>
-                                        _spoonacularController.nonWantedIngredients = joinedValues,
+                                    setJoinedValues: (String joinedValues) => _spoonacularController.nonWantedIngredients = joinedValues,
                                   ),
                                 ),
                         ),
@@ -240,9 +226,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedMealTypes.isEmpty
-                              ? '_____'
-                              : _spoonacularController.wantedMealTypes.toUpperCase(),
+                          text: _spoonacularController.wantedMealTypes.isEmpty ? '_____' : _spoonacularController.wantedMealTypes.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
@@ -254,8 +238,7 @@ class SearchScreen extends StatelessWidget {
                                     chosenEnums: mealTypes,
                                     chosenControllerList: _spoonacularController.wantedMealTypesList,
                                     multiValue: false,
-                                    setJoinedValues: (String joinedValues) =>
-                                        _spoonacularController.wantedMealTypes = joinedValues,
+                                    setJoinedValues: (String joinedValues) => _spoonacularController.wantedMealTypes = joinedValues,
                                   ),
                                 ),
                         ),
@@ -276,9 +259,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedMinutesChosen
-                              ? '${_spoonacularController.wantedMinutes} MINUTES'
-                              : '_____',
+                          text: _spoonacularController.wantedMinutesChosen ? '${_spoonacularController.wantedMinutes} MINUTES' : '_____',
                           style: MyTextStyles.searchDynamicText.copyWith(
                             color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),

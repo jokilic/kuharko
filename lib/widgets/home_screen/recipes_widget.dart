@@ -8,6 +8,7 @@ import '../../models/recipe/recipe.dart';
 import '../../screens/recipe_screen.dart';
 import '../../widgets/big_recipe_widget.dart';
 import '../../widgets/recipe_widget.dart';
+import '../animated_list_view.dart';
 import '../loading_widgets/big_recipe_loading_widget.dart';
 
 class RecipesWidget extends StatelessWidget {
@@ -67,9 +68,12 @@ class RecipesWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) => Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: BigRecipeLoadingWidget(),
+                itemBuilder: (BuildContext context, int index) => AnimatedListView(
+                  index: index,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: BigRecipeLoadingWidget(),
+                  ),
                 ),
               ),
             );
@@ -86,17 +90,20 @@ class RecipesWidget extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 final Recipe recipe = recipes[index];
 
-                return Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: BigRecipeWidget(
-                    mealType: recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
-                    image: recipe.image,
-                    readyInMinutes: recipe.readyInMinutes,
-                    title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
-                    onTap: () {
-                      _spoonacularController.getRecipeInformation(recipe.id);
-                      Get.toNamed(RecipeScreen.routeName);
-                    },
+                return AnimatedListView(
+                  index: index,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: BigRecipeWidget(
+                      mealType: recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
+                      image: recipe.image,
+                      readyInMinutes: recipe.readyInMinutes,
+                      title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
+                      onTap: () {
+                        _spoonacularController.getRecipeInformation(recipe.id);
+                        Get.toNamed(RecipeScreen.routeName);
+                      },
+                    ),
                   ),
                 );
               },
@@ -115,17 +122,20 @@ class RecipesWidget extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final Recipe recipe = recipes[index];
 
-              return Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: RecipeWidget(
-                  color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                  image: recipe.image,
-                  readyInMinutes: recipe.readyInMinutes,
-                  title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
-                  onTap: () {
-                    _spoonacularController.getRecipeInformation(recipe.id);
-                    Get.toNamed(RecipeScreen.routeName);
-                  },
+              return AnimatedListView(
+                index: index,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: RecipeWidget(
+                    color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                    image: recipe.image,
+                    readyInMinutes: recipe.readyInMinutes,
+                    title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
+                    onTap: () {
+                      _spoonacularController.getRecipeInformation(recipe.id);
+                      Get.toNamed(RecipeScreen.routeName);
+                    },
+                  ),
                 ),
               );
             },

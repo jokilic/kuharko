@@ -5,6 +5,7 @@ import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
 
 class MinutesDialog extends StatelessWidget {
   final String title;
@@ -50,7 +51,7 @@ class MinutesDialog extends StatelessWidget {
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Column(
+                child: AnimatedColumn(
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

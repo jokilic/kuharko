@@ -5,6 +5,8 @@ import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
+import '../animated_list_view.dart';
 
 class SearchDialog extends StatelessWidget {
   final String title;
@@ -45,7 +47,7 @@ class SearchDialog extends StatelessWidget {
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Column(
+                child: AnimatedColumn(
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -91,16 +93,12 @@ class SearchDialog extends StatelessWidget {
                           child: Image.asset(
                             hintIcon,
                             width: 30.0,
-                            color: _themeController.darkTheme
-                                ? DarkColors.textColor.withOpacity(0.8)
-                                : LightColors.textColor.withOpacity(0.8),
+                            color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
                           ),
                         ),
                         hintText: hintText,
                         hintStyle: TextStyle(
-                          color: _themeController.darkTheme
-                              ? DarkColors.textColor.withOpacity(0.4)
-                              : LightColors.textColor.withOpacity(0.4),
+                          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -109,8 +107,7 @@ class SearchDialog extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         filled: false,
-                        fillColor:
-                            _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
+                        fillColor: _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
@@ -131,37 +128,40 @@ class SearchDialog extends StatelessWidget {
                         itemCount: chosenControllerList.length,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) => Container(
-                          margin: const EdgeInsets.only(bottom: 8.0),
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                child: Obx(
-                                  () => Text(
-                                    chosenControllerList[index],
-                                    style: MyTextStyles.searchDialogText.copyWith(
-                                      color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        itemBuilder: (BuildContext context, int index) => AnimatedListView(
+                          index: index,
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 8.0),
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Obx(
+                                    () => Text(
+                                      chosenControllerList[index],
+                                      style: MyTextStyles.searchDialogText.copyWith(
+                                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 12.0),
-                              GestureDetector(
-                                onTap: () {
-                                  chosenControllerList.removeAt(index);
-                                  final String joinedValues = chosenControllerList.join(', ');
-                                  setJoinedValues(joinedValues);
-                                },
-                                behavior: HitTestBehavior.translucent,
-                                child: Image.asset(
-                                  MyIcons.delete,
-                                  height: 44.0,
-                                  width: 44.0,
+                                const SizedBox(width: 12.0),
+                                GestureDetector(
+                                  onTap: () {
+                                    chosenControllerList.removeAt(index);
+                                    final String joinedValues = chosenControllerList.join(', ');
+                                    setJoinedValues(joinedValues);
+                                  },
+                                  behavior: HitTestBehavior.translucent,
+                                  child: Image.asset(
+                                    MyIcons.delete,
+                                    height: 44.0,
+                                    width: 44.0,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

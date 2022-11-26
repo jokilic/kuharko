@@ -11,6 +11,8 @@ import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../models/recipe/recipe.dart';
+import '../widgets/animated_column.dart';
+import '../widgets/animated_list_view.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/kuharko_button.dart';
 import '../widgets/recipe_screen/heart_animation_widget.dart';
@@ -38,7 +40,7 @@ class RecipeScreen extends StatelessWidget {
             if (recipe == null) {
               return SizedBox(
                 height: Get.height,
-                child: Column(
+                child: AnimatedColumn(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const HeaderWidget(chefOnly: true),
@@ -64,7 +66,7 @@ class RecipeScreen extends StatelessWidget {
 
             return Stack(
               children: <Widget>[
-                Column(
+                AnimatedColumn(
                   children: <Widget>[
                     Transform.scale(
                       scale: 1.2,
@@ -96,7 +98,7 @@ class RecipeScreen extends StatelessWidget {
                               horizontal: 16.0,
                               vertical: 36.0,
                             ),
-                            child: Column(
+                            child: AnimatedColumn(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Obx(
@@ -225,11 +227,14 @@ class RecipeScreen extends StatelessWidget {
                                     itemBuilder: (BuildContext context, int index) {
                                       final ExtendedIngredients ingredient = recipe.extendedIngredients[index];
 
-                                      return IngredientWidget(
-                                        image: _spoonacularController.getIngredientImage(ingredient.image),
-                                        title: ingredient.name,
-                                        amount: ingredient.amount,
-                                        unit: ingredient.unit,
+                                      return AnimatedListView(
+                                        index: index,
+                                        child: IngredientWidget(
+                                          image: _spoonacularController.getIngredientImage(ingredient.image),
+                                          title: ingredient.name,
+                                          amount: ingredient.amount,
+                                          unit: ingredient.unit,
+                                        ),
                                       );
                                     },
                                   ),
@@ -255,9 +260,12 @@ class RecipeScreen extends StatelessWidget {
                                     itemBuilder: (BuildContext context, int index) {
                                       final dynamic instruction = recipe.analyzedInstructions[0]['steps'][index];
 
-                                      return RecipeInstructionWidget(
-                                        number: instruction['number'] ?? 0,
-                                        step: instruction['step'] ?? '',
+                                      return AnimatedListView(
+                                        index: index,
+                                        child: RecipeInstructionWidget(
+                                          number: instruction['number'] ?? 0,
+                                          step: instruction['step'] ?? '',
+                                        ),
                                       );
                                     },
                                   ),

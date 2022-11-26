@@ -4,6 +4,7 @@ import '../constants/icons.dart';
 import '../constants/images.dart';
 import '../constants/shadows.dart';
 import '../constants/text_styles.dart';
+import 'animated_column.dart';
 
 class RecipeWidget extends StatelessWidget {
   final String image;
@@ -35,7 +36,7 @@ class RecipeWidget extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(12.0, 80.0, 12.0, 6.0),
-                child: Column(
+                child: AnimatedColumn(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     if (readyInMinutes != null)

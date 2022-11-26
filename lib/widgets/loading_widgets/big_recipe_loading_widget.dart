@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../constants/colors.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
 
 class BigRecipeLoadingWidget extends StatelessWidget {
   @override
@@ -43,7 +44,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
+                      child: AnimatedColumn(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -70,7 +71,7 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Column(
+                  AnimatedColumn(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Shimmer.fromColors(

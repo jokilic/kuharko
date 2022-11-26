@@ -8,6 +8,7 @@ import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../screens/recipe_screen.dart';
+import '../widgets/animated_column.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/recipe_widget.dart';
 
@@ -25,7 +26,7 @@ class FavoritesScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
-            child: Column(
+            child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 36.0),
@@ -35,7 +36,7 @@ class FavoritesScreen extends StatelessWidget {
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 36.0),
-                      child: Column(
+                      child: AnimatedColumn(
                         children: <Widget>[
                           PressableDough(
                             child: Image.asset(

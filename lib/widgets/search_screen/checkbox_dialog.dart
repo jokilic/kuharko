@@ -5,6 +5,8 @@ import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
+import '../animated_list_view.dart';
 
 class CheckboxDialog extends StatelessWidget {
   final String title;
@@ -43,7 +45,7 @@ class CheckboxDialog extends StatelessWidget {
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Column(
+                child: AnimatedColumn(
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,54 +77,55 @@ class CheckboxDialog extends StatelessWidget {
                         chosenEnums.sort();
                         final String value = chosenEnums[index];
 
-                        return GestureDetector(
-                          onTap: () {
-                            final bool isChecked = chosenControllerList.contains(value);
-                            if (multiValue) {
-                              if (isChecked) {
-                                chosenControllerList.remove(value);
+                        return AnimatedListView(
+                          index: index,
+                          child: GestureDetector(
+                            onTap: () {
+                              final bool isChecked = chosenControllerList.contains(value);
+                              if (multiValue) {
+                                if (isChecked) {
+                                  chosenControllerList.remove(value);
+                                } else {
+                                  chosenControllerList.add(value);
+                                }
+                                final String joinedValues = chosenControllerList.join(', ');
+                                setJoinedValues(joinedValues);
                               } else {
-                                chosenControllerList.add(value);
+                                chosenControllerList.clear();
+                                if (!isChecked) {
+                                  chosenControllerList.add(value);
+                                  setJoinedValues(value);
+                                } else {
+                                  setJoinedValues('');
+                                }
+                                Get.back();
                               }
-                              final String joinedValues = chosenControllerList.join(', ');
-                              setJoinedValues(joinedValues);
-                            } else {
-                              chosenControllerList.clear();
-                              if (!isChecked) {
-                                chosenControllerList.add(value);
-                                setJoinedValues(value);
-                              } else {
-                                setJoinedValues('');
-                              }
-                              Get.back();
-                            }
-                          },
-                          behavior: HitTestBehavior.translucent,
-                          child: Obx(
-                            () => Container(
-                              margin: const EdgeInsets.only(bottom: 8.0),
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Obx(
-                                    () => Text(
-                                      value,
-                                      style: MyTextStyles.searchDialogText.copyWith(
-                                        color:
-                                            _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
-                                        fontWeight:
-                                            chosenControllerList.contains(value) ? FontWeight.w800 : FontWeight.w500,
+                            },
+                            behavior: HitTestBehavior.translucent,
+                            child: Obx(
+                              () => Container(
+                                margin: const EdgeInsets.only(bottom: 8.0),
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Obx(
+                                      () => Text(
+                                        value,
+                                        style: MyTextStyles.searchDialogText.copyWith(
+                                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                          fontWeight: chosenControllerList.contains(value) ? FontWeight.w800 : FontWeight.w500,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  if (chosenControllerList.contains(value))
-                                    Image.asset(
-                                      MyIcons.spatula,
-                                      height: 26.0,
-                                      width: 26.0,
-                                    ),
-                                ],
+                                    if (chosenControllerList.contains(value))
+                                      Image.asset(
+                                        MyIcons.spatula,
+                                        height: 26.0,
+                                        width: 26.0,
+                                      ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

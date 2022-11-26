@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
+import '../widgets/animated_column.dart';
+import '../widgets/animated_list_view.dart';
 import './recipe_screen.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
@@ -28,7 +30,7 @@ class ResultsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Column(
+            child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 36.0),
@@ -39,7 +41,7 @@ class ResultsScreen extends StatelessWidget {
                 Obx(
                   () {
                     if (_spoonacularController.recipeSearchResult == null) {
-                      return Column(
+                      return AnimatedColumn(
                         children: <Widget>[
                           const SizedBox(height: 42.0),
                           SpinKitFoldingCube(
@@ -65,7 +67,7 @@ class ResultsScreen extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(top: 16.0),
                           padding: const EdgeInsets.symmetric(horizontal: 36.0),
-                          child: Column(
+                          child: AnimatedColumn(
                             children: <Widget>[
                               Image.asset(
                                 MyIcons.randomIllustration,
@@ -95,23 +97,26 @@ class ResultsScreen extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         final RecipeSearchResults recipe = _spoonacularController.recipeSearchResult.results[index];
 
-                        return RecipeResult(
-                          title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
-                          description: Get.height < 700
-                              ? '${_spoonacularController.cleanDescription(index).substring(0, 64)}...'
-                              : '${_spoonacularController.cleanDescription(index).substring(0, 80)}...',
-                          image: recipe.image,
-                          color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                          clockColor: _spoonacularController.clockColor(index),
-                          onTap: () {
-                            _spoonacularController.getRecipeInformation(recipe.id);
-                            Get.toNamed(RecipeScreen.routeName);
-                          },
-                          minutes: recipe.readyInMinutes,
-                          isVegan: recipe.vegan,
-                          isHealthy: recipe.veryHealthy,
-                          isCheap: recipe.cheap,
-                          isPopular: recipe.veryPopular,
+                        return AnimatedListView(
+                          index: index,
+                          child: RecipeResult(
+                            title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
+                            description: Get.height < 700
+                                ? '${_spoonacularController.cleanDescription(index).substring(0, 64)}...'
+                                : '${_spoonacularController.cleanDescription(index).substring(0, 80)}...',
+                            image: recipe.image,
+                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            clockColor: _spoonacularController.clockColor(index),
+                            onTap: () {
+                              _spoonacularController.getRecipeInformation(recipe.id);
+                              Get.toNamed(RecipeScreen.routeName);
+                            },
+                            minutes: recipe.readyInMinutes,
+                            isVegan: recipe.vegan,
+                            isHealthy: recipe.veryHealthy,
+                            isCheap: recipe.cheap,
+                            isPopular: recipe.veryPopular,
+                          ),
                         );
                       },
                     );

@@ -5,6 +5,7 @@ import '../../constants/colors.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/theme_controller.dart';
+import '../animated_column.dart';
 
 class IngredientWidget extends StatelessWidget {
   final String image;
@@ -23,7 +24,7 @@ class IngredientWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeController _themeController = Get.find<ThemeController>();
 
-    return Column(
+    return AnimatedColumn(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
@@ -44,16 +45,14 @@ class IngredientWidget extends StatelessWidget {
         const SizedBox(height: 10.0),
         SizedBox(
           width: 140.0,
-          child: Column(
+          child: AnimatedColumn(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Obx(
                 () => Text(
                   title,
                   style: MyTextStyles.recipeIngredientName.copyWith(
-                    color: _themeController.darkTheme
-                        ? DarkColors.textColor.withOpacity(0.8)
-                        : LightColors.textColor.withOpacity(0.8),
+                    color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
                   ),
                 ),
               ),
@@ -61,9 +60,7 @@ class IngredientWidget extends StatelessWidget {
                 () => Text(
                   '${amount.toStringAsFixed(1)} $unit',
                   style: MyTextStyles.recipeIngredientAmount.copyWith(
-                    color: _themeController.darkTheme
-                        ? DarkColors.textColor.withOpacity(0.4)
-                        : LightColors.textColor.withOpacity(0.4),
+                    color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
                   ),
                 ),
               ),

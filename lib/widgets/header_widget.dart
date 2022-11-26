@@ -7,6 +7,7 @@ import '../constants/images.dart';
 import '../constants/text_styles.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
+import 'animated_column.dart';
 
 class HeaderWidget extends StatefulWidget {
   final String title;
@@ -92,7 +93,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Column(
+          AnimatedColumn(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -146,7 +147,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Column(
+        AnimatedColumn(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
