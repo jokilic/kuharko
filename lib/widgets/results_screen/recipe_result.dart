@@ -86,9 +86,7 @@ class RecipeResult extends StatelessWidget {
                           Text(
                             description,
                             style: MyTextStyles.resultDescription.copyWith(
-                              color: _themeController.darkTheme
-                                  ? DarkColors.textColor.withOpacity(0.8)
-                                  : LightColors.textColor.withOpacity(0.8),
+                              color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
                             ),
                           ),
                         ],

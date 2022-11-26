@@ -36,7 +36,7 @@ class RecipeSearchResults {
   int cookingMinutes;
   int aggregateLikes;
   double spoonacularScore;
-  double healthScore;
+  int healthScore;
   String creditsText;
   String sourceName;
   double pricePerServing;
