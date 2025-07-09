@@ -6,15 +6,12 @@ import 'package:get/get.dart' hide Response;
 
 import '../util/logger_interceptor.dart';
 import '../widgets/error_dialog.dart';
-import 'alice_service.dart';
 
 class Api {
   final String baseUrl = 'https://api.spoonacular.com';
   final String apiKey = dotenv.env['APIKEY'];
 
-  final Dio _dio = Dio()
-    ..interceptors.add(LoggerInterceptor())
-    ..interceptors.add(Get.find<AliceService>().alice.getDioInterceptor());
+  final Dio _dio = Dio()..interceptors.add(LoggerInterceptor());
 
   Future<Response<dynamic>> get(String path) async {
     try {

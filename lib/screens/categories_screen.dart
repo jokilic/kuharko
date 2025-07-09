@@ -7,8 +7,6 @@ import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
 import '../models/category.dart';
 import '../screens/results_screen.dart';
-import '../services/alice_service.dart';
-import '../services/logger_service.dart';
 import '../widgets/animated_column.dart';
 import '../widgets/categories_screen/category_widget.dart';
 import '../widgets/header_widget.dart';
@@ -52,18 +50,6 @@ class CategoriesScreen extends StatelessWidget {
                         _spoonacularController.searchRecipes(category.title.toLowerCase());
                         Get.toNamed(ResultsScreen.routeName);
                       },
-                      onLongPress:
-
-                          /// User longpressed last value, open `Logger`
-                          index == _categoryController.categories.length - 1
-                              ? () => Get.find<LoggerService>().openLogger(context)
-
-                              /// User longpressed value before last one, open `Alice`
-                              : index == _categoryController.categories.length - 2
-                                  ? Get.find<AliceService>().openAlice
-
-                                  /// User longpressed other values, do nothing
-                                  : null,
                     );
                   },
                 ),

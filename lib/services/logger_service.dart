@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger_flutter_fork/logger_flutter_fork.dart';
-import 'package:logger_fork/logger_fork.dart';
+import 'package:logger/logger.dart';
 
 class LoggerService extends GetxService {
   ///
@@ -28,8 +26,6 @@ class LoggerService extends GetxService {
         noBoxingByDefault: true,
       ),
     );
-
-    LogConsole.init();
   }
 
   ///
@@ -37,7 +33,7 @@ class LoggerService extends GetxService {
   ///
 
   /// Verbose log, grey color
-  void v(value) => logger.v(value);
+  void t(value) => logger.t(value);
 
   /// 🐛 Debug log, blue color
   void d(value) => logger.d(value);
@@ -51,16 +47,13 @@ class LoggerService extends GetxService {
   /// ⛔ Error log, red color
   void e(value) => logger.e(value);
 
-  /// 👾 What a terrible failure log, purple color
-  void wtf(value) => logger.wtf(value);
+  /// 👾 Fatal log, purple color
+  void f(value) => logger.f(value);
 
   /// Logs JSON responses with proper formatting
   void logJson(String data, {bool isError = false}) {
     final object = json.decode(data);
     final prettyString = const JsonEncoder.withIndent('  ').convert(object);
-    isError ? logger.e(prettyString) : logger.v(prettyString);
+    isError ? logger.e(prettyString) : logger.t(prettyString);
   }
-
-  /// Opens [Logger] screen
-  void openLogger(BuildContext context) => LogConsole.open(context);
 }

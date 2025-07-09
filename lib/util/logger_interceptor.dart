@@ -47,13 +47,13 @@ class LoggerInterceptor implements Interceptor {
     final requestData = '${options.data}';
 
     logger
-      ..v('🌍 SENDING NETWORK REQUEST 🌍')
-      ..v('--------------------')
-      ..v('Endpoint: $endpoint')
-      ..v('HTTP Method: $httpMethod')
-      ..v('Request:')
+      ..t('🌍 SENDING NETWORK REQUEST 🌍')
+      ..t('--------------------')
+      ..t('Endpoint: $endpoint')
+      ..t('HTTP Method: $httpMethod')
+      ..t('Request:')
       ..logJson(requestData)
-      ..v('--------------------\n');
+      ..t('--------------------\n');
 
     return handler.next(options);
   }
@@ -67,16 +67,16 @@ class LoggerInterceptor implements Interceptor {
     final jsonResponse = jsonEncode(response.data);
 
     logger
-      ..v('✅ RESPONSE SUCCESSFULLY FETCHED ✅')
-      ..v('--------------------')
-      ..v('Endpoint: $endpoint')
-      ..v('HTTP Method: $httpMethod')
-      ..v('Status code: $statusCode')
-      ..v('Request:')
+      ..t('✅ RESPONSE SUCCESSFULLY FETCHED ✅')
+      ..t('--------------------')
+      ..t('Endpoint: $endpoint')
+      ..t('HTTP Method: $httpMethod')
+      ..t('Status code: $statusCode')
+      ..t('Request:')
       ..logJson(requestData)
-      ..v('Response:')
+      ..t('Response:')
       ..logJson(jsonResponse)
-      ..v('--------------------\n');
+      ..t('--------------------\n');
 
     return handler.next(response);
   }
