@@ -12,7 +12,7 @@ class Recipe {
   bool lowFodmap;
   int aggregateLikes;
   double spoonacularScore;
-  int healthScore;
+  double healthScore;
   String creditsText;
   String license;
   String sourceName;

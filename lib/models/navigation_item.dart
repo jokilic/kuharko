@@ -5,7 +5,10 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../controllers/theme_controller.dart';
-import '../screens/screens.dart';
+import '../screens/categories_screen.dart';
+import '../screens/favorites_screen.dart';
+import '../screens/home_screen.dart';
+import '../screens/search_screen.dart';
 
 class NavigationItem {
   final Widget page;
@@ -30,9 +33,7 @@ class NavigationItem {
           MyIcons.home,
           width: 40.0,
           height: 40.0,
-          color: _themeController.darkTheme
-              ? DarkColors.textColor.withOpacity(0.2)
-              : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.home,
@@ -48,9 +49,7 @@ class NavigationItem {
           MyIcons.search,
           width: 40.0,
           height: 40.0,
-          color: _themeController.darkTheme
-              ? DarkColors.textColor.withOpacity(0.2)
-              : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.search,
@@ -66,9 +65,7 @@ class NavigationItem {
           MyIcons.categories,
           width: 40.0,
           height: 40.0,
-          color: _themeController.darkTheme
-              ? DarkColors.textColor.withOpacity(0.2)
-              : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.categories,
@@ -84,9 +81,7 @@ class NavigationItem {
           MyIcons.heart,
           width: 40.0,
           height: 40.0,
-          color: _themeController.darkTheme
-              ? DarkColors.textColor.withOpacity(0.2)
-              : LightColors.backgroundColor.withOpacity(0.2),
+          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
         ),
         iconActive: Image.asset(
           MyIcons.heart,

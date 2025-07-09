@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart' hide Response;
@@ -19,18 +17,6 @@ class Api {
       return response;
     } catch (e) {
       await Get.dialog(ErrorDialog());
-      return null;
-    }
-  }
-
-  Future<Response<dynamic>> post(String path, {Map<String, dynamic> params}) async {
-    try {
-      final Response<dynamic> response = await _dio.post(
-        path,
-        data: jsonEncode(params),
-      );
-      return response;
-    } catch (e) {
       return null;
     }
   }

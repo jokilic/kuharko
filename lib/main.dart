@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
-import './screens/screens.dart';
+import 'screens/bottom_navigation.dart';
+import 'screens/categories_screen.dart';
+import 'screens/favorites_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/recipe_screen.dart';
+import 'screens/results_screen.dart';
+import 'screens/search_screen.dart';
 import 'services/logger_service.dart';
 
 Future<void> main() async {

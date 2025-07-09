@@ -6,10 +6,6 @@ import 'package:get/get.dart' hide Response;
 import '../services/logger_service.dart';
 
 class LoggerInterceptor implements Interceptor {
-  ///
-  /// DEPENDENCIES
-  ///
-
   final logger = Get.find<LoggerService>();
 
   ///
