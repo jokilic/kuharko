@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart' hide Response;
 
+import '../util/env.dart';
 import '../util/logger_interceptor.dart';
 import '../widgets/error_dialog.dart';
 
 class Api {
   final baseUrl = 'https://api.spoonacular.com';
-  final apiKey = dotenv.env['APIKEY'];
+  final apiKey = Env.apiKey;
 
   final dio = Dio()..interceptors.add(LoggerInterceptor());
 
