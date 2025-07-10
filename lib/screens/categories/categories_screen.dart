@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
-import '../../controllers/category_controller.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
+import 'categories_controller.dart';
+import '../../services/spoonacular_service.dart';
+import '../../services/theme_service.dart';
 import '../../models/category.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/header_widget.dart';
@@ -16,9 +16,9 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final CategoryController _categoryController = Get.put(CategoryController());
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
+    final CategoriesController _categoryController = Get.put(CategoriesController());
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Scaffold(
       backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/shadows.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 
 class IngredientWidget extends StatelessWidget {
@@ -14,15 +14,15 @@ class IngredientWidget extends StatelessWidget {
   final String unit;
 
   const IngredientWidget({
-    @required this.image,
-    @required this.title,
-    @required this.amount,
-    @required this.unit,
+    required this.image,
+    required this.title,
+    required this.amount,
+    required this.unit,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return AnimatedColumn(
       crossAxisAlignment: CrossAxisAlignment.start,

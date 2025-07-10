@@ -8,10 +8,10 @@ import '../constants/colors.dart';
 import '../constants/cuisine.dart';
 import '../constants/meal_type.dart';
 import '../models/models.dart';
-import '../services/network.dart';
+import 'network_service.dart';
 
-class SpoonacularController extends GetxController {
-  final network = Network();
+class SpoonacularService extends GetxService {
+  final network = Get.find<NetworkService>();
 
   ///
   /// REACTIVE VARIABLES
@@ -37,107 +37,95 @@ class SpoonacularController extends GetxController {
   RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
   set recipeSearchResult(RecipeSearchResult value) => _recipeSearchResult.value = value;
 
-    final _recipeInformation = Recipe().obs;
+  final _recipeInformation = Recipe().obs;
   Recipe get recipeInformation => _recipeInformation.value;
   set recipeInformation(Recipe value) => _recipeInformation.value = value;
 
+  final _recipeIsFavorited = false.obs;
+  bool get recipeIsFavorited => _recipeIsFavorited.value;
+  set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
 
+  final _favoriteRecipes = <String>[].obs;
+  List<String> get favoriteRecipes => _favoriteRecipes;
+  set favoriteRecipes(List<String> value) => _favoriteRecipes.assignAll(value);
 
-final _recipeIsFavorited = false.obs;
-bool get recipeIsFavorited => _recipeIsFavorited.value;
-set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
+  final _randomCuisineName = ''.obs;
+  String get randomCuisineName => _randomCuisineName.value;
+  set randomCuisineName(String value) => _randomCuisineName.value = value;
 
-final _favoriteRecipes = <String>[].obs;
-List<String> get favoriteRecipes => _favoriteRecipes;
-set favoriteRecipes(List<String> value) => _favoriteRecipes.assignAll(value);
+  final _randomMealTypeName = ''.obs;
+  String get randomMealTypeName => _randomMealTypeName.value;
+  set randomMealTypeName(String value) => _randomMealTypeName.value = value;
 
+  final _wantedCuisinesList = <String>[].obs;
+  List<String> get wantedCuisinesList => _wantedCuisinesList;
+  set wantedCuisinesList(List<String> value) => _wantedCuisinesList.assignAll(value);
 
-final _randomCuisineName = ''.obs;
-String get randomCuisineName => _randomCuisineName.value;
-set randomCuisineName(String value) => _randomCuisineName.value = value;
+  final _wantedDietsList = <String>[].obs;
+  List<String> get wantedDietsList => _wantedDietsList;
+  set wantedDietsList(List<String> value) => _wantedDietsList.assignAll(value);
 
-final _randomMealTypeName = ''.obs;
-String get randomMealTypeName => _randomMealTypeName.value;
-set randomMealTypeName(String value) => _randomMealTypeName.value = value;
+  final _intolerancesList = <String>[].obs;
+  List<String> get intolerancesList => _intolerancesList;
+  set intolerancesList(List<String> value) => _intolerancesList.assignAll(value);
 
-final _wantedCuisinesList = <String>[].obs;
-List<String> get wantedCuisinesList => _wantedCuisinesList;
-set wantedCuisinesList(List<String> value) => _wantedCuisinesList.assignAll(value);
+  final _wantedMealTypesList = <String>[].obs;
+  List<String> get wantedMealTypesList => _wantedMealTypesList;
+  set wantedMealTypesList(List<String> value) => _wantedMealTypesList.assignAll(value);
 
-final _wantedDietsList = <String>[].obs;
-List<String> get wantedDietsList => _wantedDietsList;
-set wantedDietsList(List<String> value) => _wantedDietsList.assignAll(value);
+  final _ingredientsInKitchen = <String>[].obs;
+  List<String> get ingredientsInKitchen => _ingredientsInKitchen;
+  set ingredientsInKitchen(List<String> value) => _ingredientsInKitchen.assignAll(value);
 
-final _intolerancesList = <String>[].obs;
-List<String> get intolerancesList => _intolerancesList;
-set intolerancesList(List<String> value) => _intolerancesList.assignAll(value);
+  final _unwantedIngredientsInKitchen = ''.obs;
+  String get unwantedIngredientsInKitchen => _unwantedIngredientsInKitchen.value;
+  set unwantedIngredientsInKitchen(String value) => _unwantedIngredientsInKitchen.value = value;
 
-final _wantedMealTypesList = <String>[].obs;
-List<String> get wantedMealTypesList => _wantedMealTypesList;
-set wantedMealTypesList(List<String> value) => _wantedMealTypesList.assignAll(value);
+  final _wantedCuisines = ''.obs;
+  String get wantedCuisines => _wantedCuisines.value;
+  set wantedCuisines(String value) => _wantedCuisines.value = value;
 
-final _ingredientsInKitchen = <String>[].obs;
-List<String> get ingredientsInKitchen => _ingredientsInKitchen;
-set ingredientsInKitchen(List<String> value) => _ingredientsInKitchen.assignAll(value);
+  final _wantedDiets = ''.obs;
+  String get wantedDiets => _wantedDiets.value;
+  set wantedDiets(String value) => _wantedDiets.value = value;
 
-final _unwantedIngredientsInKitchen = ''.obs;
-String get unwantedIngredientsInKitchen => _unwantedIngredientsInKitchen.value;
-set unwantedIngredientsInKitchen(String value) => _unwantedIngredientsInKitchen.value = value;
+  final _nonWantedIntolerances = ''.obs;
+  String get nonWantedIntolerances => _nonWantedIntolerances.value;
+  set nonWantedIntolerances(String value) => _nonWantedIntolerances.value = value;
 
+  final _wantedIngredients = ''.obs;
+  String get wantedIngredients => _wantedIngredients.value;
+  set wantedIngredients(String value) => _wantedIngredients.value = value;
 
-final _wantedCuisines = ''.obs;
-String get wantedCuisines => _wantedCuisines.value;
-set wantedCuisines(String value) => _wantedCuisines.value = value;
+  final _nonWantedIngredients = ''.obs;
+  String get nonWantedIngredients => _nonWantedIngredients.value;
+  set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
 
-final _wantedDiets = ''.obs;
-String get wantedDiets => _wantedDiets.value;
-set wantedDiets(String value) => _wantedDiets.value = value;
+  final _wantedMealTypes = ''.obs;
+  String get wantedMealTypes => _wantedMealTypes.value;
+  set wantedMealTypes(String value) => _wantedMealTypes.value = value;
 
-final _nonWantedIntolerances = ''.obs;
-String get nonWantedIntolerances => _nonWantedIntolerances.value;
-set nonWantedIntolerances(String value) => _nonWantedIntolerances.value = value;
+  final _wantedMinutes = 25.obs;
+  int get wantedMinutes => _wantedMinutes.value;
+  set wantedMinutes(int value) => _wantedMinutes.value = value;
 
-final _wantedIngredients = ''.obs;
-String get wantedIngredients => _wantedIngredients.value;
-set wantedIngredients(String value) => _wantedIngredients.value = value;
+  final _wantedMinutesChosen = false.obs;
+  bool get wantedMinutesChosen => _wantedMinutesChosen.value;
+  set wantedMinutesChosen(bool value) => _wantedMinutesChosen.value = value;
 
-final _nonWantedIngredients = ''.obs;
-String get nonWantedIngredients => _nonWantedIngredients.value;
-set nonWantedIngredients(String value) => _nonWantedIngredients.value = value;
+  final _longpressActive = false.obs;
+  bool get longpressActive => _longpressActive.value;
+  set longpressActive(bool value) => _longpressActive.value = value;
 
-final _wantedMealTypes = ''.obs;
-String get wantedMealTypes => _wantedMealTypes.value;
-set wantedMealTypes(String value) => _wantedMealTypes.value = value;
-
-final _wantedMinutes = 25.obs;
-int get wantedMinutes => _wantedMinutes.value;
-set wantedMinutes(int value) => _wantedMinutes.value = value;
-
-final _wantedMinutesChosen = false.obs;
-bool get wantedMinutesChosen => _wantedMinutesChosen.value;
-set wantedMinutesChosen(bool value) => _wantedMinutesChosen.value = value;
-
-final _longpressActive = false.obs;
-bool get longpressActive => _longpressActive.value;
-set longpressActive(bool value) => _longpressActive.value = value;
-
-final _showMoreSummary = false.obs;
-bool get showMoreSummary => _showMoreSummary.value;
-set showMoreSummary(bool value) => _showMoreSummary.value = value;
-
-
-
-
-
-
-
-
+  final _showMoreSummary = false.obs;
+  bool get showMoreSummary => _showMoreSummary.value;
+  set showMoreSummary(bool value) => _showMoreSummary.value = value;
 
   ///
   /// VARIABLES
   ///
 
-      late final  SharedPreferences sharedPreferences;
+  late final SharedPreferences sharedPreferences;
   final audioPlayer = AudioPlayer();
   final ingredientsInKitchenController = TextEditingController();
   final unwantedIngredientsInKitchenController = TextEditingController();
@@ -153,7 +141,7 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
     sharedPreferences = await SharedPreferences.getInstance();
     await audioPlayer.setSource(AssetSource('boom.wav'));
     getFavoriteRecipes();
-      randomCuisineName = randomCuisine;
+    randomCuisineName = randomCuisine;
     randomMealTypeName = randomMealType;
     await getRandomRecipes(6);
     await getCuisineRecipes(6, randomCuisineName);
@@ -178,29 +166,29 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
   ///
 
   Future<void> getRandomRecipes(int number) async {
-    final  fetchedRandomRecipes = await network.getRandomRecipes(number: number);
+    final fetchedRandomRecipes = await network.getRandomRecipes(number: number);
     randomRecipes = fetchedRandomRecipes;
   }
 
   Future<void> getCuisineRecipes(int number, String tag) async {
-    final  fetchedCuisineRecipes = await network.getRandomRecipes(number: number, tag: tag);
+    final fetchedCuisineRecipes = await network.getRandomRecipes(number: number, tag: tag);
     cuisineRecipes = fetchedCuisineRecipes;
   }
 
   Future<void> getMealTypeRecipes(int number, String tag) async {
-    final  fetchedMealTypeRecipes = await network.getRandomRecipes(number: number, tag: tag);
+    final fetchedMealTypeRecipes = await network.getRandomRecipes(number: number, tag: tag);
     mealTypeRecipes = fetchedMealTypeRecipes;
   }
 
   Future<void> searchRecipes(String query) async {
     recipeSearchResult = null;
-    final  fetchedRecipeSearchResult = await network.searchRecipes(query);
+    final fetchedRecipeSearchResult = await network.searchRecipes(query);
     recipeSearchResult = fetchedRecipeSearchResult;
   }
 
   Future<void> complexRecipeSearch() async {
     recipeSearchResult = null;
-    final  fetchedRecipeSearchResult = await network.complexRecipeSearch(
+    final fetchedRecipeSearchResult = await network.complexRecipeSearch(
       cuisine: wantedCuisines,
       diet: wantedDiets,
       intolerances: nonWantedIntolerances,
@@ -215,50 +203,50 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
   Future<void> getRecipeInformation(int id) async {
     showMoreSummary = false;
     recipeInformation = null;
-    final  fetchedRecipeInformation = await network.getRecipeInformation(id);
+    final fetchedRecipeInformation = await network.getRecipeInformation(id);
     recipeInformation = fetchedRecipeInformation;
     getRecipeIsFavorited(id);
   }
 
   String cleanDescription(int index) {
-    final  htmlDescription = recipeSearchResult.results[index].summary;
-    final  regExp = RegExp(
+    final htmlDescription = recipeSearchResult.results[index].summary;
+    final regExp = RegExp(
       '<[^>]*>',
       multiLine: true,
     );
-      final  cleanDescription = htmlDescription.replaceAll(regExp, '');
+    final cleanDescription = htmlDescription.replaceAll(regExp, '');
 
     return cleanDescription;
   }
 
   String cleanSummary(String summary) {
-    final  regExp = RegExp(
+    final regExp = RegExp(
       '<[^>]*>',
       multiLine: true,
     );
-    final  cleanSummary = summary.replaceAll(regExp, '');
+    final cleanSummary = summary.replaceAll(regExp, '');
 
     return cleanSummary;
   }
 
   String getIngredientImage(String ingredientImage) {
-    const  baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
-    final  fullUrl = '$baseUrl$ingredientImage';
+    const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
+    final fullUrl = '$baseUrl$ingredientImage';
 
     return fullUrl;
   }
 
   String getIngredientPrice(double price) {
-    final  properPrice = price / 100;
-    final  priceString = properPrice.toStringAsFixed(2);
+    final properPrice = price / 100;
+    final priceString = properPrice.toStringAsFixed(2);
 
-      return '\$$priceString';
+    return '\$$priceString';
   }
 
   Color clockColor(int index) {
-    final  minutes = recipeSearchResult.results[index].readyInMinutes;
+    final minutes = recipeSearchResult.results[index].readyInMinutes;
 
-      if (minutes > 0 && minutes <= 40) {
+    if (minutes > 0 && minutes <= 40) {
       return LightColors.greenColor;
     }
     if (minutes > 40 && minutes <= 70) {
@@ -320,7 +308,7 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
   void getRecipeIsFavorited(int recipeId) => recipeIsFavorited = getFavoriteRecipe('$recipeId') != null;
 
   Future<void> setFavoriteRecipe(Recipe favoritedRecipe) async {
-      final  favoritedRecipeList = [
+    final favoritedRecipeList = [
       '${favoritedRecipe.id}',
       favoritedRecipe.title,
       favoritedRecipe.image,
@@ -330,7 +318,7 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
     return sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
   }
 
-    String getFavoriteRecipe(String key) => sharedPreferences.getString(key);
+  String getFavoriteRecipe(String key) => sharedPreferences.getString(key);
 
   Future<bool> removeFavoriteRecipe(String key) async => sharedPreferences.remove(key);
 
@@ -338,8 +326,8 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
   void getFavoriteRecipes() {
     favoriteRecipes.clear();
     sharedPreferences.getKeys().forEach(
-           ( key) => key != 'darkTheme' ? favoriteRecipes.add(getFavoriteRecipe(key)) : null,
-        );
+      (key) => key != 'darkTheme' ? favoriteRecipes.add(getFavoriteRecipe(key)) : null,
+    );
   }
 
   ///

@@ -7,21 +7,21 @@ class AnimatedListView extends StatelessWidget {
   final bool fastAnimations;
 
   const AnimatedListView({
-    @required this.index,
-    @required this.child,
+    required this.index,
+    required this.child,
     this.fastAnimations = false,
   });
 
   @override
   Widget build(BuildContext context) => AnimationConfiguration.staggeredList(
-        position: index,
-        duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
-        child: SlideAnimation(
-          curve: Curves.easeIn,
-          duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
-          child: FadeInAnimation(
-            child: child,
-          ),
-        ),
-      );
+    position: index,
+    duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
+    child: SlideAnimation(
+      curve: Curves.easeIn,
+      duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
+      child: FadeInAnimation(
+        child: child,
+      ),
+    ),
+  );
 }

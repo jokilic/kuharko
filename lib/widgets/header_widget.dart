@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
-import '../controllers/spoonacular_controller.dart';
-import '../controllers/theme_controller.dart';
+import '../services/spoonacular_service.dart';
+import '../services/theme_service.dart';
 import 'animated_column.dart';
 
 class HeaderWidget extends StatefulWidget {
@@ -65,8 +65,8 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     if (widget.chefOnly) {
       return Center(

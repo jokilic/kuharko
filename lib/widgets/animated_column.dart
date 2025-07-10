@@ -9,7 +9,7 @@ class AnimatedColumn extends StatelessWidget {
   final bool fastAnimations;
 
   const AnimatedColumn({
-    @required this.children,
+    required this.children,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
@@ -18,19 +18,19 @@ class AnimatedColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        children: AnimationConfiguration.toStaggeredList(
-          duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
-          childAnimationBuilder: (widget) => SlideAnimation(
-            curve: Curves.easeIn,
-            duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
-            child: FadeInAnimation(
-              child: widget,
-            ),
-          ),
-          children: children,
+    mainAxisAlignment: mainAxisAlignment,
+    crossAxisAlignment: crossAxisAlignment,
+    mainAxisSize: mainAxisSize,
+    children: AnimationConfiguration.toStaggeredList(
+      duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
+      childAnimationBuilder: (widget) => SlideAnimation(
+        curve: Curves.easeIn,
+        duration: fastAnimations ? const Duration(milliseconds: 200) : const Duration(milliseconds: 400),
+        child: FadeInAnimation(
+          child: widget,
         ),
-      );
+      ),
+      children: children,
+    ),
+  );
 }

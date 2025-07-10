@@ -8,8 +8,8 @@ import '../../constants/icons.dart';
 import '../../constants/images.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
+import '../../services/spoonacular_service.dart';
+import '../../services/theme_service.dart';
 import '../../models/recipe/recipe.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/animated_list_view.dart';
@@ -26,8 +26,8 @@ class RecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Scaffold(
       backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,

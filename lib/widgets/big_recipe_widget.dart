@@ -5,7 +5,7 @@ import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/images.dart';
 import '../constants/text_styles.dart';
-import '../controllers/theme_controller.dart';
+import '../services/theme_service.dart';
 import 'animated_column.dart';
 
 class BigRecipeWidget extends StatelessWidget {
@@ -16,16 +16,16 @@ class BigRecipeWidget extends StatelessWidget {
   final int readyInMinutes;
 
   const BigRecipeWidget({
-    @required this.onTap,
-    @required this.image,
-    @required this.title,
-    @required this.mealType,
-    @required this.readyInMinutes,
+    required this.onTap,
+    required this.image,
+    required this.title,
+    required this.mealType,
+    required this.readyInMinutes,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,

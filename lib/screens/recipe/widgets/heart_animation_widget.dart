@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/shadows.dart';
-import '../../../controllers/spoonacular_controller.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/spoonacular_service.dart';
+import '../../../services/theme_service.dart';
 
 class HeartAnimationWidget extends StatefulWidget {
   final String heartIcon;
 
   const HeartAnimationWidget({
-    @required this.heartIcon,
+    required this.heartIcon,
   });
 
   @override
@@ -21,7 +21,7 @@ class HeartAnimationWidget extends StatefulWidget {
 class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> _sizeAnimation;
-  final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
+  final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return AnimatedBuilder(
       animation: _animationController,

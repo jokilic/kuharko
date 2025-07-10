@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/icons.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 import '../../../widgets/animated_list_view.dart';
 
@@ -18,18 +18,18 @@ class SearchDialog extends StatelessWidget {
   final Function(String) setJoinedValues;
 
   const SearchDialog({
-    @required this.title,
-    @required this.image,
-    @required this.setJoinedValues,
-    @required this.hintText,
-    @required this.hintIcon,
-    @required this.chosenControllerList,
-    @required this.chosenTextController,
+    required this.title,
+    required this.image,
+    required this.setJoinedValues,
+    required this.hintText,
+    required this.hintIcon,
+    required this.chosenControllerList,
+    required this.chosenTextController,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,

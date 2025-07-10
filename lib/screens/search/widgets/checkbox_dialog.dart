@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/icons.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 import '../../../widgets/animated_list_view.dart';
 
@@ -17,17 +17,17 @@ class CheckboxDialog extends StatelessWidget {
   final bool multiValue;
 
   const CheckboxDialog({
-    @required this.title,
-    @required this.icon,
-    @required this.chosenEnums,
-    @required this.chosenControllerList,
-    @required this.setJoinedValues,
+    required this.title,
+    required this.icon,
+    required this.chosenEnums,
+    required this.chosenControllerList,
+    required this.setJoinedValues,
     this.multiValue = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,

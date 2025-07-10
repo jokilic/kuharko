@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeController extends GetxController {
+class ThemeService extends GetxService {
   ///
   /// REACTIVE VARIABLES
   ///
-
 
   final _darkTheme = false.obs;
   bool get darkTheme => _darkTheme.value;
@@ -15,9 +14,7 @@ class ThemeController extends GetxController {
   /// VARIABLES
   ///
 
-      late final SharedPreferences sharedPreferences;
-
-
+  late final SharedPreferences sharedPreferences;
 
   ///
   /// METHODS
@@ -36,10 +33,8 @@ class ThemeController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
 
-      sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences = await SharedPreferences.getInstance();
 
-    sharedPreferences.containsKey('darkTheme')
-        ? darkTheme = sharedPreferences.getBool('darkTheme')
-        : await sharedPreferences.setBool('darkTheme', darkTheme);
+    sharedPreferences.containsKey('darkTheme') ? darkTheme = sharedPreferences.getBool('darkTheme') : await sharedPreferences.setBool('darkTheme', darkTheme);
   }
 }

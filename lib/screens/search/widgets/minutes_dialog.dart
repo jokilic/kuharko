@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/icons.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 
 class MinutesDialog extends StatelessWidget {
@@ -19,20 +19,20 @@ class MinutesDialog extends StatelessWidget {
   final Function minusLongPressEnd;
 
   const MinutesDialog({
-    @required this.title,
-    @required this.icon,
-    @required this.minutes,
-    @required this.minusPressed,
-    @required this.plusPressed,
-    @required this.plusLongPressStart,
-    @required this.plusLongPressEnd,
-    @required this.minusLongPressStart,
-    @required this.minusLongPressEnd,
+    required this.title,
+    required this.icon,
+    required this.minutes,
+    required this.minusPressed,
+    required this.plusPressed,
+    required this.plusLongPressStart,
+    required this.plusLongPressEnd,
+    required this.minusLongPressStart,
+    required this.minusLongPressEnd,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,

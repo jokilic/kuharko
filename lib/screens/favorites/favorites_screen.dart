@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
+import '../../services/spoonacular_service.dart';
+import '../../services/theme_service.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/header_widget.dart';
 import '../../widgets/recipe_widget.dart';
@@ -17,8 +17,8 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Scaffold(
       backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,

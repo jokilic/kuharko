@@ -5,7 +5,7 @@ import '../../../constants/colors.dart';
 import '../../../constants/icons.dart';
 import '../../../constants/shadows.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 
 class RecipeResult extends StatelessWidget {
@@ -22,22 +22,22 @@ class RecipeResult extends StatelessWidget {
   final bool isPopular;
 
   const RecipeResult({
-    @required this.title,
-    @required this.description,
-    @required this.image,
-    @required this.onTap,
-    @required this.color,
-    @required this.clockColor,
-    @required this.minutes,
-    @required this.isVegan,
-    @required this.isHealthy,
-    @required this.isCheap,
-    @required this.isPopular,
+    required this.title,
+    required this.description,
+    required this.image,
+    required this.onTap,
+    required this.color,
+    required this.clockColor,
+    required this.minutes,
+    required this.isVegan,
+    required this.isHealthy,
+    required this.isCheap,
+    required this.isPopular,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,

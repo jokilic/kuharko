@@ -6,8 +6,8 @@ class Category {
   final Color color;
 
   Category({
-    @required this.icon,
-    @required this.title,
-    @required this.color,
+    required this.icon,
+    required this.title,
+    required this.color,
   });
 }

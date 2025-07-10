@@ -10,15 +10,15 @@ class GlobalSearch {
   int expires;
 
   GlobalSearch({
-    this.sorting,
-    this.filterOptions,
-    this.activeFilterOptions,
-    this.query,
-    this.totalResults,
-    this.limit,
-    this.offset,
-    this.searchResults,
-    this.expires,
+    required this.sorting,
+    required this.filterOptions,
+    required this.activeFilterOptions,
+    required this.query,
+    required this.totalResults,
+    required this.limit,
+    required this.offset,
+    required this.searchResults,
+    required this.expires,
   });
 
   GlobalSearch.fromJson(Map<String, dynamic> json) {
@@ -42,10 +42,10 @@ class SearchResults {
   List<Results> results;
 
   SearchResults({
-    this.name,
-    this.type,
-    this.totalResults,
-    this.results,
+    required this.name,
+    required this.type,
+    required this.totalResults,
+    required this.results,
   });
 
   SearchResults.fromJson(Map<String, dynamic> json) {
@@ -68,14 +68,14 @@ class Results {
   List<dynamic> dataPoints;
 
   Results({
-    this.id,
-    this.name,
-    this.image,
-    this.link,
-    this.type,
-    this.relevance,
-    this.content,
-    this.dataPoints,
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.link,
+    required this.type,
+    required this.relevance,
+    required this.content,
+    required this.dataPoints,
   });
 
   Results.fromJson(Map<String, dynamic> json) {

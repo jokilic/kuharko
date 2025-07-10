@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/shadows.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -16,16 +16,16 @@ class CategoryWidget extends StatelessWidget {
   final Function onLongPress;
 
   const CategoryWidget({
-    @required this.icon,
-    @required this.title,
-    @required this.color,
-    @required this.onTap,
+    required this.icon,
+    required this.title,
+    required this.color,
+    required this.onTap,
     this.onLongPress,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,

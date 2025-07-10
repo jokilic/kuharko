@@ -3,20 +3,20 @@ import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/text_styles.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/theme_service.dart';
 
 class RecipeInstructionWidget extends StatelessWidget {
   final int number;
   final String step;
 
   const RecipeInstructionWidget({
-    @required this.number,
-    @required this.step,
+    required this.number,
+    required this.step,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 32.0),

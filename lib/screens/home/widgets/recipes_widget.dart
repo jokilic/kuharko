@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
-import '../../../controllers/spoonacular_controller.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../services/spoonacular_service.dart';
+import '../../../services/theme_service.dart';
 import '../../../models/recipe/recipe.dart';
 import '../../../widgets/animated_list_view.dart';
 import '../../../widgets/big_recipe_loading_widget.dart';
@@ -24,8 +24,8 @@ class RecipesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Obx(
       () {

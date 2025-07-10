@@ -8,14 +8,14 @@ class LoggerService extends GetxService {
   /// VARIABLES
   ///
 
-      late final  logger =   Logger(
-      printer: PrettyPrinter(
-        methodCount: 0,
-        errorMethodCount: 3,
-        lineLength: 50,
-        noBoxingByDefault: true,
-      ),
-    );
+  late final logger = Logger(
+    printer: PrettyPrinter(
+      methodCount: 0,
+      errorMethodCount: 3,
+      lineLength: 50,
+      noBoxingByDefault: true,
+    ),
+  );
 
   ///
   /// METHODS

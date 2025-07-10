@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 
-import '../constants/colors.dart';
-import '../constants/icons.dart';
-import '../models/category.dart';
-import 'theme_controller.dart';
+import '../../constants/colors.dart';
+import '../../constants/icons.dart';
+import '../../services/theme_service.dart';
+import '../../models/category.dart';
 
-class CategoryController extends GetxController {
-  final themeController = Get.find<ThemeController>();
+class CategoriesController extends GetxController {
+  final themeController = Get.find<ThemeService>();
 
   ///
   /// REACTIVE VARIABLES

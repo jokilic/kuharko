@@ -5,13 +5,13 @@ import './header_widget.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
-import '../controllers/theme_controller.dart';
+import '../services/theme_service.dart';
 import 'animated_column.dart';
 
 class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Padding(
       padding: EdgeInsets.symmetric(

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
-import '../controllers/theme_controller.dart';
+import '../services/theme_service.dart';
 import '../screens/categories/categories_screen.dart';
 import '../screens/favorites/favorites_screen.dart';
 import '../screens/home/home_screen.dart';
@@ -17,14 +17,14 @@ class NavigationItem {
   final Widget iconActive;
 
   NavigationItem({
-    @required this.page,
-    @required this.title,
-    @required this.icon,
-    @required this.iconActive,
+    required this.page,
+    required this.title,
+    required this.icon,
+    required this.iconActive,
   });
 
   static List<NavigationItem> get items {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return <NavigationItem>[
       NavigationItem(

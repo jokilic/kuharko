@@ -10,8 +10,8 @@ import '../../constants/icons.dart';
 import '../../constants/intolerance.dart';
 import '../../constants/meal_type.dart';
 import '../../constants/text_styles.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
+import '../../services/spoonacular_service.dart';
+import '../../services/theme_service.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/header_widget.dart';
 import '../../widgets/kuharko_button.dart';
@@ -25,8 +25,8 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.find<SpoonacularController>();
-    final themeController = Get.find<ThemeController>();
+    final spoonacularController = Get.find<SpoonacularService>();
+    final themeController = Get.find<ThemeService>();
 
     return Scaffold(
       backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
@@ -60,14 +60,14 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  CheckboxDialog(
-                                    title: 'Your preferred cuisines',
-                                    icon: MyIcons.randomIllustration,
-                                    chosenEnums: cuisines,
-                                    chosenControllerList: spoonacularController.wantedCuisinesList,
-                                    setJoinedValues: (joinedValues) => spoonacularController.wantedCuisines = joinedValues,
-                                  ),
-                                ),
+                              CheckboxDialog(
+                                title: 'Your preferred cuisines',
+                                icon: MyIcons.randomIllustration,
+                                chosenEnums: cuisines,
+                                chosenControllerList: spoonacularController.wantedCuisinesList,
+                                setJoinedValues: (joinedValues) => spoonacularController.wantedCuisines = joinedValues,
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: ' cuisines and I want the food to be ',
@@ -79,15 +79,15 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  CheckboxDialog(
-                                    title: 'Your preferred diet',
-                                    icon: MyIcons.randomIllustration,
-                                    chosenEnums: diets,
-                                    chosenControllerList: spoonacularController.wantedDietsList,
-                                    multiValue: false,
-                                    setJoinedValues: (joinedValues) => spoonacularController.wantedDiets = joinedValues,
-                                  ),
-                                ),
+                              CheckboxDialog(
+                                title: 'Your preferred diet',
+                                icon: MyIcons.randomIllustration,
+                                chosenEnums: diets,
+                                chosenControllerList: spoonacularController.wantedDietsList,
+                                multiValue: false,
+                                setJoinedValues: (joinedValues) => spoonacularController.wantedDiets = joinedValues,
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: '.',
@@ -112,14 +112,14 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  CheckboxDialog(
-                                    title: 'Your intolerances',
-                                    icon: MyIcons.randomIllustration,
-                                    chosenEnums: intolerances,
-                                    chosenControllerList: spoonacularController.intolerancesList,
-                                    setJoinedValues: (joinedValues) => spoonacularController.nonWantedIntolerances = joinedValues,
-                                  ),
-                                ),
+                              CheckboxDialog(
+                                title: 'Your intolerances',
+                                icon: MyIcons.randomIllustration,
+                                chosenEnums: intolerances,
+                                chosenControllerList: spoonacularController.intolerancesList,
+                                setJoinedValues: (joinedValues) => spoonacularController.nonWantedIntolerances = joinedValues,
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: " intolerant, so I don't need those recipes.",
@@ -154,16 +154,16 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  SearchDialog(
-                                    title: 'Ingredients in your kitchen',
-                                    image: MyIcons.randomIllustration,
-                                    hintText: 'Enter your ingredient...',
-                                    hintIcon: MyIcons.ingredients,
-                                    chosenTextController: spoonacularController.ingredientsInKitchenController,
-                                    chosenControllerList: spoonacularController.ingredientsInKitchen,
-                                    setJoinedValues: (joinedValues) => spoonacularController.wantedIngredients = joinedValues,
-                                  ),
-                                ),
+                              SearchDialog(
+                                title: 'Ingredients in your kitchen',
+                                image: MyIcons.randomIllustration,
+                                hintText: 'Enter your ingredient...',
+                                hintIcon: MyIcons.ingredients,
+                                chosenTextController: spoonacularController.ingredientsInKitchenController,
+                                chosenControllerList: spoonacularController.ingredientsInKitchen,
+                                setJoinedValues: (joinedValues) => spoonacularController.wantedIngredients = joinedValues,
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: '.',
@@ -188,16 +188,16 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  SearchDialog(
-                                    title: "Ingredients you don't want",
-                                    image: MyIcons.randomIllustration,
-                                    hintText: 'Enter unwanted ingredient...',
-                                    hintIcon: MyIcons.ingredients,
-                                    chosenTextController: spoonacularController.unwantedIngredientsInKitchenController,
-                                    chosenControllerList: spoonacularController.unwantedIngredientsInKitchen,
-                                    setJoinedValues: (joinedValues) => spoonacularController.nonWantedIngredients = joinedValues,
-                                  ),
-                                ),
+                              SearchDialog(
+                                title: "Ingredients you don't want",
+                                image: MyIcons.randomIllustration,
+                                hintText: 'Enter unwanted ingredient...',
+                                hintIcon: MyIcons.ingredients,
+                                chosenTextController: spoonacularController.unwantedIngredientsInKitchenController,
+                                chosenControllerList: spoonacularController.unwantedIngredientsInKitchen,
+                                setJoinedValues: (joinedValues) => spoonacularController.nonWantedIngredients = joinedValues,
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: ' in my food.',
@@ -232,15 +232,15 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  CheckboxDialog(
-                                    title: 'Preferred meal types',
-                                    icon: MyIcons.randomIllustration,
-                                    chosenEnums: mealTypes,
-                                    chosenControllerList: spoonacularController.wantedMealTypesList,
-                                    multiValue: false,
-                                    setJoinedValues: (joinedValues) => spoonacularController.wantedMealTypes = joinedValues,
-                                  ),
-                                ),
+                              CheckboxDialog(
+                                title: 'Preferred meal types',
+                                icon: MyIcons.randomIllustration,
+                                chosenEnums: mealTypes,
+                                chosenControllerList: spoonacularController.wantedMealTypesList,
+                                multiValue: false,
+                                setJoinedValues: (joinedValues) => spoonacularController.wantedMealTypes = joinedValues,
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: ' meals.',
@@ -265,20 +265,20 @@ class SearchScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
-                                  Obx(
-                                    () => MinutesDialog(
-                                      title: 'Choose desired minutes',
-                                      icon: MyIcons.timer,
-                                      minutes: spoonacularController.wantedMinutes,
-                                      minusPressed: spoonacularController.decrementMinutes,
-                                      minusLongPressStart: spoonacularController.minusLongPressStart,
-                                      minusLongPressEnd: (_) => spoonacularController.disableLongPress(),
-                                      plusPressed: spoonacularController.incrementMinutes,
-                                      plusLongPressStart: spoonacularController.plusLongPressStart,
-                                      plusLongPressEnd: (_) => spoonacularController.disableLongPress(),
-                                    ),
-                                  ),
+                              Obx(
+                                () => MinutesDialog(
+                                  title: 'Choose desired minutes',
+                                  icon: MyIcons.timer,
+                                  minutes: spoonacularController.wantedMinutes,
+                                  minusPressed: spoonacularController.decrementMinutes,
+                                  minusLongPressStart: spoonacularController.minusLongPressStart,
+                                  minusLongPressEnd: (_) => spoonacularController.disableLongPress(),
+                                  plusPressed: spoonacularController.incrementMinutes,
+                                  plusLongPressStart: spoonacularController.plusLongPressStart,
+                                  plusLongPressEnd: (_) => spoonacularController.disableLongPress(),
                                 ),
+                              ),
+                            ),
                         ),
                         const TextSpan(
                           text: ' or less.',

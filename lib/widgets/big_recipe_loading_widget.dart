@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../constants/colors.dart';
-import '../controllers/theme_controller.dart';
+import '../services/theme_service.dart';
 import 'animated_column.dart';
 
 class BigRecipeLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return SizedBox(
       height: Get.height * 0.45,

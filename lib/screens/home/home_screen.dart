@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/text_styles.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
+import '../../services/spoonacular_service.dart';
+import '../../services/theme_service.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/header_widget.dart';
 import '../../widgets/search_widget.dart';
@@ -15,8 +15,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.put<SpoonacularController>(SpoonacularController());
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final SpoonacularService _spoonacularController = Get.put<SpoonacularService>(SpoonacularService());
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return Obx(
       () => Scaffold(

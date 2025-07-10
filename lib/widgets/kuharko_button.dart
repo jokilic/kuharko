@@ -5,20 +5,20 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
-import '../controllers/theme_controller.dart';
+import '../services/theme_service.dart';
 
 class KuharkoButton extends StatelessWidget {
   final String text;
   final Function onTap;
 
   const KuharkoButton({
-    @required this.text,
-    @required this.onTap,
+    required this.text,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final ThemeService _themeController = Get.find<ThemeService>();
 
     return GestureDetector(
       onTap: onTap,
