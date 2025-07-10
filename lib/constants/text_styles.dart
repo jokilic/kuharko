@@ -1,149 +1,171 @@
 import 'package:flutter/material.dart';
 
 class MyTextStyles {
-  static const TextStyle headline1Text = TextStyle(
+  static const headline1Text = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 32.0,
     fontWeight: FontWeight.w800,
     height: 1.2,
   );
 
-  static const TextStyle headline2Text = TextStyle(
+  static const headline2Text = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 28.0,
     fontWeight: FontWeight.w700,
     height: 1.2,
   );
 
-  static const TextStyle headline3Text = TextStyle(
+  static const headline3Text = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 16.0,
     fontWeight: FontWeight.w700,
     height: 1.2,
   );
 
-  static const TextStyle searchText = TextStyle(
+  static const searchText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 22.0,
     fontWeight: FontWeight.w500,
-    fontFamily: 'VisbyRound',
   );
 
-  static const TextStyle searchDialogHeadingText = TextStyle(
+  static const searchDialogHeadingText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 24.0,
     fontWeight: FontWeight.w700,
-    fontFamily: 'VisbyRound',
   );
 
-  static const TextStyle searchDialogMinuteText = TextStyle(
+  static const searchDialogMinuteText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 52.0,
     fontWeight: FontWeight.w700,
-    fontFamily: 'VisbyRound',
   );
 
-  static const TextStyle searchDialogText = TextStyle(
+  static const searchDialogText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
     fontWeight: FontWeight.w500,
-    fontFamily: 'VisbyRound',
   );
 
-  static const TextStyle searchDynamicText = TextStyle(
+  static const searchDynamicText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 22.0,
     fontWeight: FontWeight.w700,
-    fontFamily: 'VisbyRound',
     height: 1.6,
   );
 
-  static const TextStyle overviewRecipeTitle = TextStyle(
+  static const overviewRecipeTitle = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 18.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle overviewRecipeScore = TextStyle(
+  static const overviewRecipeScore = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 12.0,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle categoryTitle = TextStyle(
+  static const categoryTitle = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 21.0,
     fontWeight: FontWeight.w800,
   );
 
-  static const TextStyle resultTitle = TextStyle(
+  static const resultTitle = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 22.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle resultDescription = TextStyle(
+  static const resultDescription = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 12.0,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle resultMinutes = TextStyle(
+  static const resultMinutes = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 12.0,
     fontWeight: FontWeight.w800,
   );
 
-  static const TextStyle recipeGrid = TextStyle(
+  static const recipeGrid = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle recipeSummary = TextStyle(
+  static const recipeSummary = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 18.0,
     fontWeight: FontWeight.w500,
     height: 1.4,
   );
 
-  static const TextStyle recipeIngredientName = TextStyle(
+  static const recipeIngredientName = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
     fontWeight: FontWeight.w800,
   );
 
-  static const TextStyle recipeIngredientAmount = TextStyle(
+  static const recipeIngredientAmount = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 16.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle recipeDirectionNumber = TextStyle(
+  static const recipeDirectionNumber = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 26.0,
     fontWeight: FontWeight.w800,
   );
 
-  static const TextStyle recipeDirectionText = TextStyle(
+  static const recipeDirectionText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 18.0,
     fontWeight: FontWeight.w500,
     height: 1.4,
   );
 
-  static const TextStyle recipeBooleanValues = TextStyle(
+  static const recipeBooleanValues = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle recipeOriginal = TextStyle(
+  static const recipeOriginal = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
     fontWeight: FontWeight.w800,
   );
 
-  static const TextStyle bigRecipeWidgetTitle = TextStyle(
+  static const bigRecipeWidgetTitle = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 22.0,
     fontWeight: FontWeight.w800,
     height: 1.0,
   );
 
-  static const TextStyle bigRecipeWidgetSubtitle = TextStyle(
+  static const bigRecipeWidgetSubtitle = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 14.0,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle bigRecipeWidgetRating = TextStyle(
+  static const bigRecipeWidgetRating = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 18.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle showMoreSummaryButton = TextStyle(
+  static const showMoreSummaryButton = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle errorDialogText = TextStyle(
+  static const errorDialogText = TextStyle(
+    fontFamily: 'VisbyRound',
     fontSize: 20.0,
   );
 }

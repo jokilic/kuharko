@@ -32,14 +32,35 @@ class Kuharko extends StatelessWidget {
           fontFamily: 'VisbyRound',
         ),
         initialRoute: BottomNavigation.routeName,
-        getPages: <GetPage>[
-          GetPage(name: BottomNavigation.routeName, page: () => BottomNavigation()),
-          GetPage(name: HomeScreen.routeName, page: () => HomeScreen()),
-          GetPage(name: SearchScreen.routeName, page: () => SearchScreen()),
-          GetPage(name: CategoriesScreen.routeName, page: () => CategoriesScreen()),
-          GetPage(name: FavoritesScreen.routeName, page: () => FavoritesScreen()),
-          GetPage(name: RecipeScreen.routeName, page: () => RecipeScreen()),
-          GetPage(name: ResultsScreen.routeName, page: () => ResultsScreen()),
+        getPages: [
+          GetPage(
+            name: BottomNavigation.routeName,
+            page: () => BottomNavigation(),
+          ),
+          GetPage(
+            name: HomeScreen.routeName,
+            page: () => HomeScreen(),
+          ),
+          GetPage(
+            name: SearchScreen.routeName,
+            page: () => SearchScreen(),
+          ),
+          GetPage(
+            name: CategoriesScreen.routeName,
+            page: () => CategoriesScreen(),
+          ),
+          GetPage(
+            name: FavoritesScreen.routeName,
+            page: () => FavoritesScreen(),
+          ),
+          GetPage(
+            name: RecipeScreen.routeName,
+            page: () => RecipeScreen(),
+          ),
+          GetPage(
+            name: ResultsScreen.routeName,
+            page: () => ResultsScreen(),
+          ),
         ],
       );
 }

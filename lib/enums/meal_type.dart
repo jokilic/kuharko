@@ -1,4 +1,4 @@
-List<String> mealTypes = <String>[
+const mealTypes = [
   'main course',
   'side dish',
   'dessert',

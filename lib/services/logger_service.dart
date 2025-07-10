@@ -8,17 +8,7 @@ class LoggerService extends GetxService {
   /// VARIABLES
   ///
 
-  Logger logger;
-
-  ///
-  /// INIT
-  ///
-
-  @override
-  void onInit() {
-    super.onInit();
-
-    logger = Logger(
+      late final  logger =   Logger(
       printer: PrettyPrinter(
         methodCount: 0,
         errorMethodCount: 3,
@@ -26,7 +16,6 @@ class LoggerService extends GetxService {
         noBoxingByDefault: true,
       ),
     );
-  }
 
   ///
   /// METHODS

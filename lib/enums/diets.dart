@@ -1,4 +1,4 @@
-List<String> diets = <String>[
+const diets = [
   'gluten free',
   'ketogenic',
   'vegetarian',

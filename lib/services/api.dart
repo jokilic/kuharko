@@ -6,14 +6,14 @@ import '../util/logger_interceptor.dart';
 import '../widgets/error_dialog.dart';
 
 class Api {
-  final String baseUrl = 'https://api.spoonacular.com';
-  final String apiKey = dotenv.env['APIKEY'];
+  final baseUrl = 'https://api.spoonacular.com';
+  final apiKey = dotenv.env['APIKEY'];
 
-  final Dio _dio = Dio()..interceptors.add(LoggerInterceptor());
+  final dio = Dio()..interceptors.add(LoggerInterceptor());
 
-  Future<Response<dynamic>> get(String path) async {
+  Future<Response> get(String path) async {
     try {
-      final Response<dynamic> response = await _dio.get('$baseUrl/${path}apiKey=$apiKey');
+      final response = await dio.get('$baseUrl/${path}apiKey=$apiKey');
       return response;
     } catch (e) {
       await Get.dialog(ErrorDialog());
