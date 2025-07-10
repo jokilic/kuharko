@@ -13,12 +13,10 @@ import '../../recipe/recipe_screen.dart';
 
 class RecipesWidget extends StatelessWidget {
   final List<Recipe> recipes;
-  final bool isGrid;
   final bool isBig;
 
   const RecipesWidget({
     required this.recipes,
-    this.isGrid = false,
     this.isBig = false,
   });
 
@@ -29,59 +27,36 @@ class RecipesWidget extends StatelessWidget {
 
     return Obx(
       () {
-        if (isGrid) {
-          return GridView.builder(
-            clipBehavior: Clip.none,
-            itemCount: recipes.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 80,
-              crossAxisSpacing: 20,
-              childAspectRatio: 0.85,
-            ),
-            itemBuilder: (_, index) {
-              final recipe = recipes[index];
-
-              return RecipeWidget(
-                color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                image: recipe.image,
-                readyInMinutes: recipe.readyInMinutes,
-                title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
-                onTap: () {
-                  spoonacularService.getRecipeInformation(recipe.id);
-                  Get.to(RecipeScreen.new);
-                },
-              );
-            },
-          );
-        }
-
         if (isBig) {
+          ///
+          /// BIG LOADING
+          ///
           if (recipes.isEmpty) {
             return SizedBox(
               height: Get.height * 0.45,
-              child: ListView.builder(
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 clipBehavior: Clip.none,
-                itemCount: 6,
+                itemCount: 4,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (_, index) => AnimatedListView(
                   index: index,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: BigRecipeLoadingWidget(),
-                  ),
+                  child: BigRecipeLoadingWidget(),
                 ),
+                separatorBuilder: (_, __) => const SizedBox(width: 20),
               ),
             );
           }
 
+          ///
+          /// BIG WIDGET
+          ///
           return SizedBox(
             height: Get.height * 0.45,
-            child: ListView.builder(
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               clipBehavior: Clip.none,
               itemCount: recipes.length,
               scrollDirection: Axis.horizontal,
@@ -92,28 +67,30 @@ class RecipesWidget extends StatelessWidget {
 
                 return AnimatedListView(
                   index: index,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: BigRecipeWidget(
-                      mealType: recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
-                      image: recipe.image,
-                      readyInMinutes: recipe.readyInMinutes,
-                      title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
-                      onTap: () {
-                        spoonacularService.getRecipeInformation(recipe.id);
-                        Get.to(RecipeScreen.new);
-                      },
-                    ),
+                  child: BigRecipeWidget(
+                    mealType: recipe.dishTypes.isEmpty ? '' : recipe.dishTypes[0],
+                    image: recipe.image,
+                    readyInMinutes: recipe.readyInMinutes,
+                    title: recipe.title,
+                    onTap: () {
+                      spoonacularService.getRecipeInformation(recipe.id);
+                      Get.to(RecipeScreen.new);
+                    },
                   ),
                 );
               },
+              separatorBuilder: (_, __) => const SizedBox(width: 20),
             ),
           );
         }
 
+        ///
+        /// SMALL WIDGET
+        ///
         return SizedBox(
           height: 200,
-          child: ListView.builder(
+          child: ListView.separated(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             clipBehavior: Clip.none,
             itemCount: recipes.length,
             scrollDirection: Axis.horizontal,
@@ -124,21 +101,19 @@ class RecipesWidget extends StatelessWidget {
 
               return AnimatedListView(
                 index: index,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: RecipeWidget(
-                    color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                    image: recipe.image,
-                    readyInMinutes: recipe.readyInMinutes,
-                    title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
-                    onTap: () {
-                      spoonacularService.getRecipeInformation(recipe.id);
-                      Get.to(RecipeScreen.new);
-                    },
-                  ),
+                child: RecipeWidget(
+                  color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                  image: recipe.image,
+                  readyInMinutes: recipe.readyInMinutes,
+                  title: recipe.title,
+                  onTap: () {
+                    spoonacularService.getRecipeInformation(recipe.id);
+                    Get.to(RecipeScreen.new);
+                  },
                 ),
               );
             },
+            separatorBuilder: (_, __) => const SizedBox(width: 20),
           ),
         );
       },

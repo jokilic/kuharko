@@ -68,6 +68,8 @@ class BigRecipeWidget extends StatelessWidget {
                                 style: MyTextStyles.bigRecipeWidgetTitle.copyWith(
                                   color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                 ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
                               Text(

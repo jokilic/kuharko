@@ -35,6 +35,7 @@ class RecipeWidget extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 80, 12, 6),
+
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -64,6 +65,8 @@ class RecipeWidget extends StatelessWidget {
                   style: MyTextStyles.overviewRecipeTitle.copyWith(
                     color: color,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
