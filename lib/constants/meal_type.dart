@@ -15,4 +15,4 @@ const mealTypes = [
   'drink',
 ];
 
-String get randomMealType => (mealTypes..shuffle()).first;
+String get randomMealType => (List.from(mealTypes)..shuffle()).first;

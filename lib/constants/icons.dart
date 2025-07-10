@@ -75,5 +75,5 @@ class MyIcons {
     whisk,
   ];
 
-  static String get randomIllustration => (illustrationIcons..shuffle()).first;
+  static String get randomIllustration => (List.from(illustrationIcons)..shuffle()).first;
 }

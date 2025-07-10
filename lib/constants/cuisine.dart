@@ -23,4 +23,4 @@ const cuisines = [
   'vietnamese',
 ];
 
-String get randomCuisine => (cuisines..shuffle()).first;
+String get randomCuisine => (List.from(cuisines)..shuffle()).first;

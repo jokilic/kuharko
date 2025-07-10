@@ -31,6 +31,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
+
     chefAnimationController = AnimationController(
       duration: const Duration(milliseconds: 1600),
       vsync: this,

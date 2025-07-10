@@ -23,7 +23,7 @@ class LightColors {
     blueColor,
   ];
 
-  static Color get randomColor => (overviewRecipeColors..shuffle()).first;
+  static Color get randomColor => (List.from(overviewRecipeColors)..shuffle()).first;
 }
 
 class DarkColors {
@@ -49,5 +49,5 @@ class DarkColors {
     blueColor,
   ];
 
-  static Color get randomColor => (overviewRecipeColors..shuffle()).first;
+  static Color get randomColor => (List.from(overviewRecipeColors)..shuffle()).first;
 }

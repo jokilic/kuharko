@@ -9,12 +9,10 @@ import './header_widget.dart';
 import 'animated_column.dart';
 
 class ErrorDialog extends StatelessWidget {
-  final String? title;
-  final String? subtitle;
+  final String title;
 
   const ErrorDialog({
-    this.title,
-    this.subtitle,
+    required this.title,
   });
 
   @override
@@ -47,19 +45,7 @@ class ErrorDialog extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    title ?? 'Sadly, the limit for fetching recipes has been reached.',
-                    style: Get.height < 700
-                        ? MyTextStyles.errorDialogText.copyWith(
-                            color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
-                            fontSize: 18,
-                          )
-                        : MyTextStyles.errorDialogText.copyWith(
-                            color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
-                          ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    subtitle ?? 'Please try again tomorrow, when the quota gets reset.',
+                    title,
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
                             color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,

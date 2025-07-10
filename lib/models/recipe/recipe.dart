@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+// TODO: Check every field and remove unused ones
+
 class Recipe {
   final bool vegetarian;
   final bool vegan;
@@ -16,7 +18,7 @@ class Recipe {
   final double spoonacularScore;
   final double healthScore;
   final String creditsText;
-  final String license;
+  final String? license;
   final String sourceName;
   final double pricePerServing;
   final List<ExtendedIngredients> extendedIngredients;
@@ -35,7 +37,7 @@ class Recipe {
   final WinePairing winePairing;
   final String instructions;
   final List<dynamic> analyzedInstructions;
-  final int originalId;
+  final int? originalId;
   final String spoonacularSourceUrl;
 
   Recipe({
@@ -93,11 +95,11 @@ class Recipe {
     spoonacularScore: map['spoonacularScore'] as double,
     healthScore: map['healthScore'] as double,
     creditsText: map['creditsText'] as String,
-    license: map['license'] as String,
+    license: map['license'] != null ? map['license'] as String : null,
     sourceName: map['sourceName'] as String,
     pricePerServing: map['pricePerServing'] as double,
     extendedIngredients: List<ExtendedIngredients>.from(
-      (map['extendedIngredients'] as List<int>).map<ExtendedIngredients>(
+      (map['extendedIngredients'] as List<dynamic>).map<ExtendedIngredients>(
         (x) => ExtendedIngredients.fromMap(x as Map<String, dynamic>),
       ),
     ),
@@ -116,7 +118,7 @@ class Recipe {
     winePairing: WinePairing.fromMap(map['winePairing'] as Map<String, dynamic>),
     instructions: map['instructions'] as String,
     analyzedInstructions: List<dynamic>.from(map['analyzedInstructions'] as List<dynamic>),
-    originalId: map['originalId'] as int,
+    originalId: map['originalId'] != null ? map['originalId'] as int : null,
     spoonacularSourceUrl: map['spoonacularSourceUrl'] as String,
   );
 
