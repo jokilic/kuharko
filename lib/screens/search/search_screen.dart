@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
+import '../../constants/cuisine.dart';
+import '../../constants/diets.dart';
 import '../../constants/icons.dart';
+import '../../constants/intolerance.dart';
+import '../../constants/meal_type.dart';
 import '../../constants/text_styles.dart';
 import '../../controllers/spoonacular_controller.dart';
 import '../../controllers/theme_controller.dart';
-import '../../enums/cuisine.dart';
-import '../../enums/diets.dart';
-import '../../enums/intolerance.dart';
-import '../../enums/meal_type.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/header_widget.dart';
 import '../../widgets/kuharko_button.dart';
@@ -25,38 +25,38 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularController _spoonacularController = Get.find<SpoonacularController>();
-    final ThemeController _themeController = Get.find<ThemeController>();
+    final spoonacularController = Get.find<SpoonacularController>();
+    final themeController = Get.find<ThemeController>();
 
     return Scaffold(
-      backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+      backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 36),
                 const HeaderWidget(
                   title: 'Ask Kuharko Marko...',
                   subtitle: 'Colored words can be tapped',
                   hasSubtitle: true,
                 ),
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 36),
                 Obx(
                   () => RichText(
                     text: TextSpan(
                       text: 'I want recipes from ',
                       style: MyTextStyles.searchText.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedCuisines.isEmpty ? '_____' : _spoonacularController.wantedCuisines.toUpperCase(),
+                          text: spoonacularController.wantedCuisines.isEmpty ? '_____' : spoonacularController.wantedCuisines.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -64,8 +64,8 @@ class SearchScreen extends StatelessWidget {
                                     title: 'Your preferred cuisines',
                                     icon: MyIcons.randomIllustration,
                                     chosenEnums: cuisines,
-                                    chosenControllerList: _spoonacularController.wantedCuisinesList,
-                                    setJoinedValues: (joinedValues) => _spoonacularController.wantedCuisines = joinedValues,
+                                    chosenControllerList: spoonacularController.wantedCuisinesList,
+                                    setJoinedValues: (joinedValues) => spoonacularController.wantedCuisines = joinedValues,
                                   ),
                                 ),
                         ),
@@ -73,9 +73,9 @@ class SearchScreen extends StatelessWidget {
                           text: ' cuisines and I want the food to be ',
                         ),
                         TextSpan(
-                          text: _spoonacularController.wantedDiets.isEmpty ? '_____' : _spoonacularController.wantedDiets.toUpperCase(),
+                          text: spoonacularController.wantedDiets.isEmpty ? '_____' : spoonacularController.wantedDiets.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -83,9 +83,9 @@ class SearchScreen extends StatelessWidget {
                                     title: 'Your preferred diet',
                                     icon: MyIcons.randomIllustration,
                                     chosenEnums: diets,
-                                    chosenControllerList: _spoonacularController.wantedDietsList,
+                                    chosenControllerList: spoonacularController.wantedDietsList,
                                     multiValue: false,
-                                    setJoinedValues: (String joinedValues) => _spoonacularController.wantedDiets = joinedValues,
+                                    setJoinedValues: (joinedValues) => spoonacularController.wantedDiets = joinedValues,
                                   ),
                                 ),
                         ),
@@ -96,19 +96,19 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 16),
                 Obx(
                   () => RichText(
                     text: TextSpan(
                       text: "I'm ",
                       style: MyTextStyles.searchText.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.nonWantedIntolerances.isEmpty ? '_____' : _spoonacularController.nonWantedIntolerances.toUpperCase(),
+                          text: spoonacularController.nonWantedIntolerances.isEmpty ? '_____' : spoonacularController.nonWantedIntolerances.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -116,8 +116,8 @@ class SearchScreen extends StatelessWidget {
                                     title: 'Your intolerances',
                                     icon: MyIcons.randomIllustration,
                                     chosenEnums: intolerances,
-                                    chosenControllerList: _spoonacularController.intolerancesList,
-                                    setJoinedValues: (String joinedValues) => _spoonacularController.nonWantedIntolerances = joinedValues,
+                                    chosenControllerList: spoonacularController.intolerancesList,
+                                    setJoinedValues: (joinedValues) => spoonacularController.nonWantedIntolerances = joinedValues,
                                   ),
                                 ),
                         ),
@@ -128,29 +128,29 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 36),
                 Center(
                   child: PressableDough(
                     child: Image.asset(
                       MyIcons.randomIllustration,
-                      height: 142.0,
-                      width: 142.0,
+                      height: 142,
+                      width: 142,
                     ),
                   ),
                 ),
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 36),
                 Obx(
                   () => RichText(
                     text: TextSpan(
                       text: 'The ingredients I have in my kitchen are ',
                       style: MyTextStyles.searchText.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedIngredients.isEmpty ? '_____' : _spoonacularController.wantedIngredients.toUpperCase(),
+                          text: spoonacularController.wantedIngredients.isEmpty ? '_____' : spoonacularController.wantedIngredients.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -159,9 +159,9 @@ class SearchScreen extends StatelessWidget {
                                     image: MyIcons.randomIllustration,
                                     hintText: 'Enter your ingredient...',
                                     hintIcon: MyIcons.ingredients,
-                                    chosenTextController: _spoonacularController.ingredientsInKitchenController,
-                                    chosenControllerList: _spoonacularController.ingredientsInKitchen,
-                                    setJoinedValues: (String joinedValues) => _spoonacularController.wantedIngredients = joinedValues,
+                                    chosenTextController: spoonacularController.ingredientsInKitchenController,
+                                    chosenControllerList: spoonacularController.ingredientsInKitchen,
+                                    setJoinedValues: (joinedValues) => spoonacularController.wantedIngredients = joinedValues,
                                   ),
                                 ),
                         ),
@@ -172,19 +172,19 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 16),
                 Obx(
                   () => RichText(
                     text: TextSpan(
                       text: "I don't want ",
                       style: MyTextStyles.searchText.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.nonWantedIngredients.isEmpty ? '_____' : _spoonacularController.nonWantedIngredients.toUpperCase(),
+                          text: spoonacularController.nonWantedIngredients.isEmpty ? '_____' : spoonacularController.nonWantedIngredients.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -193,9 +193,9 @@ class SearchScreen extends StatelessWidget {
                                     image: MyIcons.randomIllustration,
                                     hintText: 'Enter unwanted ingredient...',
                                     hintIcon: MyIcons.ingredients,
-                                    chosenTextController: _spoonacularController.unwantedIngredientsInKitchenController,
-                                    chosenControllerList: _spoonacularController.unwantedIngredientsInKitchen,
-                                    setJoinedValues: (String joinedValues) => _spoonacularController.nonWantedIngredients = joinedValues,
+                                    chosenTextController: spoonacularController.unwantedIngredientsInKitchenController,
+                                    chosenControllerList: spoonacularController.unwantedIngredientsInKitchen,
+                                    setJoinedValues: (joinedValues) => spoonacularController.nonWantedIngredients = joinedValues,
                                   ),
                                 ),
                         ),
@@ -206,29 +206,29 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 36),
                 Center(
                   child: PressableDough(
                     child: Image.asset(
                       MyIcons.randomIllustration,
-                      height: 142.0,
-                      width: 142.0,
+                      height: 142,
+                      width: 142,
                     ),
                   ),
                 ),
-                const SizedBox(height: 36.0),
+                const SizedBox(height: 36),
                 Obx(
                   () => RichText(
                     text: TextSpan(
                       text: "I'm trying to find ",
                       style: MyTextStyles.searchText.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedMealTypes.isEmpty ? '_____' : _spoonacularController.wantedMealTypes.toUpperCase(),
+                          text: spoonacularController.wantedMealTypes.isEmpty ? '_____' : spoonacularController.wantedMealTypes.toUpperCase(),
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -236,9 +236,9 @@ class SearchScreen extends StatelessWidget {
                                     title: 'Preferred meal types',
                                     icon: MyIcons.randomIllustration,
                                     chosenEnums: mealTypes,
-                                    chosenControllerList: _spoonacularController.wantedMealTypesList,
+                                    chosenControllerList: spoonacularController.wantedMealTypesList,
                                     multiValue: false,
-                                    setJoinedValues: (String joinedValues) => _spoonacularController.wantedMealTypes = joinedValues,
+                                    setJoinedValues: (joinedValues) => spoonacularController.wantedMealTypes = joinedValues,
                                   ),
                                 ),
                         ),
@@ -249,19 +249,19 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 16),
                 Obx(
                   () => RichText(
                     text: TextSpan(
                       text: 'I want my food to be ready in ',
                       style: MyTextStyles.searchText.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _spoonacularController.wantedMinutesChosen ? '${_spoonacularController.wantedMinutes} MINUTES' : '_____',
+                          text: spoonacularController.wantedMinutesChosen ? '${spoonacularController.wantedMinutes} MINUTES' : '_____',
                           style: MyTextStyles.searchDynamicText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.dialog(
@@ -269,13 +269,13 @@ class SearchScreen extends StatelessWidget {
                                     () => MinutesDialog(
                                       title: 'Choose desired minutes',
                                       icon: MyIcons.timer,
-                                      minutes: _spoonacularController.wantedMinutes,
-                                      minusPressed: _spoonacularController.decrementMinutes,
-                                      minusLongPressStart: _spoonacularController.minusLongPressStart,
-                                      minusLongPressEnd: (_) => _spoonacularController.disableLongPress(),
-                                      plusPressed: _spoonacularController.incrementMinutes,
-                                      plusLongPressStart: _spoonacularController.plusLongPressStart,
-                                      plusLongPressEnd: (_) => _spoonacularController.disableLongPress(),
+                                      minutes: spoonacularController.wantedMinutes,
+                                      minusPressed: spoonacularController.decrementMinutes,
+                                      minusLongPressStart: spoonacularController.minusLongPressStart,
+                                      minusLongPressEnd: (_) => spoonacularController.disableLongPress(),
+                                      plusPressed: spoonacularController.incrementMinutes,
+                                      plusLongPressStart: spoonacularController.plusLongPressStart,
+                                      plusLongPressEnd: (_) => spoonacularController.disableLongPress(),
                                     ),
                                   ),
                                 ),
@@ -287,15 +287,15 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 56.0),
+                const SizedBox(height: 56),
                 KuharkoButton(
                   text: 'Find recipes'.toUpperCase(),
                   onTap: () {
-                    _spoonacularController.complexRecipeSearch();
+                    spoonacularController.complexRecipeSearch();
                     Get.toNamed(ResultsScreen.routeName);
                   },
                 ),
-                const SizedBox(height: 56.0),
+                const SizedBox(height: 56),
               ],
             ),
           ),

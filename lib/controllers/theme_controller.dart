@@ -15,7 +15,7 @@ class ThemeController extends GetxController {
   /// VARIABLES
   ///
 
-    late final SharedPreferences sharedPreferences;
+      late final SharedPreferences sharedPreferences;
 
 
 

@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../constants/colors.dart';
-import '../enums/cuisine.dart';
-import '../enums/meal_type.dart';
+import '../constants/cuisine.dart';
+import '../constants/meal_type.dart';
 import '../models/models.dart';
 import '../services/network.dart';
 
@@ -153,7 +153,7 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
     sharedPreferences = await SharedPreferences.getInstance();
     await audioPlayer.setSource(AssetSource('boom.wav'));
     getFavoriteRecipes();
-    randomCuisineName = randomCuisine;
+      randomCuisineName = randomCuisine;
     randomMealTypeName = randomMealType;
     await getRandomRecipes(6);
     await getCuisineRecipes(6, randomCuisineName);
@@ -330,7 +330,7 @@ set showMoreSummary(bool value) => _showMoreSummary.value = value;
     return sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
   }
 
-  List<String> getFavoriteRecipe(String key) => sharedPreferences.getStringList(key);
+    String getFavoriteRecipe(String key) => sharedPreferences.getString(key);
 
   Future<bool> removeFavoriteRecipe(String key) async => sharedPreferences.remove(key);
 
