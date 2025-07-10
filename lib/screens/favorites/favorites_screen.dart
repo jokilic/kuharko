@@ -2,15 +2,15 @@ import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/colors.dart';
-import '../constants/icons.dart';
-import '../constants/text_styles.dart';
-import '../controllers/spoonacular_controller.dart';
-import '../controllers/theme_controller.dart';
-import '../screens/recipe_screen.dart';
-import '../widgets/animated_column.dart';
-import '../widgets/header_widget.dart';
-import '../widgets/recipe_widget.dart';
+import '../../constants/colors.dart';
+import '../../constants/icons.dart';
+import '../../constants/text_styles.dart';
+import '../../controllers/spoonacular_controller.dart';
+import '../../controllers/theme_controller.dart';
+import '../../widgets/animated_column.dart';
+import '../../widgets/header_widget.dart';
+import '../../widgets/recipe_widget.dart';
+import '../recipe/recipe_screen.dart';
 
 class FavoritesScreen extends StatelessWidget {
   static const String routeName = '/favorites-screen';

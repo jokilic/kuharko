@@ -2,10 +2,10 @@ import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/shadows.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/shadows.dart';
+import '../../../controllers/spoonacular_controller.dart';
+import '../../../controllers/theme_controller.dart';
 
 class HeartAnimationWidget extends StatefulWidget {
   final String heartIcon;

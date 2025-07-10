@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/colors.dart';
-import '../constants/text_styles.dart';
-import '../controllers/spoonacular_controller.dart';
-import '../controllers/theme_controller.dart';
-import '../widgets/animated_column.dart';
-import '../widgets/header_widget.dart';
-import '../widgets/home_screen/recipes_widget.dart';
-import '../widgets/search_widget.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_styles.dart';
+import '../../controllers/spoonacular_controller.dart';
+import '../../controllers/theme_controller.dart';
+import '../../widgets/animated_column.dart';
+import '../../widgets/header_widget.dart';
+import '../../widgets/search_widget.dart';
+import 'widgets/recipes_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home-screen';

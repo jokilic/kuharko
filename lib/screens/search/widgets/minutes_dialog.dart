@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/icons.dart';
-import '../../constants/text_styles.dart';
-import '../../controllers/theme_controller.dart';
-import '../animated_column.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/icons.dart';
+import '../../../constants/text_styles.dart';
+import '../../../controllers/theme_controller.dart';
+import '../../../widgets/animated_column.dart';
 
 class MinutesDialog extends StatelessWidget {
   final String title;

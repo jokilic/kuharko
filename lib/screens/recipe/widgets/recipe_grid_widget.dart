@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/text_styles.dart';
-import '../animated_column.dart';
+import '../../../constants/text_styles.dart';
+import '../../../widgets/animated_column.dart';
 
 class RecipeGridWidget extends StatelessWidget {
   final Color color;

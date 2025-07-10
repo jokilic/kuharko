@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/colors.dart';
-import '../../controllers/spoonacular_controller.dart';
-import '../../controllers/theme_controller.dart';
-import '../../models/recipe/recipe.dart';
-import '../../screens/recipe_screen.dart';
-import '../../widgets/big_recipe_widget.dart';
-import '../../widgets/recipe_widget.dart';
-import '../animated_list_view.dart';
-import '../loading_widgets/big_recipe_loading_widget.dart';
+import '../../../constants/colors.dart';
+import '../../../controllers/spoonacular_controller.dart';
+import '../../../controllers/theme_controller.dart';
+import '../../../models/recipe/recipe.dart';
+import '../../../widgets/animated_list_view.dart';
+import '../../../widgets/big_recipe_loading_widget.dart';
+import '../../../widgets/big_recipe_widget.dart';
+import '../../../widgets/recipe_widget.dart';
+import '../../recipe/recipe_screen.dart';
 
 class RecipesWidget extends StatelessWidget {
   final List<Recipe> recipes;

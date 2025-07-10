@@ -5,7 +5,7 @@ import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../controllers/spoonacular_controller.dart';
 import '../controllers/theme_controller.dart';
-import '../screens/results_screen.dart';
+import '../screens/results/results_screen.dart';
 
 class SearchWidget extends StatelessWidget {
   @override
@@ -33,9 +33,7 @@ class SearchWidget extends StatelessWidget {
         ),
         hintText: 'Search for a meal...',
         hintStyle: TextStyle(
-          color: _themeController.darkTheme
-              ? DarkColors.textColor.withOpacity(0.4)
-              : LightColors.textColor.withOpacity(0.4),
+          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/icons.dart';
-import '../../constants/text_styles.dart';
-import '../../controllers/theme_controller.dart';
-import '../animated_column.dart';
-import '../animated_list_view.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/icons.dart';
+import '../../../constants/text_styles.dart';
+import '../../../controllers/theme_controller.dart';
+import '../../../widgets/animated_column.dart';
+import '../../../widgets/animated_list_view.dart';
 
 class SearchDialog extends StatelessWidget {
   final String title;

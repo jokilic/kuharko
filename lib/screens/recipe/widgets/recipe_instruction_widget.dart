@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/text_styles.dart';
-import '../../controllers/theme_controller.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/text_styles.dart';
+import '../../../controllers/theme_controller.dart';
 
 class RecipeInstructionWidget extends StatelessWidget {
   final int number;

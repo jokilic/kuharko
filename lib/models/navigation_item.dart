@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../controllers/theme_controller.dart';
-import '../screens/categories_screen.dart';
-import '../screens/favorites_screen.dart';
-import '../screens/home_screen.dart';
-import '../screens/search_screen.dart';
+import '../screens/categories/categories_screen.dart';
+import '../screens/favorites/favorites_screen.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/search/search_screen.dart';
 
 class NavigationItem {
   final Widget page;

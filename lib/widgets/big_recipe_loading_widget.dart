@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../constants/colors.dart';
-import '../../controllers/theme_controller.dart';
-import '../animated_column.dart';
+import '../constants/colors.dart';
+import '../controllers/theme_controller.dart';
+import 'animated_column.dart';
 
 class BigRecipeLoadingWidget extends StatelessWidget {
   @override

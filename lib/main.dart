@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
-import 'screens/bottom_navigation.dart';
-import 'screens/categories_screen.dart';
-import 'screens/favorites_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/recipe_screen.dart';
-import 'screens/results_screen.dart';
-import 'screens/search_screen.dart';
+import 'screens/categories/categories_screen.dart';
+import 'screens/favorites/favorites_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/recipe/recipe_screen.dart';
+import 'screens/results/results_screen.dart';
+import 'screens/search/search_screen.dart';
 import 'services/logger_service.dart';
+import 'widgets/bottom_navigation.dart';
 
 Future<void> main() async {
   /// Load `flutter_dotenv` (for the API key)

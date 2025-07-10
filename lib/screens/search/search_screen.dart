@@ -3,22 +3,22 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/colors.dart';
-import '../constants/icons.dart';
-import '../constants/text_styles.dart';
-import '../controllers/spoonacular_controller.dart';
-import '../controllers/theme_controller.dart';
-import '../enums/cuisine.dart';
-import '../enums/diets.dart';
-import '../enums/intolerance.dart';
-import '../enums/meal_type.dart';
-import '../screens/results_screen.dart';
-import '../widgets/animated_column.dart';
-import '../widgets/header_widget.dart';
-import '../widgets/kuharko_button.dart';
-import '../widgets/search_screen/checkbox_dialog.dart';
-import '../widgets/search_screen/minutes_dialog.dart';
-import '../widgets/search_screen/search_dialog.dart';
+import '../../constants/colors.dart';
+import '../../constants/icons.dart';
+import '../../constants/text_styles.dart';
+import '../../controllers/spoonacular_controller.dart';
+import '../../controllers/theme_controller.dart';
+import '../../enums/cuisine.dart';
+import '../../enums/diets.dart';
+import '../../enums/intolerance.dart';
+import '../../enums/meal_type.dart';
+import '../../widgets/animated_column.dart';
+import '../../widgets/header_widget.dart';
+import '../../widgets/kuharko_button.dart';
+import '../results/results_screen.dart';
+import 'widgets/checkbox_dialog.dart';
+import 'widgets/minutes_dialog.dart';
+import 'widgets/search_dialog.dart';
 
 class SearchScreen extends StatelessWidget {
   static const String routeName = '/search-screen';

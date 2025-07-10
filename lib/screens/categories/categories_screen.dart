@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/colors.dart';
-import '../controllers/category_controller.dart';
-import '../controllers/spoonacular_controller.dart';
-import '../controllers/theme_controller.dart';
-import '../models/category.dart';
-import '../screens/results_screen.dart';
-import '../widgets/animated_column.dart';
-import '../widgets/categories_screen/category_widget.dart';
-import '../widgets/header_widget.dart';
+import '../../constants/colors.dart';
+import '../../controllers/category_controller.dart';
+import '../../controllers/spoonacular_controller.dart';
+import '../../controllers/theme_controller.dart';
+import '../../models/category.dart';
+import '../../widgets/animated_column.dart';
+import '../../widgets/header_widget.dart';
+import '../results/results_screen.dart';
+import 'widgets/category_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
   static const String routeName = '/categories-screen';
