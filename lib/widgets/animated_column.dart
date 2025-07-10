@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AnimatedColumn extends StatelessWidget {
-  final List children;
+  final List<Widget> children;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;

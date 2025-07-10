@@ -11,8 +11,6 @@ import '../../widgets/search_widget.dart';
 import 'widgets/recipes_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const String routeName = '/home-screen';
-
   @override
   Widget build(BuildContext context) {
     final spoonacularController = Get.put<SpoonacularService>(SpoonacularService());
@@ -21,25 +19,25 @@ class HomeScreen extends StatelessWidget {
     return Obx(
       () => Scaffold(
         backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-        body: const SafeArea(
+        body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 20),
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: AnimatedColumn(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 24),
-                  Padding(
+                  const SizedBox(height: 24),
+                  const Padding(
                     padding: EdgeInsets.only(right: 20),
                     child: HeaderWidget(title: 'What would you like to Cook?'),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: const EdgeInsets.only(right: 20),
                     child: SearchWidget(),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Obx(
                     () => Padding(
                       padding: const EdgeInsets.only(right: 20),
@@ -51,12 +49,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   RecipesWidget(
                     recipes: spoonacularController.cuisineRecipes,
                     isBig: true,
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Obx(
                     () => Padding(
                       padding: const EdgeInsets.only(right: 20),
@@ -68,12 +66,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   RecipesWidget(
                     recipes: spoonacularController.mealTypeRecipes,
                     isBig: true,
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Obx(
                     () => Padding(
                       padding: const EdgeInsets.only(right: 20),
@@ -85,14 +83,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 74),
+                  const SizedBox(height: 74),
                   Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: const EdgeInsets.only(right: 20),
                     child: RecipesWidget(
                       recipes: spoonacularController.randomRecipes,
                     ),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),

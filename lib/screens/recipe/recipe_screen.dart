@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
-import '../../constants/images.dart';
 import '../../constants/shadows.dart';
 import '../../constants/text_styles.dart';
 import '../../services/spoonacular_service.dart';
@@ -21,8 +20,6 @@ import 'widgets/recipe_grid_widget.dart';
 import 'widgets/recipe_instruction_widget.dart';
 
 class RecipeScreen extends StatelessWidget {
-  static const String routeName = '/recipe-screen';
-
   @override
   Widget build(BuildContext context) {
     final spoonacularController = Get.find<SpoonacularService>();
@@ -39,11 +36,11 @@ class RecipeScreen extends StatelessWidget {
             if (recipe == null) {
               return SizedBox(
                 height: Get.height,
-                child: const AnimatedColumn(
+                child: AnimatedColumn(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    HeaderWidget(chefOnly: true),
-                    SizedBox(height: 50),
+                    const HeaderWidget(),
+                    const SizedBox(height: 50),
                     Obx(
                       () => Text(
                         'Just a sec...',
@@ -53,7 +50,7 @@ class RecipeScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     SpinKitFoldingCube(
                       color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                       size: 36,
@@ -69,19 +66,12 @@ class RecipeScreen extends StatelessWidget {
                   children: [
                     Transform.scale(
                       scale: 1.2,
-                      child: recipe.image == null
-                          ? Image.asset(
-                              MyImages.foodPlaceholder,
-                              width: double.infinity,
-                              height: Get.height * 0.5,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.network(
-                              recipe.image,
-                              width: double.infinity,
-                              height: Get.height * 0.5,
-                              fit: BoxFit.cover,
-                            ),
+                      child: Image.network(
+                        recipe.image,
+                        width: double.infinity,
+                        height: Get.height * 0.5,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Container(
                       width: Get.width,
@@ -239,9 +229,7 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 4),
-                                if (recipe.analyzedInstructions != null &&
-                                    recipe.instructions != null &&
-                                    (recipe.analyzedInstructions.isNotEmpty || recipe.instructions.isNotEmpty))
+                                if (recipe.analyzedInstructions.isNotEmpty || recipe.instructions.isNotEmpty)
                                   Obx(
                                     () => Text(
                                       'Directions',
@@ -271,7 +259,7 @@ class RecipeScreen extends StatelessWidget {
                                 if (recipe.analyzedInstructions.isEmpty)
                                   Obx(
                                     () => Text(
-                                      recipe.instructions ?? '',
+                                      recipe.instructions,
                                       style: MyTextStyles.recipeDirectionText.copyWith(
                                         color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                       ),

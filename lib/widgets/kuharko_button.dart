@@ -9,7 +9,7 @@ import '../services/theme_service.dart';
 
 class KuharkoButton extends StatelessWidget {
   final String text;
-  final Function onTap;
+  final Function() onTap;
 
   const KuharkoButton({
     required this.text,

@@ -11,31 +11,29 @@ import 'categories_controller.dart';
 import 'widgets/category_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  static const String routeName = '/categories-screen';
-
   @override
   Widget build(BuildContext context) {
     final spoonacularController = Get.find<SpoonacularService>();
-    final categoriesController = Get.put(CategoriesController());
+    final categoriesController = Get.find<CategoriesController>();
     final themeController = Get.find<ThemeService>();
 
     return Scaffold(
       backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: AnimatedColumn(
               children: [
-                SizedBox(height: 36),
-                HeaderWidget(title: 'Search by category'),
-                SizedBox(height: 24),
+                const SizedBox(height: 36),
+                const HeaderWidget(title: 'Search by category'),
+                const SizedBox(height: 24),
                 GridView.builder(
                   itemCount: categoriesController.categories.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
                   itemBuilder: (_, index) {
@@ -47,12 +45,12 @@ class CategoriesScreen extends StatelessWidget {
                       title: category.title,
                       onTap: () {
                         spoonacularController.searchRecipes(category.title.toLowerCase());
-                        Get.toNamed(ResultsScreen.routeName);
+                        Get.to(ResultsScreen.new);
                       },
                     );
                   },
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
               ],
             ),
           ),

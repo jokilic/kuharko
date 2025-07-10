@@ -1,126 +1,225 @@
+import 'package:flutter/foundation.dart';
+
 class RecipeSearchResult {
-  List<RecipeSearchResults> results;
-  int offset;
-  int number;
-  int totalResults;
+  final List<RecipeSearchResults> results;
+  final int offset;
+  final int number;
+  final int totalResults;
 
   RecipeSearchResult({
-    this.results,
-    this.offset,
-    this.number,
-    this.totalResults,
+    required this.results,
+    required this.offset,
+    required this.number,
+    required this.totalResults,
   });
 
-  RecipeSearchResult.fromJson(Map<String, dynamic> json) {
-    final List<dynamic> resultsList = json['results'];
-    results = resultsList.map((result) => RecipeSearchResults.fromJson(result)).toList();
-    offset = json['offset'];
-    number = json['number'];
-    totalResults = json['totalResults'];
+  factory RecipeSearchResult.fromMap(Map<String, dynamic> map) => RecipeSearchResult(
+    results: List<RecipeSearchResults>.from(
+      (map['results'] as List<int>).map<RecipeSearchResults>(
+        (x) => RecipeSearchResults.fromMap(x as Map<String, dynamic>),
+      ),
+    ),
+    offset: map['offset'] as int,
+    number: map['number'] as int,
+    totalResults: map['totalResults'] as int,
+  );
+
+  @override
+  String toString() => 'RecipeSearchResult(results: $results, offset: $offset, number: $number, totalResults: $totalResults)';
+
+  @override
+  bool operator ==(covariant RecipeSearchResult other) {
+    if (identical(this, other)) {
+      return true;
+    }
+
+    return listEquals(other.results, results) && other.offset == offset && other.number == number && other.totalResults == totalResults;
   }
+
+  @override
+  int get hashCode => results.hashCode ^ offset.hashCode ^ number.hashCode ^ totalResults.hashCode;
 }
 
 class RecipeSearchResults {
-  bool vegetarian;
-  bool vegan;
-  bool glutenFree;
-  bool dairyFree;
-  bool veryHealthy;
-  bool cheap;
-  bool veryPopular;
-  bool sustainable;
-  int weightWatcherSmartPoints;
-  String gaps;
-  bool lowFodmap;
-  int preparationMinutes;
-  int cookingMinutes;
-  int aggregateLikes;
-  double spoonacularScore;
-  int healthScore;
-  String creditsText;
-  String sourceName;
-  double pricePerServing;
-  int id;
-  String title;
-  int readyInMinutes;
-  int servings;
-  String sourceUrl;
-  String image;
-  String imageType;
-  String summary;
-  List<dynamic> cuisines;
-  List<dynamic> dishTypes;
-  List<dynamic> diets;
-  List<dynamic> occasions;
-  List<dynamic> analyzedInstructions;
+  final bool vegetarian;
+  final bool vegan;
+  final bool glutenFree;
+  final bool dairyFree;
+  final bool veryHealthy;
+  final bool cheap;
+  final bool veryPopular;
+  final bool sustainable;
+  final int weightWatcherSmartPoints;
+  final String gaps;
+  final bool lowFodmap;
+  final int preparationMinutes;
+  final int cookingMinutes;
+  final int aggregateLikes;
+  final double spoonacularScore;
+  final int healthScore;
+  final String creditsText;
+  final String sourceName;
+  final double pricePerServing;
+  final int id;
+  final String title;
+  final int readyInMinutes;
+  final int servings;
+  final String sourceUrl;
+  final String image;
+  final String imageType;
+  final String summary;
+  final List<dynamic> cuisines;
+  final List<dynamic> dishTypes;
+  final List<dynamic> diets;
+  final List<dynamic> occasions;
+  final List<dynamic> analyzedInstructions;
 
   RecipeSearchResults({
-    this.vegetarian,
-    this.vegan,
-    this.glutenFree,
-    this.dairyFree,
-    this.veryHealthy,
-    this.cheap,
-    this.veryPopular,
-    this.sustainable,
-    this.weightWatcherSmartPoints,
-    this.gaps,
-    this.lowFodmap,
-    this.preparationMinutes,
-    this.cookingMinutes,
-    this.aggregateLikes,
-    this.spoonacularScore,
-    this.healthScore,
-    this.creditsText,
-    this.sourceName,
-    this.pricePerServing,
-    this.id,
-    this.title,
-    this.readyInMinutes,
-    this.servings,
-    this.sourceUrl,
-    this.image,
-    this.imageType,
-    this.summary,
-    this.cuisines,
-    this.dishTypes,
-    this.diets,
-    this.occasions,
-    this.analyzedInstructions,
+    required this.vegetarian,
+    required this.vegan,
+    required this.glutenFree,
+    required this.dairyFree,
+    required this.veryHealthy,
+    required this.cheap,
+    required this.veryPopular,
+    required this.sustainable,
+    required this.weightWatcherSmartPoints,
+    required this.gaps,
+    required this.lowFodmap,
+    required this.preparationMinutes,
+    required this.cookingMinutes,
+    required this.aggregateLikes,
+    required this.spoonacularScore,
+    required this.healthScore,
+    required this.creditsText,
+    required this.sourceName,
+    required this.pricePerServing,
+    required this.id,
+    required this.title,
+    required this.readyInMinutes,
+    required this.servings,
+    required this.sourceUrl,
+    required this.image,
+    required this.imageType,
+    required this.summary,
+    required this.cuisines,
+    required this.dishTypes,
+    required this.diets,
+    required this.occasions,
+    required this.analyzedInstructions,
   });
 
-  RecipeSearchResults.fromJson(Map<String, dynamic> json) {
-    vegetarian = json['vegetarian'];
-    vegan = json['vegan'];
-    glutenFree = json['glutenFree'];
-    dairyFree = json['dairyFree'];
-    veryHealthy = json['veryHealthy'];
-    cheap = json['cheap'];
-    veryPopular = json['veryPopular'];
-    sustainable = json['sustainable'];
-    weightWatcherSmartPoints = json['weightWatcherSmartPoints'];
-    gaps = json['gaps'];
-    lowFodmap = json['lowFodmap'];
-    preparationMinutes = json['preparationMinutes'];
-    cookingMinutes = json['cookingMinutes'];
-    aggregateLikes = json['aggregateLikes'];
-    spoonacularScore = json['spoonacularScore'];
-    healthScore = json['healthScore'];
-    creditsText = json['creditsText'];
-    sourceName = json['sourceName'];
-    pricePerServing = json['pricePerServing'];
-    id = json['id'];
-    title = json['title'];
-    readyInMinutes = json['readyInMinutes'];
-    servings = json['servings'];
-    sourceUrl = json['sourceUrl'];
-    image = json['image'];
-    imageType = json['imageType'];
-    summary = json['summary'];
-    cuisines = json['cuisines'];
-    dishTypes = json['dishTypes'];
-    diets = json['diets'];
-    occasions = json['occasions'];
-    analyzedInstructions = json['analyzedInstructions'];
+  factory RecipeSearchResults.fromMap(Map<String, dynamic> map) => RecipeSearchResults(
+    vegetarian: map['vegetarian'] as bool,
+    vegan: map['vegan'] as bool,
+    glutenFree: map['glutenFree'] as bool,
+    dairyFree: map['dairyFree'] as bool,
+    veryHealthy: map['veryHealthy'] as bool,
+    cheap: map['cheap'] as bool,
+    veryPopular: map['veryPopular'] as bool,
+    sustainable: map['sustainable'] as bool,
+    weightWatcherSmartPoints: map['weightWatcherSmartPoints'] as int,
+    gaps: map['gaps'] as String,
+    lowFodmap: map['lowFodmap'] as bool,
+    preparationMinutes: map['preparationMinutes'] as int,
+    cookingMinutes: map['cookingMinutes'] as int,
+    aggregateLikes: map['aggregateLikes'] as int,
+    spoonacularScore: map['spoonacularScore'] as double,
+    healthScore: map['healthScore'] as int,
+    creditsText: map['creditsText'] as String,
+    sourceName: map['sourceName'] as String,
+    pricePerServing: map['pricePerServing'] as double,
+    id: map['id'] as int,
+    title: map['title'] as String,
+    readyInMinutes: map['readyInMinutes'] as int,
+    servings: map['servings'] as int,
+    sourceUrl: map['sourceUrl'] as String,
+    image: map['image'] as String,
+    imageType: map['imageType'] as String,
+    summary: map['summary'] as String,
+    cuisines: List<dynamic>.from(map['cuisines'] as List<dynamic>),
+    dishTypes: List<dynamic>.from(map['dishTypes'] as List<dynamic>),
+    diets: List<dynamic>.from(map['diets'] as List<dynamic>),
+    occasions: List<dynamic>.from(map['occasions'] as List<dynamic>),
+    analyzedInstructions: List<dynamic>.from(map['analyzedInstructions'] as List<dynamic>),
+  );
+
+  @override
+  String toString() =>
+      'RecipeSearchResults(vegetarian: $vegetarian, vegan: $vegan, glutenFree: $glutenFree, dairyFree: $dairyFree, veryHealthy: $veryHealthy, cheap: $cheap, veryPopular: $veryPopular, sustainable: $sustainable, weightWatcherSmartPoints: $weightWatcherSmartPoints, gaps: $gaps, lowFodmap: $lowFodmap, preparationMinutes: $preparationMinutes, cookingMinutes: $cookingMinutes, aggregateLikes: $aggregateLikes, spoonacularScore: $spoonacularScore, healthScore: $healthScore, creditsText: $creditsText, sourceName: $sourceName, pricePerServing: $pricePerServing, id: $id, title: $title, readyInMinutes: $readyInMinutes, servings: $servings, sourceUrl: $sourceUrl, image: $image, imageType: $imageType, summary: $summary, cuisines: $cuisines, dishTypes: $dishTypes, diets: $diets, occasions: $occasions, analyzedInstructions: $analyzedInstructions)';
+
+  @override
+  bool operator ==(covariant RecipeSearchResults other) {
+    if (identical(this, other)) {
+      return true;
+    }
+
+    return other.vegetarian == vegetarian &&
+        other.vegan == vegan &&
+        other.glutenFree == glutenFree &&
+        other.dairyFree == dairyFree &&
+        other.veryHealthy == veryHealthy &&
+        other.cheap == cheap &&
+        other.veryPopular == veryPopular &&
+        other.sustainable == sustainable &&
+        other.weightWatcherSmartPoints == weightWatcherSmartPoints &&
+        other.gaps == gaps &&
+        other.lowFodmap == lowFodmap &&
+        other.preparationMinutes == preparationMinutes &&
+        other.cookingMinutes == cookingMinutes &&
+        other.aggregateLikes == aggregateLikes &&
+        other.spoonacularScore == spoonacularScore &&
+        other.healthScore == healthScore &&
+        other.creditsText == creditsText &&
+        other.sourceName == sourceName &&
+        other.pricePerServing == pricePerServing &&
+        other.id == id &&
+        other.title == title &&
+        other.readyInMinutes == readyInMinutes &&
+        other.servings == servings &&
+        other.sourceUrl == sourceUrl &&
+        other.image == image &&
+        other.imageType == imageType &&
+        other.summary == summary &&
+        listEquals(other.cuisines, cuisines) &&
+        listEquals(other.dishTypes, dishTypes) &&
+        listEquals(other.diets, diets) &&
+        listEquals(other.occasions, occasions) &&
+        listEquals(other.analyzedInstructions, analyzedInstructions);
   }
+
+  @override
+  int get hashCode =>
+      vegetarian.hashCode ^
+      vegan.hashCode ^
+      glutenFree.hashCode ^
+      dairyFree.hashCode ^
+      veryHealthy.hashCode ^
+      cheap.hashCode ^
+      veryPopular.hashCode ^
+      sustainable.hashCode ^
+      weightWatcherSmartPoints.hashCode ^
+      gaps.hashCode ^
+      lowFodmap.hashCode ^
+      preparationMinutes.hashCode ^
+      cookingMinutes.hashCode ^
+      aggregateLikes.hashCode ^
+      spoonacularScore.hashCode ^
+      healthScore.hashCode ^
+      creditsText.hashCode ^
+      sourceName.hashCode ^
+      pricePerServing.hashCode ^
+      id.hashCode ^
+      title.hashCode ^
+      readyInMinutes.hashCode ^
+      servings.hashCode ^
+      sourceUrl.hashCode ^
+      image.hashCode ^
+      imageType.hashCode ^
+      summary.hashCode ^
+      cuisines.hashCode ^
+      dishTypes.hashCode ^
+      diets.hashCode ^
+      occasions.hashCode ^
+      analyzedInstructions.hashCode;
 }

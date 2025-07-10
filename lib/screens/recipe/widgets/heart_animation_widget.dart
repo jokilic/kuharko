@@ -19,19 +19,19 @@ class HeartAnimationWidget extends StatefulWidget {
 }
 
 class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _sizeAnimation;
+  late AnimationController animationController;
+  late Animation<double> sizeAnimation;
   final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
+    animationController = AnimationController(
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
 
-    _sizeAnimation = TweenSequence<double>(
+    sizeAnimation = TweenSequence<double>(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
           tween: Tween<double>(
@@ -48,12 +48,12 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
           weight: 1,
         ),
       ],
-    ).animate(_animationController);
+    ).animate(animationController);
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    animationController.dispose();
     super.dispose();
   }
 
@@ -62,15 +62,15 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
     final themeController = Get.find<ThemeService>();
 
     return AnimatedBuilder(
-      animation: _animationController,
+      animation: animationController,
       builder: (_, child) {
-        _spoonacularController.recipeIsFavorited ? _animationController.forward() : _animationController.reset();
+        _spoonacularController.recipeIsFavorited ? animationController.forward() : animationController.reset();
 
         return PressableDough(
           child: Container(
             width: 74,
             height: 74,
-            padding: EdgeInsets.all(_sizeAnimation.value),
+            padding: EdgeInsets.all(sizeAnimation.value),
             decoration: BoxDecoration(
               color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               shape: BoxShape.circle,

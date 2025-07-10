@@ -35,6 +35,6 @@ class ThemeService extends GetxService {
 
     sharedPreferences = await SharedPreferences.getInstance();
 
-    sharedPreferences.containsKey('darkTheme') ? darkTheme = sharedPreferences.getBool('darkTheme') : await sharedPreferences.setBool('darkTheme', darkTheme);
+    sharedPreferences.containsKey('darkTheme') ? darkTheme = sharedPreferences.getBool('darkTheme') ?? false : await sharedPreferences.setBool('darkTheme', darkTheme);
   }
 }

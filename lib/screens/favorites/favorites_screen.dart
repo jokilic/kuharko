@@ -13,8 +13,6 @@ import '../../widgets/recipe_widget.dart';
 import '../recipe/recipe_screen.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  static const String routeName = '/favorites-screen';
-
   @override
   Widget build(BuildContext context) {
     final spoonacularController = Get.find<SpoonacularService>();
@@ -22,20 +20,20 @@ class FavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 36),
-                HeaderWidget(title: 'Your favorite recipes'),
-                SizedBox(height: 84),
+                const SizedBox(height: 36),
+                const HeaderWidget(title: 'Your favorite recipes'),
+                const SizedBox(height: 84),
                 if (spoonacularController.favoriteRecipes.isEmpty)
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 36),
+                      padding: const EdgeInsets.symmetric(horizontal: 36),
                       child: AnimatedColumn(
                         children: [
                           PressableDough(
@@ -45,7 +43,7 @@ class FavoritesScreen extends StatelessWidget {
                               width: 142,
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Obx(
                             () => Text(
                               "You don't have any favorited recipes yet",
@@ -64,15 +62,15 @@ class FavoritesScreen extends StatelessWidget {
                     clipBehavior: Clip.none,
                     itemCount: spoonacularController.favoriteRecipes.length,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 80,
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.85,
                     ),
                     itemBuilder: (_, index) {
-                      final List<String> favoriteRecipe = spoonacularController.favoriteRecipes[index];
+                      final favoriteRecipe = spoonacularController.favoriteRecipes[index];
 
                       return RecipeWidget(
                         color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
@@ -80,13 +78,13 @@ class FavoritesScreen extends StatelessWidget {
                         image: favoriteRecipe[2],
                         onTap: () {
                           spoonacularController.getRecipeInformation(int.parse(favoriteRecipe[0]));
-                          Get.toNamed(RecipeScreen.routeName);
+                          Get.to(RecipeScreen.new);
                         },
                         readyInMinutes: int.parse(favoriteRecipe[3]),
                       );
                     },
                   ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
               ],
             ),
           ),

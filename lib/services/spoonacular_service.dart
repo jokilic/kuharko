@@ -7,7 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
 import '../constants/cuisine.dart';
 import '../constants/meal_type.dart';
-import '../models/models.dart';
+import '../models/recipe/recipe.dart';
+import '../models/recipe/recipe_search_result.dart';
 import 'network_service.dart';
 
 class SpoonacularService extends GetxService {
@@ -33,21 +34,21 @@ class SpoonacularService extends GetxService {
   List<Recipe> get mealTypeRecipes => _mealTypeRecipes;
   set mealTypeRecipes(List<Recipe> value) => _mealTypeRecipes.assignAll(value);
 
-  final _recipeSearchResult = RecipeSearchResult().obs;
-  RecipeSearchResult get recipeSearchResult => _recipeSearchResult.value;
-  set recipeSearchResult(RecipeSearchResult value) => _recipeSearchResult.value = value;
+  final _recipeSearchResult = Rxn<RecipeSearchResult?>();
+  RecipeSearchResult? get recipeSearchResult => _recipeSearchResult.value;
+  set recipeSearchResult(RecipeSearchResult? value) => _recipeSearchResult.value = value;
 
-  final _recipeInformation = Recipe().obs;
-  Recipe get recipeInformation => _recipeInformation.value;
-  set recipeInformation(Recipe value) => _recipeInformation.value = value;
+  final _recipeInformation = Rxn<Recipe?>();
+  Recipe? get recipeInformation => _recipeInformation.value;
+  set recipeInformation(Recipe? value) => _recipeInformation.value = value;
 
   final _recipeIsFavorited = false.obs;
   bool get recipeIsFavorited => _recipeIsFavorited.value;
   set recipeIsFavorited(bool value) => _recipeIsFavorited.value = value;
 
-  final _favoriteRecipes = <String>[].obs;
-  List<String> get favoriteRecipes => _favoriteRecipes;
-  set favoriteRecipes(List<String> value) => _favoriteRecipes.assignAll(value);
+  final _favoriteRecipes = <List<String>>[].obs;
+  List<List<String>> get favoriteRecipes => _favoriteRecipes;
+  set favoriteRecipes(List<List<String>> value) => _favoriteRecipes.assignAll(value);
 
   final _randomCuisineName = ''.obs;
   String get randomCuisineName => _randomCuisineName.value;
@@ -77,9 +78,9 @@ class SpoonacularService extends GetxService {
   List<String> get ingredientsInKitchen => _ingredientsInKitchen;
   set ingredientsInKitchen(List<String> value) => _ingredientsInKitchen.assignAll(value);
 
-  final _unwantedIngredientsInKitchen = ''.obs;
-  String get unwantedIngredientsInKitchen => _unwantedIngredientsInKitchen.value;
-  set unwantedIngredientsInKitchen(String value) => _unwantedIngredientsInKitchen.value = value;
+  final _unwantedIngredientsInKitchen = <String>[].obs;
+  List<String> get unwantedIngredientsInKitchen => _unwantedIngredientsInKitchen;
+  set unwantedIngredientsInKitchen(List<String> value) => _unwantedIngredientsInKitchen.assignAll(value);
 
   final _wantedCuisines = ''.obs;
   String get wantedCuisines => _wantedCuisines.value;
@@ -209,14 +210,14 @@ class SpoonacularService extends GetxService {
   }
 
   String cleanDescription(int index) {
-    final htmlDescription = recipeSearchResult.results[index].summary;
+    final htmlDescription = recipeSearchResult?.results[index].summary;
     final regExp = RegExp(
       '<[^>]*>',
       multiLine: true,
     );
-    final cleanDescription = htmlDescription.replaceAll(regExp, '');
+    final cleanDescription = htmlDescription?.replaceAll(regExp, '');
 
-    return cleanDescription;
+    return cleanDescription ?? '';
   }
 
   String cleanSummary(String summary) {
@@ -244,16 +245,18 @@ class SpoonacularService extends GetxService {
   }
 
   Color clockColor(int index) {
-    final minutes = recipeSearchResult.results[index].readyInMinutes;
+    final minutes = recipeSearchResult?.results[index].readyInMinutes;
 
-    if (minutes > 0 && minutes <= 40) {
-      return LightColors.greenColor;
-    }
-    if (minutes > 40 && minutes <= 70) {
-      return LightColors.orangeColor;
-    }
-    if (minutes > 70) {
-      return LightColors.redColor;
+    if (minutes != null) {
+      if (minutes > 0 && minutes <= 40) {
+        return LightColors.greenColor;
+      }
+      if (minutes > 40 && minutes <= 70) {
+        return LightColors.orangeColor;
+      }
+      if (minutes > 70) {
+        return LightColors.redColor;
+      }
     }
 
     return LightColors.blueColor;
@@ -271,7 +274,7 @@ class SpoonacularService extends GetxService {
     }
   }
 
-  Future<void> minusLongPressStart(_) async {
+  Future<void> minusLongPressStart() async {
     longpressActive = true;
     do {
       decrementMinutes();
@@ -281,7 +284,7 @@ class SpoonacularService extends GetxService {
     } while (longpressActive);
   }
 
-  Future<void> plusLongPressStart(_) async {
+  Future<void> plusLongPressStart() async {
     longpressActive = true;
     do {
       incrementMinutes();
@@ -315,10 +318,10 @@ class SpoonacularService extends GetxService {
       '${favoritedRecipe.readyInMinutes}',
     ];
 
-    return sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
+    await sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
   }
 
-  String getFavoriteRecipe(String key) => sharedPreferences.getString(key);
+  String? getFavoriteRecipe(String key) => sharedPreferences.getString(key);
 
   Future<bool> removeFavoriteRecipe(String key) async => sharedPreferences.remove(key);
 
@@ -326,7 +329,15 @@ class SpoonacularService extends GetxService {
   void getFavoriteRecipes() {
     favoriteRecipes.clear();
     sharedPreferences.getKeys().forEach(
-      (key) => key != 'darkTheme' ? favoriteRecipes.add(getFavoriteRecipe(key)) : null,
+      (key) {
+        if (key != 'darkTheme') {
+          final favoriteRecipe = getFavoriteRecipe(key);
+
+          if (favoriteRecipe?.isNotEmpty ?? false) {
+            favoriteRecipes.add(favoriteRecipe!);
+          }
+        }
+      },
     );
   }
 

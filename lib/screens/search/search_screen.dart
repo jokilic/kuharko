@@ -21,8 +21,6 @@ import 'widgets/minutes_dialog.dart';
 import 'widgets/search_dialog.dart';
 
 class SearchScreen extends StatelessWidget {
-  static const String routeName = '/search-screen';
-
   @override
   Widget build(BuildContext context) {
     final spoonacularController = Get.find<SpoonacularService>();
@@ -42,7 +40,6 @@ class SearchScreen extends StatelessWidget {
                 const HeaderWidget(
                   title: 'Ask Kuharko Marko...',
                   subtitle: 'Colored words can be tapped',
-                  hasSubtitle: true,
                 ),
                 const SizedBox(height: 36),
                 Obx(
@@ -272,10 +269,10 @@ class SearchScreen extends StatelessWidget {
                                   minutes: spoonacularController.wantedMinutes,
                                   minusPressed: spoonacularController.decrementMinutes,
                                   minusLongPressStart: spoonacularController.minusLongPressStart,
-                                  minusLongPressEnd: (_) => spoonacularController.disableLongPress(),
+                                  minusLongPressEnd: spoonacularController.disableLongPress,
                                   plusPressed: spoonacularController.incrementMinutes,
                                   plusLongPressStart: spoonacularController.plusLongPressStart,
-                                  plusLongPressEnd: (_) => spoonacularController.disableLongPress(),
+                                  plusLongPressEnd: spoonacularController.disableLongPress,
                                 ),
                               ),
                             ),
@@ -292,7 +289,7 @@ class SearchScreen extends StatelessWidget {
                   text: 'Find recipes'.toUpperCase(),
                   onTap: () {
                     spoonacularController.complexRecipeSearch();
-                    Get.toNamed(ResultsScreen.routeName);
+                    Get.to(ResultsScreen.new);
                   },
                 ),
                 const SizedBox(height: 56),

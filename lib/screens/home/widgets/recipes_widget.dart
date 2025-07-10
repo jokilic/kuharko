@@ -17,7 +17,7 @@ class RecipesWidget extends StatelessWidget {
   final bool isBig;
 
   const RecipesWidget({
-    this.recipes,
+    required this.recipes,
     this.isGrid = false,
     this.isBig = false,
   });
@@ -51,7 +51,7 @@ class RecipesWidget extends StatelessWidget {
                 title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                 onTap: () {
                   spoonacularController.getRecipeInformation(recipe.id);
-                  Get.toNamed(RecipeScreen.routeName);
+                  Get.to(RecipeScreen.new);
                 },
               );
             },
@@ -101,7 +101,7 @@ class RecipesWidget extends StatelessWidget {
                       title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
                       onTap: () {
                         spoonacularController.getRecipeInformation(recipe.id);
-                        Get.toNamed(RecipeScreen.routeName);
+                        Get.to(RecipeScreen.new);
                       },
                     ),
                   ),
@@ -133,7 +133,7 @@ class RecipesWidget extends StatelessWidget {
                     title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                     onTap: () {
                       spoonacularController.getRecipeInformation(recipe.id);
-                      Get.toNamed(RecipeScreen.routeName);
+                      Get.to(RecipeScreen.new);
                     },
                   ),
                 ),

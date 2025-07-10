@@ -10,17 +10,13 @@ import '../services/theme_service.dart';
 import 'animated_column.dart';
 
 class HeaderWidget extends StatefulWidget {
-  final String title;
-  final bool chefOnly;
-  final String subtitle;
-  final bool hasSubtitle;
+  final String? title;
+  final String? subtitle;
   final bool errorHeader;
 
   const HeaderWidget({
     this.title,
-    this.chefOnly = false,
     this.subtitle,
-    this.hasSubtitle = false,
     this.errorHeader = false,
   });
 
@@ -29,29 +25,29 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderStateMixin {
-  AnimationController _chefAnimationController;
-  Animation<dynamic> _curve;
+  late final AnimationController chefAnimationController;
+  late final Animation<double> curve;
 
   @override
   void initState() {
     super.initState();
-    _chefAnimationController = AnimationController(
+    chefAnimationController = AnimationController(
       duration: const Duration(milliseconds: 1600),
       vsync: this,
     )..forward();
-    _curve = CurvedAnimation(
-      parent: _chefAnimationController,
+    curve = CurvedAnimation(
+      parent: chefAnimationController,
       curve: Curves.easeInOutBack,
     );
 
-    _chefAnimationController.addStatusListener(
+    chefAnimationController.addStatusListener(
       (status) async {
         if (status == AnimationStatus.completed) {
           await Future<Duration>.delayed(const Duration(seconds: 3));
-          await _chefAnimationController.reverse();
+          await chefAnimationController.reverse();
         } else if (status == AnimationStatus.dismissed) {
           await Future<Duration>.delayed(const Duration(seconds: 3));
-          await _chefAnimationController.forward();
+          await chefAnimationController.forward();
         }
       },
     );
@@ -59,7 +55,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
 
   @override
   void dispose() {
-    _chefAnimationController.dispose();
+    chefAnimationController.dispose();
     super.dispose();
   }
 
@@ -68,10 +64,10 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
     final spoonacularController = Get.find<SpoonacularService>();
     final themeController = Get.find<ThemeService>();
 
-    if (widget.chefOnly) {
+    if (widget.title?.isEmpty ?? true) {
       return Center(
         child: RotationTransition(
-          turns: Tween<double>(begin: 0, end: 0.03).animate(_curve),
+          turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
           child: GestureDetector(
             onLongPress: () {
               themeController.toggleTheme();
@@ -101,20 +97,20 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
                 width: Get.width * 0.35,
                 child: Obx(
                   () => Text(
-                    widget.title,
+                    widget.title!,
                     style: MyTextStyles.headline2Text.copyWith(
                       color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                     ),
                   ),
                 ),
               ),
-              if (widget.hasSubtitle) ...[
+              if (widget.subtitle?.isNotEmpty ?? false) ...[
                 const SizedBox(height: 4),
                 SizedBox(
                   width: Get.width * 0.3,
                   child: Obx(
                     () => Text(
-                      widget.subtitle,
+                      widget.subtitle!,
                       style: MyTextStyles.headline3Text.copyWith(
                         color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
@@ -125,7 +121,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
             ],
           ),
           RotationTransition(
-            turns: Tween<double>(begin: 0, end: 0.03).animate(_curve),
+            turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
             child: GestureDetector(
               onLongPress: () {
                 themeController.toggleTheme();
@@ -155,20 +151,20 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
               width: Get.width * 0.5,
               child: Obx(
                 () => Text(
-                  widget.title,
+                  widget.title!,
                   style: MyTextStyles.headline1Text.copyWith(
                     color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                   ),
                 ),
               ),
             ),
-            if (widget.hasSubtitle) ...[
+            if (widget.subtitle?.isNotEmpty ?? false) ...[
               const SizedBox(height: 8),
               SizedBox(
                 width: Get.width * 0.5,
                 child: Obx(
                   () => Text(
-                    widget.subtitle,
+                    widget.subtitle!,
                     style: MyTextStyles.headline3Text.copyWith(
                       color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                     ),
@@ -179,7 +175,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           ],
         ),
         RotationTransition(
-          turns: Tween<double>(begin: 0, end: 0.03).animate(_curve),
+          turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
           child: GestureDetector(
             onLongPress: () {
               themeController.toggleTheme();

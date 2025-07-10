@@ -9,6 +9,14 @@ import './header_widget.dart';
 import 'animated_column.dart';
 
 class ErrorDialog extends StatelessWidget {
+  final String? title;
+  final String? subtitle;
+
+  const ErrorDialog({
+    this.title,
+    this.subtitle,
+  });
+
   @override
   Widget build(BuildContext context) {
     final themeController = Get.find<ThemeService>();
@@ -23,23 +31,23 @@ class ErrorDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-        child: const Stack(
+        child: Stack(
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
             Padding(
-              padding: EdgeInsets.all(32),
+              padding: const EdgeInsets.all(32),
               child: AnimatedColumn(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  HeaderWidget(
+                  const HeaderWidget(
                     title: 'Problems fetching recipes...',
                     errorHeader: true,
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Text(
-                    'Sadly, the limit for fetching recipes has been reached.',
+                    title ?? 'Sadly, the limit for fetching recipes has been reached.',
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
                             color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
@@ -49,9 +57,9 @@ class ErrorDialog extends StatelessWidget {
                             color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
-                    'Please try again tomorrow, when the quota gets reset.',
+                    subtitle ?? 'Please try again tomorrow, when the quota gets reset.',
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
                             color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,

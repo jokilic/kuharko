@@ -12,7 +12,7 @@ class RecipeResult extends StatelessWidget {
   final String title;
   final String description;
   final String image;
-  final Function onTap;
+  final Function() onTap;
   final Color color;
   final Color clockColor;
   final int minutes;

@@ -12,8 +12,8 @@ class CategoryWidget extends StatelessWidget {
   final String icon;
   final String title;
   final Color color;
-  final Function onTap;
-  final Function onLongPress;
+  final Function() onTap;
+  final Function()? onLongPress;
 
   const CategoryWidget({
     required this.icon,

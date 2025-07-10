@@ -8,8 +8,6 @@ import '../models/navigation_item.dart';
 import '../services/theme_service.dart';
 
 class BottomNavigation extends StatefulWidget {
-  static const String routeName = '/bottom-navigation';
-
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
 }

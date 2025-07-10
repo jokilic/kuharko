@@ -16,7 +16,7 @@ class SearchWidget extends StatelessWidget {
     return TextField(
       onSubmitted: (value) {
         spoonacularController.searchRecipes(value);
-        Get.toNamed(ResultsScreen.routeName);
+        Get.to(ResultsScreen.new);
       },
       onChanged: (value) => spoonacularController.searchQuery = value,
       textCapitalization: TextCapitalization.sentences,

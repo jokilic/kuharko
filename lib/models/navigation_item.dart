@@ -23,6 +23,21 @@ class NavigationItem {
     required this.iconActive,
   });
 
+  @override
+  String toString() => 'NavigationItem(page: $page, title: $title, icon: $icon, iconActive: $iconActive)';
+
+  @override
+  bool operator ==(covariant NavigationItem other) {
+    if (identical(this, other)) {
+      return true;
+    }
+
+    return other.page == page && other.title == title && other.icon == icon && other.iconActive == iconActive;
+  }
+
+  @override
+  int get hashCode => page.hashCode ^ title.hashCode ^ icon.hashCode ^ iconActive.hashCode;
+
   static List<NavigationItem> get items {
     final themeController = Get.find<ThemeService>();
 

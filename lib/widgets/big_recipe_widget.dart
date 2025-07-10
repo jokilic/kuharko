@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
-import '../constants/images.dart';
 import '../constants/text_styles.dart';
 import '../services/theme_service.dart';
 import 'animated_column.dart';
 
 class BigRecipeWidget extends StatelessWidget {
-  final Function onTap;
+  final Function() onTap;
   final String image;
   final String title;
   final String mealType;
@@ -37,19 +36,12 @@ class BigRecipeWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(24),
-              child: image == null
-                  ? Image.asset(
-                      MyImages.foodPlaceholder,
-                      fit: BoxFit.cover,
-                      height: double.infinity,
-                      width: double.infinity,
-                    )
-                  : Image.network(
-                      image,
-                      fit: BoxFit.cover,
-                      height: double.infinity,
-                      width: double.infinity,
-                    ),
+              child: Image.network(
+                image,
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+              ),
             ),
             Obx(
               () => Container(
