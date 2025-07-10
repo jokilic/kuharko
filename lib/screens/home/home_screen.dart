@@ -15,84 +15,84 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularService _spoonacularController = Get.put<SpoonacularService>(SpoonacularService());
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final spoonacularController = Get.put<SpoonacularService>(SpoonacularService());
+    final themeController = Get.find<ThemeService>();
 
     return Obx(
       () => Scaffold(
-        backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-        body: SafeArea(
+        backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+        body: const SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 20),
             child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               child: AnimatedColumn(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 24.0),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20.0),
+                children: [
+                  SizedBox(height: 24),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20),
                     child: HeaderWidget(title: 'What would you like to Cook?'),
                   ),
-                  const SizedBox(height: 16.0),
+                  SizedBox(height: 16),
                   Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(right: 20),
                     child: SearchWidget(),
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                   Obx(
                     () => Padding(
-                      padding: const EdgeInsets.only(right: 20.0),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Text(
-                        'Something from the ${_spoonacularController.randomCuisineName} cuisine',
+                        'Something from the ${spoonacularController.randomCuisineName} cuisine',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                   RecipesWidget(
-                    recipes: _spoonacularController.cuisineRecipes,
+                    recipes: spoonacularController.cuisineRecipes,
                     isBig: true,
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                   Obx(
                     () => Padding(
-                      padding: const EdgeInsets.only(right: 20.0),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Text(
-                        'Some ${_spoonacularController.randomMealTypeName} recipes',
+                        'Some ${spoonacularController.randomMealTypeName} recipes',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                   RecipesWidget(
-                    recipes: _spoonacularController.mealTypeRecipes,
+                    recipes: spoonacularController.mealTypeRecipes,
                     isBig: true,
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                   Obx(
                     () => Padding(
-                      padding: const EdgeInsets.only(right: 20.0),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Text(
                         'Completely random recipes',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 74.0),
+                  SizedBox(height: 74),
                   Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(right: 20),
                     child: RecipesWidget(
-                      recipes: _spoonacularController.randomRecipes,
+                      recipes: spoonacularController.randomRecipes,
                     ),
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                 ],
               ),
             ),

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import './header_widget.dart';
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../services/theme_service.dart';
+import './header_widget.dart';
 import 'animated_column.dart';
 
 class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -20,45 +20,45 @@ class ErrorDialog extends StatelessWidget {
       ),
       child: Material(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(16),
         ),
-        color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-        child: Stack(
+        color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+        child: const Stack(
           alignment: Alignment.center,
           clipBehavior: Clip.none,
-          children: <Widget>[
+          children: [
             Padding(
-              padding: const EdgeInsets.all(32.0),
+              padding: EdgeInsets.all(32),
               child: AnimatedColumn(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const HeaderWidget(
+                children: [
+                  HeaderWidget(
                     title: 'Problems fetching recipes...',
                     errorHeader: true,
                   ),
-                  const SizedBox(height: 24.0),
+                  SizedBox(height: 24),
                   Text(
                     'Sadly, the limit for fetching recipes has been reached.',
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
-                            fontSize: 18.0,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            fontSize: 18,
                           )
                         : MyTextStyles.errorDialogText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                   ),
-                  const SizedBox(height: 16.0),
+                  SizedBox(height: 16),
                   Text(
                     'Please try again tomorrow, when the quota gets reset.',
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
-                            fontSize: 18.0,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            fontSize: 18,
                           )
                         : MyTextStyles.errorDialogText.copyWith(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                   ),
                 ],
@@ -72,7 +72,7 @@ class ErrorDialog extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
-                  height: 60.0,
+                  height: 60,
                 ),
               ),
             ),

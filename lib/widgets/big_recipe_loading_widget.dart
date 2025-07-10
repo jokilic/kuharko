@@ -9,62 +9,62 @@ import 'animated_column.dart';
 class BigRecipeLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return SizedBox(
       height: Get.height * 0.45,
       width: Get.width * 0.65,
       child: Stack(
         alignment: Alignment.bottomCenter,
-        children: <Widget>[
+        children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(24.0),
+            borderRadius: BorderRadius.circular(24),
             child: Shimmer.fromColors(
-              baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
-              highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
+              baseColor: themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+              highlightColor: themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
               child: Container(
-                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                 height: double.infinity,
                 width: double.infinity,
               ),
             ),
           ),
           Container(
-            height: 120.0,
+            height: 120,
             width: double.infinity,
-            margin: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24.0),
-              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+              borderRadius: BorderRadius.circular(24),
+              color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
             ),
             child: Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 16.0),
+              padding: const EdgeInsets.only(left: 8, right: 16),
               child: Row(
-                children: <Widget>[
+                children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: AnimatedColumn(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
+                        children: [
                           Shimmer.fromColors(
-                            baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
-                            highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
+                            baseColor: themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                            highlightColor: themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                             child: Container(
-                              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                              color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                               width: Get.width * 0.35,
-                              height: 36.0,
+                              height: 36,
                             ),
                           ),
-                          const SizedBox(height: 8.0),
+                          const SizedBox(height: 8),
                           Shimmer.fromColors(
-                            baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
-                            highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
+                            baseColor: themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                            highlightColor: themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                             child: Container(
-                              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                              color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                               width: Get.width * 0.2,
-                              height: 24.0,
+                              height: 24,
                             ),
                           ),
                         ],
@@ -73,24 +73,24 @@ class BigRecipeLoadingWidget extends StatelessWidget {
                   ),
                   AnimatedColumn(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
+                    children: [
                       Shimmer.fromColors(
-                        baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
-                        highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
+                        baseColor: themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                        highlightColor: themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                         child: Container(
-                          color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-                          width: 48.0,
-                          height: 48.0,
+                          color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                          width: 48,
+                          height: 48,
                         ),
                       ),
-                      const SizedBox(height: 8.0),
+                      const SizedBox(height: 8),
                       Shimmer.fromColors(
-                        baseColor: _themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
-                        highlightColor: _themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
+                        baseColor: themeController.darkTheme ? DarkColors.backgroundColor : Colors.grey[400],
+                        highlightColor: themeController.darkTheme ? DarkColors.bodyColor : Colors.grey[100],
                         child: Container(
-                          color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                          color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                           width: Get.width * 0.1,
-                          height: 24.0,
+                          height: 24,
                         ),
                       ),
                     ],

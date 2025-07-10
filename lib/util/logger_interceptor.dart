@@ -13,7 +13,7 @@ class LoggerInterceptor implements Interceptor {
   ///
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     final endpoint = '${err.requestOptions.baseUrl}${err.requestOptions.path}';
     final httpMethod = err.requestOptions.method;
     final statusCode = '${err.response?.statusCode}';

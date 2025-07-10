@@ -16,22 +16,22 @@ class RecipeGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 160.0,
-    width: 135.0,
+    height: 160,
+    width: 135,
     decoration: BoxDecoration(
-      color: color.withOpacity(0.15),
-      borderRadius: BorderRadius.circular(16.0),
+      color: color.withValues(alpha: 0.15),
+      borderRadius: BorderRadius.circular(16),
     ),
     child: AnimatedColumn(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
+      children: [
         Image.asset(
           icon,
-          width: 60.0,
-          height: 60.0,
+          width: 60,
+          height: 60,
           color: color,
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         Text(
           text,
           style: MyTextStyles.recipeGrid.copyWith(

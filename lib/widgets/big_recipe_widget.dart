@@ -25,7 +25,7 @@ class BigRecipeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,
@@ -34,9 +34,9 @@ class BigRecipeWidget extends StatelessWidget {
         width: Get.width * 0.65,
         child: Stack(
           alignment: Alignment.bottomCenter,
-          children: <Widget>[
+          children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(24.0),
+              borderRadius: BorderRadius.circular(24),
               child: image == null
                   ? Image.asset(
                       MyImages.foodPlaceholder,
@@ -53,35 +53,35 @@ class BigRecipeWidget extends StatelessWidget {
             ),
             Obx(
               () => Container(
-                height: 120.0,
+                height: 120,
                 width: double.infinity,
-                margin: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
-                  color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                  borderRadius: BorderRadius.circular(24),
+                  color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 16.0),
+                  padding: const EdgeInsets.only(left: 8, right: 16),
                   child: Row(
-                    children: <Widget>[
+                    children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: AnimatedColumn(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
+                            children: [
                               Text(
                                 title,
                                 style: MyTextStyles.bigRecipeWidgetTitle.copyWith(
-                                  color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                  color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                 ),
                               ),
-                              const SizedBox(height: 4.0),
+                              const SizedBox(height: 4),
                               Text(
                                 mealType,
                                 style: MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
-                                  color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
+                                  color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
                                 ),
                               ),
                             ],
@@ -90,17 +90,17 @@ class BigRecipeWidget extends StatelessWidget {
                       ),
                       AnimatedColumn(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                        children: [
                           Image.asset(
                             MyIcons.alarm,
-                            width: 42.0,
-                            height: 42.0,
+                            width: 42,
+                            height: 42,
                           ),
-                          const SizedBox(height: 8.0),
+                          const SizedBox(height: 8),
                           Text(
                             "$readyInMinutes'",
                             style: MyTextStyles.bigRecipeWidgetRating.copyWith(
-                              color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             ),
                           ),
                         ],

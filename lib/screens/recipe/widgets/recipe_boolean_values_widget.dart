@@ -16,23 +16,23 @@ class RecipeBooleanValuesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 55.0,
-    width: 170.0,
-    margin: const EdgeInsets.only(right: 16.0),
+    height: 55,
+    width: 170,
+    margin: const EdgeInsets.only(right: 16),
     decoration: BoxDecoration(
       color: color,
-      borderRadius: BorderRadius.circular(36.0),
+      borderRadius: BorderRadius.circular(36),
     ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
+      children: [
         Image.asset(
           icon,
-          height: 32.0,
-          width: 32.0,
+          height: 32,
+          width: 32,
           color: LightColors.backgroundColor,
         ),
-        const SizedBox(width: 16.0),
+        const SizedBox(width: 16),
         Text(
           text,
           style: MyTextStyles.recipeBooleanValues.copyWith(

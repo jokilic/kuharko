@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/text_styles.dart';
+import '../../models/recipe/recipe_search_result.dart';
 import '../../services/spoonacular_service.dart';
 import '../../services/theme_service.dart';
-import '../../models/recipe/recipe_search_result.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/animated_list_view.dart';
 import '../../widgets/header_widget.dart';
@@ -20,40 +20,40 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final spoonacularController = Get.find<SpoonacularService>();
+    final themeController = Get.find<ThemeService>();
 
     return Scaffold(
-      backgroundColor: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-      body: SafeArea(
+      backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+      body: const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 36.0),
-                const HeaderWidget(title: 'Search results below'),
-                const SizedBox(height: 16.0),
+              children: [
+                SizedBox(height: 36),
+                HeaderWidget(title: 'Search results below'),
+                SizedBox(height: 16),
                 SearchWidget(),
-                const SizedBox(height: 20.0),
+                SizedBox(height: 20),
                 Obx(
                   () {
-                    if (_spoonacularController.recipeSearchResult == null) {
+                    if (spoonacularController.recipeSearchResult == null) {
                       return AnimatedColumn(
-                        children: <Widget>[
-                          const SizedBox(height: 42.0),
+                        children: [
+                          const SizedBox(height: 42),
                           SpinKitFoldingCube(
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                            size: 36.0,
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            size: 36,
                           ),
-                          const SizedBox(height: 32.0),
+                          const SizedBox(height: 32),
                           Obx(
                             () => Text(
                               'Just a sec...',
                               style: MyTextStyles.headline2Text.copyWith(
-                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -62,25 +62,25 @@ class ResultsScreen extends StatelessWidget {
                       );
                     }
 
-                    if (_spoonacularController.recipeSearchResult.totalResults == 0) {
+                    if (spoonacularController.recipeSearchResult.totalResults == 0) {
                       return Center(
                         child: Container(
-                          margin: const EdgeInsets.only(top: 16.0),
-                          padding: const EdgeInsets.symmetric(horizontal: 36.0),
+                          margin: const EdgeInsets.only(top: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 36),
                           child: AnimatedColumn(
-                            children: <Widget>[
+                            children: [
                               Image.asset(
                                 MyIcons.randomIllustration,
-                                height: 156.0,
-                                width: 156.0,
+                                height: 156,
+                                width: 156,
                               ),
-                              const SizedBox(height: 16.0),
+                              const SizedBox(height: 16),
                               Obx(
                                 () => Text(
                                   'Sorry, but there are no recipes here',
                                   textAlign: TextAlign.center,
                                   style: MyTextStyles.headline2Text.copyWith(
-                                    color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                    color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                   ),
                                 ),
                               ),
@@ -93,22 +93,22 @@ class ResultsScreen extends StatelessWidget {
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: _spoonacularController.recipeSearchResult.results.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final RecipeSearchResults recipe = _spoonacularController.recipeSearchResult.results[index];
+                      itemCount: spoonacularController.recipeSearchResult.results.length,
+                      itemBuilder: (_, index) {
+                        final recipe = spoonacularController.recipeSearchResult.results[index];
 
                         return AnimatedListView(
                           index: index,
                           child: RecipeResult(
                             title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                             description: Get.height < 700
-                                ? '${_spoonacularController.cleanDescription(index).substring(0, 64)}...'
-                                : '${_spoonacularController.cleanDescription(index).substring(0, 80)}...',
+                                ? '${spoonacularController.cleanDescription(index).substring(0, 64)}...'
+                                : '${spoonacularController.cleanDescription(index).substring(0, 80)}...',
                             image: recipe.image,
-                            color: _themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                            clockColor: _spoonacularController.clockColor(index),
+                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            clockColor: spoonacularController.clockColor(index),
                             onTap: () {
-                              _spoonacularController.getRecipeInformation(recipe.id);
+                              spoonacularController.getRecipeInformation(recipe.id);
                               Get.toNamed(RecipeScreen.routeName);
                             },
                             minutes: recipe.readyInMinutes,

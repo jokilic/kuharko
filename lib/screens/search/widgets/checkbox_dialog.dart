@@ -27,68 +27,70 @@ class CheckboxDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,
       child: Center(
         child: Stack(
           clipBehavior: Clip.none,
-          children: <Widget>[
+          children: [
             Container(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                borderRadius: BorderRadius.circular(16),
+                color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height * 0.6,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: AnimatedColumn(
-                  children: <Widget>[
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         Image.asset(
                           icon,
-                          height: 56.0,
-                          width: 56.0,
+                          height: 56,
+                          width: 56,
                         ),
-                        const SizedBox(width: 16.0),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Obx(
                             () => Text(
                               title,
                               style: MyTextStyles.searchDialogHeadingText.copyWith(
-                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 36.0),
+                    const SizedBox(height: 36),
                     ListView.builder(
                       itemCount: chosenEnums.length,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
+                      itemBuilder: (_, index) {
                         chosenEnums.sort();
-                        final String value = chosenEnums[index];
+                        final value = chosenEnums[index];
 
                         return AnimatedListView(
                           index: index,
                           child: GestureDetector(
                             onTap: () {
-                              final bool isChecked = chosenControllerList.contains(value);
+                              final isChecked = chosenControllerList.contains(value);
+
                               if (multiValue) {
                                 if (isChecked) {
                                   chosenControllerList.remove(value);
                                 } else {
                                   chosenControllerList.add(value);
                                 }
-                                final String joinedValues = chosenControllerList.join(', ');
+
+                                final joinedValues = chosenControllerList.join(', ');
                                 setJoinedValues(joinedValues);
                               } else {
                                 chosenControllerList.clear();
@@ -104,16 +106,16 @@ class CheckboxDialog extends StatelessWidget {
                             behavior: HitTestBehavior.translucent,
                             child: Obx(
                               () => Container(
-                                margin: const EdgeInsets.only(bottom: 8.0),
-                                padding: const EdgeInsets.all(8.0),
+                                margin: const EdgeInsets.only(bottom: 8),
+                                padding: const EdgeInsets.all(8),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
+                                  children: [
                                     Obx(
                                       () => Text(
                                         value,
                                         style: MyTextStyles.searchDialogText.copyWith(
-                                          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                           fontWeight: chosenControllerList.contains(value) ? FontWeight.w800 : FontWeight.w500,
                                         ),
                                       ),
@@ -121,8 +123,8 @@ class CheckboxDialog extends StatelessWidget {
                                     if (chosenControllerList.contains(value))
                                       Image.asset(
                                         MyIcons.spatula,
-                                        height: 26.0,
-                                        width: 26.0,
+                                        height: 26,
+                                        width: 26,
                                       ),
                                   ],
                                 ),
@@ -144,7 +146,7 @@ class CheckboxDialog extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
-                  height: 60.0,
+                  height: 60,
                 ),
               ),
             ),

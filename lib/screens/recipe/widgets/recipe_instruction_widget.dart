@@ -16,40 +16,40 @@ class RecipeInstructionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 32.0),
+      padding: const EdgeInsets.only(bottom: 32),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Container(
-            width: 36.0,
-            margin: const EdgeInsets.only(left: 8.0),
+            width: 36,
+            margin: const EdgeInsets.only(left: 8),
             child: Obx(
               () => Text(
                 '$number',
                 style: MyTextStyles.recipeDirectionNumber.copyWith(
-                  color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                  color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 4.0),
+          const SizedBox(width: 4),
           Obx(
             () => Container(
-              width: 4.0,
-              height: 36.0,
-              color: _themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+              width: 4,
+              height: 36,
+              color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
             ),
           ),
-          const SizedBox(width: 16.0),
+          const SizedBox(width: 16),
           Expanded(
             child: Obx(
               () => Text(
                 step,
                 style: MyTextStyles.recipeDirectionText.copyWith(
-                  color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                  color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                 ),
               ),
             ),

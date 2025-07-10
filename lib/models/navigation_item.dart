@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
-import '../services/theme_service.dart';
 import '../screens/categories/categories_screen.dart';
 import '../screens/favorites/favorites_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/search/search_screen.dart';
+import '../services/theme_service.dart';
 
 class NavigationItem {
   final Widget page;
@@ -24,22 +24,22 @@ class NavigationItem {
   });
 
   static List<NavigationItem> get items {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return <NavigationItem>[
       NavigationItem(
         page: HomeScreen(),
         icon: Image.asset(
           MyIcons.home,
-          width: 40.0,
-          height: 40.0,
-          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          width: 40,
+          height: 40,
+          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.home,
-          width: 48.0,
-          height: 48.0,
-          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          width: 48,
+          height: 48,
+          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Home',
       ),
@@ -47,15 +47,15 @@ class NavigationItem {
         page: SearchScreen(),
         icon: Image.asset(
           MyIcons.search,
-          width: 40.0,
-          height: 40.0,
-          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          width: 40,
+          height: 40,
+          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.search,
-          width: 48.0,
-          height: 48.0,
-          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          width: 48,
+          height: 48,
+          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Search',
       ),
@@ -63,15 +63,15 @@ class NavigationItem {
         page: CategoriesScreen(),
         icon: Image.asset(
           MyIcons.categories,
-          width: 40.0,
-          height: 40.0,
-          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          width: 40,
+          height: 40,
+          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.categories,
-          width: 48.0,
-          height: 48.0,
-          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          width: 48,
+          height: 48,
+          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Categories',
       ),
@@ -79,15 +79,15 @@ class NavigationItem {
         page: FavoritesScreen(),
         icon: Image.asset(
           MyIcons.heart,
-          width: 40.0,
-          height: 40.0,
-          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.2) : LightColors.backgroundColor.withOpacity(0.2),
+          width: 40,
+          height: 40,
+          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.heart,
-          width: 48.0,
-          height: 48.0,
-          color: _themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          width: 48,
+          height: 48,
+          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Favorites',
       ),

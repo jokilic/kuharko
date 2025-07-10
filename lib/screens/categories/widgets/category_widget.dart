@@ -25,7 +25,7 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,
@@ -33,21 +33,21 @@ class CategoryWidget extends StatelessWidget {
       child: PressableDough(
         child: Obx(
           () => Container(
-            margin: const EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-              borderRadius: BorderRadius.circular(16.0),
+              color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+              borderRadius: BorderRadius.circular(16),
               boxShadow: Shadows.myShadow,
             ),
             child: AnimatedColumn(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Image.asset(
                   icon,
-                  width: 64.0,
-                  height: 64.0,
+                  width: 64,
+                  height: 64,
                 ),
-                const SizedBox(height: 20.0),
+                const SizedBox(height: 20),
                 Text(
                   title,
                   style: MyTextStyles.categoryTitle.copyWith(

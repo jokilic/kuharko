@@ -27,30 +27,30 @@ class RecipeWidget extends StatelessWidget {
     child: Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.topCenter,
-      children: <Widget>[
+      children: [
         Container(
-          width: 175.0,
+          width: 175,
           decoration: BoxDecoration(
-            color: color.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(24.0),
+            color: color.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(24),
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 80.0, 12.0, 6.0),
+            padding: const EdgeInsets.fromLTRB(12, 80, 12, 6),
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 if (readyInMinutes != null)
                   Row(
-                    children: <Widget>[
+                    children: [
                       Image.asset(
                         MyIcons.clock,
-                        width: 24.0,
-                        height: 24.0,
+                        width: 24,
+                        height: 24,
                         color: color,
                       ),
-                      const SizedBox(width: 6.0),
+                      const SizedBox(width: 6),
                       Padding(
-                        padding: const EdgeInsets.only(top: 1.0),
+                        padding: const EdgeInsets.only(top: 1),
                         child: Text(
                           "$readyInMinutes'",
                           style: MyTextStyles.overviewRecipeScore.copyWith(
@@ -60,7 +60,7 @@ class RecipeWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                const SizedBox(height: 4.0),
+                const SizedBox(height: 4),
                 Text(
                   title,
                   style: MyTextStyles.overviewRecipeTitle.copyWith(
@@ -72,16 +72,16 @@ class RecipeWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -55.0,
+          top: -55,
           child: Container(
-            width: 110.0,
-            height: 110.0,
+            width: 110,
+            height: 110,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: Shadows.myShadow,
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(100.0),
+              borderRadius: BorderRadius.circular(100),
               child: image == null
                   ? Image.asset(
                       MyImages.foodPlaceholder,

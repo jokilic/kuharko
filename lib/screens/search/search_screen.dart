@@ -37,7 +37,7 @@ class SearchScreen extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const SizedBox(height: 36),
                 const HeaderWidget(
                   title: 'Ask Kuharko Marko...',

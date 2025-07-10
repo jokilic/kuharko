@@ -45,7 +45,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
     );
 
     _chefAnimationController.addStatusListener(
-      (AnimationStatus status) async {
+      (status) async {
         if (status == AnimationStatus.completed) {
           await Future<Duration>.delayed(const Duration(seconds: 3));
           await _chefAnimationController.reverse();
@@ -65,17 +65,17 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final spoonacularController = Get.find<SpoonacularService>();
+    final themeController = Get.find<ThemeService>();
 
     if (widget.chefOnly) {
       return Center(
         child: RotationTransition(
-          turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
+          turns: Tween<double>(begin: 0, end: 0.03).animate(_curve),
           child: GestureDetector(
             onLongPress: () {
-              _themeController.toggleTheme();
-              _spoonacularController.audioPlayer.resume();
+              themeController.toggleTheme();
+              spoonacularController.audioPlayer.resume();
             },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
@@ -92,31 +92,31 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
     if (widget.errorHeader) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
+        children: [
           AnimatedColumn(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               SizedBox(
                 width: Get.width * 0.35,
                 child: Obx(
                   () => Text(
                     widget.title,
                     style: MyTextStyles.headline2Text.copyWith(
-                      color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                     ),
                   ),
                 ),
               ),
-              if (widget.hasSubtitle) ...<Widget>[
-                const SizedBox(height: 4.0),
+              if (widget.hasSubtitle) ...[
+                const SizedBox(height: 4),
                 SizedBox(
                   width: Get.width * 0.3,
                   child: Obx(
                     () => Text(
                       widget.subtitle,
                       style: MyTextStyles.headline3Text.copyWith(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                     ),
                   ),
@@ -125,11 +125,11 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
             ],
           ),
           RotationTransition(
-            turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
+            turns: Tween<double>(begin: 0, end: 0.03).animate(_curve),
             child: GestureDetector(
               onLongPress: () {
-                _themeController.toggleTheme();
-                _spoonacularController.audioPlayer.resume();
+                themeController.toggleTheme();
+                spoonacularController.audioPlayer.resume();
               },
               behavior: HitTestBehavior.translucent,
               child: PressableDough(
@@ -146,31 +146,31 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
+      children: [
         AnimatedColumn(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             SizedBox(
               width: Get.width * 0.5,
               child: Obx(
                 () => Text(
                   widget.title,
                   style: MyTextStyles.headline1Text.copyWith(
-                    color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                    color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                   ),
                 ),
               ),
             ),
-            if (widget.hasSubtitle) ...<Widget>[
-              const SizedBox(height: 8.0),
+            if (widget.hasSubtitle) ...[
+              const SizedBox(height: 8),
               SizedBox(
                 width: Get.width * 0.5,
                 child: Obx(
                   () => Text(
                     widget.subtitle,
                     style: MyTextStyles.headline3Text.copyWith(
-                      color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                     ),
                   ),
                 ),
@@ -179,11 +179,11 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           ],
         ),
         RotationTransition(
-          turns: Tween<double>(begin: 0.0, end: 0.03).animate(_curve),
+          turns: Tween<double>(begin: 0, end: 0.03).animate(_curve),
           child: GestureDetector(
             onLongPress: () {
-              _themeController.toggleTheme();
-              _spoonacularController.audioPlayer.resume();
+              themeController.toggleTheme();
+              spoonacularController.audioPlayer.resume();
             },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(

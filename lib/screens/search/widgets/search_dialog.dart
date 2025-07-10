@@ -29,135 +29,135 @@ class SearchDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,
       child: Center(
         child: Stack(
           clipBehavior: Clip.none,
-          children: <Widget>[
+          children: [
             Container(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                borderRadius: BorderRadius.circular(16),
+                color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height * 0.6,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: AnimatedColumn(
-                  children: <Widget>[
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         Image.asset(
                           image,
-                          height: 56.0,
-                          width: 56.0,
+                          height: 56,
+                          width: 56,
                         ),
-                        const SizedBox(width: 16.0),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Obx(
                             () => Text(
                               title,
                               style: MyTextStyles.searchDialogHeadingText.copyWith(
-                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 36.0),
+                    const SizedBox(height: 36),
                     TextField(
-                      onSubmitted: (String value) {
+                      onSubmitted: (value) {
                         if (value.isNotEmpty) {
                           chosenControllerList.add(value.trim());
                           chosenTextController.clear();
-                          final String joinedValues = chosenControllerList.join(', ');
+                          final joinedValues = chosenControllerList.join(', ');
                           setJoinedValues(joinedValues);
                         }
                       },
                       controller: chosenTextController,
                       textCapitalization: TextCapitalization.sentences,
                       style: TextStyle(
-                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         fontWeight: FontWeight.w600,
                       ),
-                      cursorColor: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      cursorColor: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8),
                           child: Image.asset(
                             hintIcon,
-                            width: 30.0,
-                            color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
+                            width: 30,
+                            color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
                           ),
                         ),
                         hintText: hintText,
                         hintStyle: TextStyle(
-                          color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
+                          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(16),
                         ),
                         filled: false,
-                        fillColor: _themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
+                        fillColor: themeController.darkTheme ? DarkColors.backgroundColor : LightColors.backgroundColor,
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(16),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(16),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 16),
                     Obx(
                       () => ListView.builder(
                         itemCount: chosenControllerList.length,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) => AnimatedListView(
+                        itemBuilder: (_, index) => AnimatedListView(
                           index: index,
                           child: Container(
-                            margin: const EdgeInsets.only(bottom: 8.0),
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            margin: const EdgeInsets.only(bottom: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
+                              children: [
                                 Expanded(
                                   child: Obx(
                                     () => Text(
                                       chosenControllerList[index],
                                       style: MyTextStyles.searchDialogText.copyWith(
-                                        color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                       ),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 12.0),
+                                const SizedBox(width: 12),
                                 GestureDetector(
                                   onTap: () {
                                     chosenControllerList.removeAt(index);
-                                    final String joinedValues = chosenControllerList.join(', ');
+                                    final joinedValues = chosenControllerList.join(', ');
                                     setJoinedValues(joinedValues);
                                   },
                                   behavior: HitTestBehavior.translucent,
                                   child: Image.asset(
                                     MyIcons.delete,
-                                    height: 44.0,
-                                    width: 44.0,
+                                    height: 44,
+                                    width: 44,
                                   ),
                                 ),
                               ],
@@ -178,7 +178,7 @@ class SearchDialog extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
-                  height: 60.0,
+                  height: 60,
                 ),
               ),
             ),

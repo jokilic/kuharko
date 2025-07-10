@@ -18,7 +18,7 @@ class KuharkoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return GestureDetector(
       onTap: onTap,
@@ -27,14 +27,14 @@ class KuharkoButton extends StatelessWidget {
         child: PressableDough(
           child: Obx(
             () => Container(
-              height: 60.0,
-              width: 280.0,
+              height: 60,
+              width: 280,
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   center: Alignment.topRight,
                   radius: 4.8,
-                  stops: const <double>[0.0, 1.0],
-                  colors: _themeController.darkTheme
+                  stops: const <double>[0, 1],
+                  colors: themeController.darkTheme
                       ? <Color>[
                           DarkColors.randomColor,
                           DarkColors.randomColor,
@@ -44,18 +44,18 @@ class KuharkoButton extends StatelessWidget {
                           LightColors.randomColor,
                         ],
                 ),
-                borderRadius: BorderRadius.circular(36.0),
+                borderRadius: BorderRadius.circular(36),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   Image.asset(
                     MyIcons.recipeBook,
-                    height: 32.0,
-                    width: 32.0,
+                    height: 32,
+                    width: 32,
                     color: LightColors.backgroundColor,
                   ),
-                  const SizedBox(width: 16.0),
+                  const SizedBox(width: 16),
                   Text(
                     text,
                     style: MyTextStyles.recipeOriginal.copyWith(

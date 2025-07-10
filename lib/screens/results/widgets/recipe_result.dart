@@ -37,29 +37,29 @@ class RecipeResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,
       child: Obx(
         () => Container(
-          margin: const EdgeInsets.only(bottom: 20.0),
+          margin: const EdgeInsets.only(bottom: 20),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
-            borderRadius: BorderRadius.circular(16.0),
+            color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+            borderRadius: BorderRadius.circular(16),
             boxShadow: Shadows.myShadow,
           ),
           child: Row(
-            children: <Widget>[
+            children: [
               Container(
-                height: 130.0,
-                width: 110.0,
+                height: 130,
+                width: 110,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius: BorderRadius.circular(16),
                   child: Image.network(
                     image,
                     fit: BoxFit.cover,
@@ -68,51 +68,51 @@ class RecipeResult extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: AnimatedColumn(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
                       AnimatedColumn(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
+                        children: [
                           Text(
                             title,
                             style: MyTextStyles.resultTitle.copyWith(
                               color: color,
                             ),
                           ),
-                          const SizedBox(height: 8.0),
+                          const SizedBox(height: 8),
                           Text(
                             description,
                             style: MyTextStyles.resultDescription.copyWith(
-                              color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
+                              color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8.0),
+                      const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
+                        children: [
                           Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                               color: clockColor,
                             ),
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12.0,
-                              vertical: 8.0,
+                              horizontal: 12,
+                              vertical: 8,
                             ),
                             child: Row(
-                              children: <Widget>[
+                              children: [
                                 Image.asset(
                                   MyIcons.clock,
                                   color: LightColors.backgroundColor,
-                                  height: 16.0,
-                                  width: 16.0,
+                                  height: 16,
+                                  width: 16,
                                 ),
-                                const SizedBox(width: 8.0),
+                                const SizedBox(width: 8),
                                 Text(
                                   '$minutes min',
                                   style: MyTextStyles.resultMinutes.copyWith(
@@ -124,41 +124,41 @@ class RecipeResult extends StatelessWidget {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
+                            children: [
                               if (isVegan)
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 4.0),
+                                  padding: const EdgeInsets.only(right: 4),
                                   child: Image.asset(
                                     MyIcons.vegan,
-                                    height: 22.0,
-                                    width: 22.0,
+                                    height: 22,
+                                    width: 22,
                                   ),
                                 ),
                               if (isHealthy)
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 4.0),
+                                  padding: const EdgeInsets.only(right: 4),
                                   child: Image.asset(
                                     MyIcons.healthy,
-                                    height: 22.0,
-                                    width: 22.0,
+                                    height: 22,
+                                    width: 22,
                                   ),
                                 ),
                               if (isCheap)
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 4.0),
+                                  padding: const EdgeInsets.only(right: 4),
                                   child: Image.asset(
                                     MyIcons.cheap,
-                                    height: 22.0,
-                                    width: 22.0,
+                                    height: 22,
+                                    width: 22,
                                   ),
                                 ),
                               if (isPopular)
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 4.0),
+                                  padding: const EdgeInsets.only(right: 4),
                                   child: Image.asset(
                                     MyIcons.popular,
-                                    height: 22.0,
-                                    width: 22.0,
+                                    height: 22,
+                                    width: 22,
                                   ),
                                 ),
                             ],

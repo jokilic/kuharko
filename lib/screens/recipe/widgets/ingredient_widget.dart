@@ -22,37 +22,37 @@ class IngredientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return AnimatedColumn(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         Container(
-          width: 140.0,
-          height: 140.0,
-          margin: const EdgeInsets.only(right: 24.0),
+          width: 140,
+          height: 140,
+          margin: const EdgeInsets.only(right: 24),
           decoration: BoxDecoration(
             boxShadow: Shadows.myShadow,
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               image,
               fit: BoxFit.cover,
             ),
           ),
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10),
         SizedBox(
-          width: 140.0,
+          width: 140,
           child: AnimatedColumn(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               Obx(
                 () => Text(
                   title,
                   style: MyTextStyles.recipeIngredientName.copyWith(
-                    color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.8) : LightColors.textColor.withOpacity(0.8),
+                    color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
                   ),
                 ),
               ),
@@ -60,7 +60,7 @@ class IngredientWidget extends StatelessWidget {
                 () => Text(
                   '${amount.toStringAsFixed(1)} $unit',
                   style: MyTextStyles.recipeIngredientAmount.copyWith(
-                    color: _themeController.darkTheme ? DarkColors.textColor.withOpacity(0.4) : LightColors.textColor.withOpacity(0.4),
+                    color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
                   ),
                 ),
               ),

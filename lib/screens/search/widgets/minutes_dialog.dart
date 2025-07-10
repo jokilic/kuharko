@@ -32,52 +32,52 @@ class MinutesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeService _themeController = Get.find<ThemeService>();
+    final themeController = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,
       child: Center(
         child: Stack(
           clipBehavior: Clip.none,
-          children: <Widget>[
+          children: [
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                color: _themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                borderRadius: BorderRadius.circular(16),
+                color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height < 768 ? Get.height * 0.35 : Get.height * 0.25,
               width: Get.width * 0.8,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: AnimatedColumn(
-                  children: <Widget>[
+                  children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         Image.asset(
                           icon,
-                          height: 56.0,
-                          width: 56.0,
+                          height: 56,
+                          width: 56,
                         ),
-                        const SizedBox(width: 16.0),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Obx(
                             () => Text(
                               title,
                               style: MyTextStyles.searchDialogHeadingText.copyWith(
-                                color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 36.0),
+                    const SizedBox(height: 36),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         GestureDetector(
                           onTap: minusPressed,
                           onLongPressStart: minusLongPressStart,
@@ -85,20 +85,20 @@ class MinutesDialog extends StatelessWidget {
                           behavior: HitTestBehavior.translucent,
                           child: Image.asset(
                             MyIcons.minus,
-                            height: 50.0,
-                            width: 50.0,
+                            height: 50,
+                            width: 50,
                           ),
                         ),
-                        const SizedBox(width: 24.0),
+                        const SizedBox(width: 24),
                         Obx(
                           () => Text(
                             '$minutes',
                             style: MyTextStyles.searchDialogMinuteText.copyWith(
-                              color: _themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 24.0),
+                        const SizedBox(width: 24),
                         GestureDetector(
                           onTap: plusPressed,
                           onLongPressStart: plusLongPressStart,
@@ -106,8 +106,8 @@ class MinutesDialog extends StatelessWidget {
                           behavior: HitTestBehavior.translucent,
                           child: Image.asset(
                             MyIcons.plus,
-                            height: 50.0,
-                            width: 50.0,
+                            height: 50,
+                            width: 50,
                           ),
                         ),
                       ],
@@ -124,7 +124,7 @@ class MinutesDialog extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 child: Image.asset(
                   MyIcons.delete,
-                  height: 60.0,
+                  height: 60,
                 ),
               ),
             ),

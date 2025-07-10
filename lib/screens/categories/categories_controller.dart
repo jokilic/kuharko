@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
-import '../../services/theme_service.dart';
 import '../../models/category.dart';
+import '../../services/theme_service.dart';
 
 class CategoriesController extends GetxController {
   final themeController = Get.find<ThemeService>();
