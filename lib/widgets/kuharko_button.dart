@@ -18,7 +18,7 @@ class KuharkoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return GestureDetector(
       onTap: onTap,
@@ -34,7 +34,7 @@ class KuharkoButton extends StatelessWidget {
                   center: Alignment.topRight,
                   radius: 4.8,
                   stops: const <double>[0, 1],
-                  colors: themeController.darkTheme
+                  colors: themeService.darkTheme
                       ? <Color>[
                           DarkColors.randomColor,
                           DarkColors.randomColor,

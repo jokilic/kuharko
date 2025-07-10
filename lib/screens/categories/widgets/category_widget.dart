@@ -25,7 +25,7 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,
@@ -35,7 +35,7 @@ class CategoryWidget extends StatelessWidget {
           () => Container(
             margin: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+              color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               borderRadius: BorderRadius.circular(16),
               boxShadow: Shadows.myShadow,
             ),

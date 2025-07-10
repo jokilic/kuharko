@@ -24,8 +24,8 @@ class RecipesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.find<SpoonacularService>();
-    final themeController = Get.find<ThemeService>();
+    final spoonacularService = Get.find<SpoonacularService>();
+    final themeService = Get.find<ThemeService>();
 
     return Obx(
       () {
@@ -45,12 +45,12 @@ class RecipesWidget extends StatelessWidget {
               final recipe = recipes[index];
 
               return RecipeWidget(
-                color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                 image: recipe.image,
                 readyInMinutes: recipe.readyInMinutes,
                 title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                 onTap: () {
-                  spoonacularController.getRecipeInformation(recipe.id);
+                  spoonacularService.getRecipeInformation(recipe.id);
                   Get.to(RecipeScreen.new);
                 },
               );
@@ -100,7 +100,7 @@ class RecipesWidget extends StatelessWidget {
                       readyInMinutes: recipe.readyInMinutes,
                       title: recipe.title.length > 20 ? '${recipe.title.substring(0, 20)}...' : recipe.title,
                       onTap: () {
-                        spoonacularController.getRecipeInformation(recipe.id);
+                        spoonacularService.getRecipeInformation(recipe.id);
                         Get.to(RecipeScreen.new);
                       },
                     ),
@@ -127,12 +127,12 @@ class RecipesWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: RecipeWidget(
-                    color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                    color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                     image: recipe.image,
                     readyInMinutes: recipe.readyInMinutes,
                     title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                     onTap: () {
-                      spoonacularController.getRecipeInformation(recipe.id);
+                      spoonacularService.getRecipeInformation(recipe.id);
                       Get.to(RecipeScreen.new);
                     },
                   ),

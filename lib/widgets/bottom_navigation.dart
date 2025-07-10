@@ -17,17 +17,17 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return Obx(
       () => Scaffold(
-        backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+        backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
         body: PageTransitionSwitcher(
           duration: const Duration(milliseconds: 400),
           transitionBuilder: (child, primaryAnimation, secondaryAnimation) => FadeThroughTransition(
             animation: primaryAnimation,
             secondaryAnimation: secondaryAnimation,
-            fillColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+            fillColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
             child: child,
           ),
           child: NavigationItem.items[currentIndex].page,
@@ -41,12 +41,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             child: GNav(
               padding: const EdgeInsets.symmetric(horizontal: 14),
-              backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.textColor,
+              backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.textColor,
               curve: Curves.easeOutExpo,
               duration: const Duration(milliseconds: 400),
               gap: 4,
-              color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
-              activeColor: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+              color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
+              activeColor: themeService.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
               selectedIndex: currentIndex,
               onTabChange: (index) => setState(() => currentIndex = index),
               tabs: [

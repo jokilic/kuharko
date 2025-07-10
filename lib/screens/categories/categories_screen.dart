@@ -13,12 +13,12 @@ import 'widgets/category_widget.dart';
 class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.find<SpoonacularService>();
+    final spoonacularService = Get.find<SpoonacularService>();
+    final themeService = Get.find<ThemeService>();
     final categoriesController = Get.find<CategoriesController>();
-    final themeController = Get.find<ThemeService>();
 
     return Scaffold(
-      backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+      backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -44,7 +44,7 @@ class CategoriesScreen extends StatelessWidget {
                       icon: category.icon,
                       title: category.title,
                       onTap: () {
-                        spoonacularController.searchRecipes(category.title.toLowerCase());
+                        spoonacularService.searchRecipes(category.title.toLowerCase());
                         Get.to(ResultsScreen.new);
                       },
                     );

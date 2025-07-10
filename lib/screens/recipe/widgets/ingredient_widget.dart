@@ -22,7 +22,7 @@ class IngredientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return AnimatedColumn(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class IngredientWidget extends StatelessWidget {
                 () => Text(
                   title,
                   style: MyTextStyles.recipeIngredientName.copyWith(
-                    color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
+                    color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
                   ),
                 ),
               ),
@@ -60,7 +60,7 @@ class IngredientWidget extends StatelessWidget {
                 () => Text(
                   '${amount.toStringAsFixed(1)} $unit',
                   style: MyTextStyles.recipeIngredientAmount.copyWith(
-                    color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
+                    color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
                   ),
                 ),
               ),

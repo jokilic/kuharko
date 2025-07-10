@@ -22,16 +22,16 @@ import 'widgets/recipe_instruction_widget.dart';
 class RecipeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.find<SpoonacularService>();
-    final themeController = Get.find<ThemeService>();
+    final spoonaculaService = Get.find<SpoonacularService>();
+    final themeService = Get.find<ThemeService>();
 
     return Scaffold(
-      backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+      backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Obx(
           () {
-            final recipe = spoonacularController.recipeInformation;
+            final recipe = spoonaculaService.recipeInformation;
 
             if (recipe == null) {
               return SizedBox(
@@ -45,14 +45,14 @@ class RecipeScreen extends StatelessWidget {
                       () => Text(
                         'Just a sec...',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                         textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 50),
                     SpinKitFoldingCube(
-                      color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                      color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                       size: 36,
                     ),
                   ],
@@ -77,7 +77,7 @@ class RecipeScreen extends StatelessWidget {
                       width: Get.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(44),
-                        color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                        color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                       ),
                       child: Stack(
                         clipBehavior: Clip.none,
@@ -94,7 +94,7 @@ class RecipeScreen extends StatelessWidget {
                                   () => Text(
                                     recipe.title,
                                     style: MyTextStyles.headline1Text.copyWith(
-                                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
                                 ),
@@ -105,21 +105,21 @@ class RecipeScreen extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       RecipeGridWidget(
-                                        color: themeController.darkTheme ? DarkColors.greenRecipeColor : LightColors.greenRecipeColor,
+                                        color: themeService.darkTheme ? DarkColors.greenRecipeColor : LightColors.greenRecipeColor,
                                         icon: MyIcons.clock,
                                         text: '${recipe.readyInMinutes} MIN',
                                       ),
                                       const SizedBox(width: 16),
                                       RecipeGridWidget(
-                                        color: themeController.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
+                                        color: themeService.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
                                         icon: MyIcons.popular,
                                         text: '${recipe.readyInMinutes}',
                                       ),
                                       const SizedBox(width: 16),
                                       RecipeGridWidget(
-                                        color: themeController.darkTheme ? DarkColors.blueRecipeColor : LightColors.blueRecipeColor,
+                                        color: themeService.darkTheme ? DarkColors.blueRecipeColor : LightColors.blueRecipeColor,
                                         icon: MyIcons.money,
-                                        text: spoonacularController.getIngredientPrice(recipe.pricePerServing),
+                                        text: spoonaculaService.getIngredientPrice(recipe.pricePerServing),
                                       ),
                                     ],
                                   ),
@@ -129,7 +129,7 @@ class RecipeScreen extends StatelessWidget {
                                   () => Text(
                                     'Summary',
                                     style: MyTextStyles.headline2Text.copyWith(
-                                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
                                 ),
@@ -141,25 +141,25 @@ class RecipeScreen extends StatelessWidget {
                                     children: [
                                       if (recipe.cheap)
                                         RecipeBooleanValuesWidget(
-                                          color: themeController.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
+                                          color: themeService.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
                                           icon: MyIcons.money,
                                           text: 'Cheap',
                                         ),
                                       if (recipe.vegan)
                                         RecipeBooleanValuesWidget(
-                                          color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+                                          color: themeService.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
                                           icon: MyIcons.vegan,
                                           text: 'Vegan',
                                         ),
                                       if (recipe.veryHealthy)
                                         RecipeBooleanValuesWidget(
-                                          color: themeController.darkTheme ? DarkColors.redColor : LightColors.redColor,
+                                          color: themeService.darkTheme ? DarkColors.redColor : LightColors.redColor,
                                           icon: MyIcons.healthy,
                                           text: 'Healthy',
                                         ),
                                       if (recipe.veryPopular)
                                         RecipeBooleanValuesWidget(
-                                          color: themeController.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
+                                          color: themeService.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
                                           icon: MyIcons.popular,
                                           text: 'Popular',
                                         ),
@@ -167,15 +167,15 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                if (spoonacularController.cleanSummary(recipe.summary).length > 256 && !spoonacularController.showMoreSummary) ...[
+                                if (spoonaculaService.cleanSummary(recipe.summary).length > 256 && !spoonaculaService.showMoreSummary) ...[
                                   Text(
-                                    '${spoonacularController.cleanSummary(recipe.summary).substring(0, 256)}...',
+                                    '${spoonaculaService.cleanSummary(recipe.summary).substring(0, 256)}...',
                                     style: MyTextStyles.recipeSummary.copyWith(
-                                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
                                   GestureDetector(
-                                    onTap: spoonacularController.enableShowMoreSummary,
+                                    onTap: spoonaculaService.enableShowMoreSummary,
                                     behavior: HitTestBehavior.translucent,
                                     child: Container(
                                       height: 48,
@@ -184,7 +184,7 @@ class RecipeScreen extends StatelessWidget {
                                         () => Text(
                                           'see more',
                                           style: MyTextStyles.showMoreSummaryButton.copyWith(
-                                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                                            color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                                           ),
                                         ),
                                       ),
@@ -192,9 +192,9 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ] else
                                   Text(
-                                    spoonacularController.cleanSummary(recipe.summary),
+                                    spoonaculaService.cleanSummary(recipe.summary),
                                     style: MyTextStyles.recipeSummary.copyWith(
-                                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
                                 const SizedBox(height: 24),
@@ -202,7 +202,7 @@ class RecipeScreen extends StatelessWidget {
                                   () => Text(
                                     'Ingredients',
                                     style: MyTextStyles.headline2Text.copyWith(
-                                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
                                 ),
@@ -219,7 +219,7 @@ class RecipeScreen extends StatelessWidget {
                                       return AnimatedListView(
                                         index: index,
                                         child: IngredientWidget(
-                                          image: spoonacularController.getIngredientImage(ingredient.image),
+                                          image: spoonaculaService.getIngredientImage(ingredient.image),
                                           title: ingredient.name,
                                           amount: ingredient.amount,
                                           unit: ingredient.unit,
@@ -234,7 +234,7 @@ class RecipeScreen extends StatelessWidget {
                                     () => Text(
                                       'Directions',
                                       style: MyTextStyles.headline2Text.copyWith(
-                                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                       ),
                                     ),
                                   ),
@@ -261,14 +261,16 @@ class RecipeScreen extends StatelessWidget {
                                     () => Text(
                                       recipe.instructions,
                                       style: MyTextStyles.recipeDirectionText.copyWith(
-                                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                       ),
                                     ),
                                   ),
                                 const SizedBox(height: 16),
                                 KuharkoButton(
                                   text: 'See original recipe',
-                                  onTap: () => spoonacularController.launchURL(recipe.sourceUrl),
+                                  onTap: () => spoonaculaService.openUrlExternalBrowser(
+                                    url: recipe.sourceUrl,
+                                  ),
                                 ),
                               ],
                             ),
@@ -277,10 +279,10 @@ class RecipeScreen extends StatelessWidget {
                             right: 46,
                             top: -40,
                             child: GestureDetector(
-                              onTap: () => spoonacularController.toggleFavoriteRecipe(recipe),
+                              onTap: () => spoonaculaService.toggleFavoriteRecipe(recipe),
                               behavior: HitTestBehavior.translucent,
                               child: HeartAnimationWidget(
-                                heartIcon: spoonacularController.recipeIsFavorited ? MyIcons.favoriteFull : MyIcons.favoriteOutline,
+                                heartIcon: spoonaculaService.recipeIsFavorited ? MyIcons.favoriteFull : MyIcons.favoriteOutline,
                               ),
                             ),
                           ),
@@ -301,7 +303,7 @@ class RecipeScreen extends StatelessWidget {
                         height: 48,
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                          color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                           shape: BoxShape.circle,
                           boxShadow: Shadows.myShadow,
                         ),
@@ -309,7 +311,7 @@ class RecipeScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 4),
                           child: Image.asset(
                             MyIcons.back,
-                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                           ),
                         ),
                       ),

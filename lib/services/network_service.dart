@@ -41,7 +41,7 @@ class NetworkService extends GetxService {
   Future<Recipe?> getRecipeInformation(int id) async {
     try {
       final response = await get('recipes/$id/information?');
-      final recipe = Recipe.fromMap(response.data);
+      final recipe = Recipe.fromMap(response?.data);
 
       return recipe;
     } catch (e) {
@@ -54,7 +54,7 @@ class NetworkService extends GetxService {
   Future<List<Recipe>?> getRandomRecipes({int number = 6, String tag = ''}) async {
     try {
       final response = await get('/recipes/random?number=$number&tags=$tag&');
-      final List responseList = response.data['recipes'];
+      final List responseList = response?.data['recipes'];
       final recipes = responseList.map((recipe) => Recipe.fromMap(recipe)).toList();
 
       return recipes;
@@ -68,7 +68,7 @@ class NetworkService extends GetxService {
   Future<RecipeSearchResult?> searchRecipes(String query, {int number = 10}) async {
     try {
       final response = await get('/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&sort=random&');
-      final recipeSearchResult = RecipeSearchResult.fromMap(response.data);
+      final recipeSearchResult = RecipeSearchResult.fromMap(response?.data);
 
       return recipeSearchResult;
     } catch (e) {
@@ -94,7 +94,7 @@ class NetworkService extends GetxService {
       final response = await get(
         '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients$properMinutes&excludeIngredients=$excludeIngredients&type=$type&number=10&addRecipeInformation=true&sort=random&',
       );
-      final recipeSearchResult = RecipeSearchResult.fromMap(response.data);
+      final recipeSearchResult = RecipeSearchResult.fromMap(response?.data);
 
       return recipeSearchResult;
     } catch (e) {

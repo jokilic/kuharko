@@ -13,12 +13,12 @@ import 'widgets/recipes_widget.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.put<SpoonacularService>(SpoonacularService());
-    final themeController = Get.find<ThemeService>();
+    final spoonacularService = Get.put<SpoonacularService>(SpoonacularService());
+    final themeService = Get.find<ThemeService>();
 
     return Obx(
       () => Scaffold(
-        backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+        backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -42,16 +42,16 @@ class HomeScreen extends StatelessWidget {
                     () => Padding(
                       padding: const EdgeInsets.only(right: 20),
                       child: Text(
-                        'Something from the ${spoonacularController.randomCuisineName} cuisine',
+                        'Something from the ${spoonacularService.randomCuisineName} cuisine',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
                   RecipesWidget(
-                    recipes: spoonacularController.cuisineRecipes,
+                    recipes: spoonacularService.cuisineRecipes,
                     isBig: true,
                   ),
                   const SizedBox(height: 24),
@@ -59,16 +59,16 @@ class HomeScreen extends StatelessWidget {
                     () => Padding(
                       padding: const EdgeInsets.only(right: 20),
                       child: Text(
-                        'Some ${spoonacularController.randomMealTypeName} recipes',
+                        'Some ${spoonacularService.randomMealTypeName} recipes',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
                   RecipesWidget(
-                    recipes: spoonacularController.mealTypeRecipes,
+                    recipes: spoonacularService.mealTypeRecipes,
                     isBig: true,
                   ),
                   const SizedBox(height: 24),
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                       child: Text(
                         'Completely random recipes',
                         style: MyTextStyles.headline2Text.copyWith(
-                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                         ),
                       ),
                     ),
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: RecipesWidget(
-                      recipes: spoonacularController.randomRecipes,
+                      recipes: spoonacularService.randomRecipes,
                     ),
                   ),
                   const SizedBox(height: 24),

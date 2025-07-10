@@ -6,7 +6,7 @@ import '../../models/category.dart';
 import '../../services/theme_service.dart';
 
 class CategoriesController extends GetxController {
-  final themeController = Get.find<ThemeService>();
+  final themeService = Get.find<ThemeService>();
 
   ///
   /// REACTIVE VARIABLES
@@ -28,52 +28,52 @@ class CategoriesController extends GetxController {
       Category(
         icon: MyIcons.grill,
         title: 'Grill',
-        color: themeController.darkTheme ? DarkColors.redColor : LightColors.redColor,
+        color: themeService.darkTheme ? DarkColors.redColor : LightColors.redColor,
       ),
       Category(
         icon: MyIcons.vegan,
         title: 'Vegan',
-        color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+        color: themeService.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
       ),
       Category(
         icon: MyIcons.exotic,
         title: 'Exotic',
-        color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+        color: themeService.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
       ),
       Category(
         icon: MyIcons.spicy,
         title: 'Spicy',
-        color: themeController.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
+        color: themeService.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
       ),
       Category(
         icon: MyIcons.japan,
         title: 'Japan',
-        color: themeController.darkTheme ? DarkColors.redColor : LightColors.redColor,
+        color: themeService.darkTheme ? DarkColors.redColor : LightColors.redColor,
       ),
       Category(
         icon: MyIcons.seafood,
         title: 'Seafood',
-        color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+        color: themeService.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
       ),
       Category(
         icon: MyIcons.italian,
         title: 'Italian',
-        color: themeController.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
+        color: themeService.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
       ),
       Category(
         icon: MyIcons.chocolate,
         title: 'Chocolate',
-        color: themeController.darkTheme ? DarkColors.redColor : LightColors.redColor,
+        color: themeService.darkTheme ? DarkColors.redColor : LightColors.redColor,
       ),
       Category(
         icon: MyIcons.cheese,
         title: 'Cheese',
-        color: themeController.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
+        color: themeService.darkTheme ? DarkColors.orangeColor : LightColors.orangeColor,
       ),
       Category(
         icon: MyIcons.fruit,
         title: 'Fruit',
-        color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+        color: themeService.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
       ),
     ].obs;
   }

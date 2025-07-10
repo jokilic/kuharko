@@ -24,7 +24,7 @@ class BigRecipeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,
@@ -50,7 +50,7 @@ class BigRecipeWidget extends StatelessWidget {
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24),
-                  color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                  color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8, right: 16),
@@ -66,14 +66,14 @@ class BigRecipeWidget extends StatelessWidget {
                               Text(
                                 title,
                                 style: MyTextStyles.bigRecipeWidgetTitle.copyWith(
-                                  color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                  color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                 ),
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 mealType,
                                 style: MyTextStyles.bigRecipeWidgetSubtitle.copyWith(
-                                  color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
+                                  color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.4) : LightColors.textColor.withValues(alpha: 0.4),
                                 ),
                               ),
                             ],
@@ -92,7 +92,7 @@ class BigRecipeWidget extends StatelessWidget {
                           Text(
                             "$readyInMinutes'",
                             style: MyTextStyles.bigRecipeWidgetRating.copyWith(
-                              color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             ),
                           ),
                         ],

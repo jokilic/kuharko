@@ -17,11 +17,11 @@ import 'widgets/recipe_result.dart';
 class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.find<SpoonacularService>();
-    final themeController = Get.find<ThemeService>();
+    final spoonacularService = Get.find<SpoonacularService>();
+    final themeService = Get.find<ThemeService>();
 
     return Scaffold(
-      backgroundColor: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+      backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -37,12 +37,12 @@ class ResultsScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 Obx(
                   () {
-                    if (spoonacularController.recipeSearchResult == null) {
+                    if (spoonacularService.recipeSearchResult == null) {
                       return AnimatedColumn(
                         children: [
                           const SizedBox(height: 42),
                           SpinKitFoldingCube(
-                            color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                            color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
                             size: 36,
                           ),
                           const SizedBox(height: 32),
@@ -50,7 +50,7 @@ class ResultsScreen extends StatelessWidget {
                             () => Text(
                               'Just a sec...',
                               style: MyTextStyles.headline2Text.copyWith(
-                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -59,7 +59,7 @@ class ResultsScreen extends StatelessWidget {
                       );
                     }
 
-                    if (spoonacularController.recipeSearchResult?.totalResults == 0) {
+                    if (spoonacularService.recipeSearchResult?.totalResults == 0) {
                       return Center(
                         child: Container(
                           margin: const EdgeInsets.only(top: 16),
@@ -77,7 +77,7 @@ class ResultsScreen extends StatelessWidget {
                                   'Sorry, but there are no recipes here',
                                   textAlign: TextAlign.center,
                                   style: MyTextStyles.headline2Text.copyWith(
-                                    color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                    color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                   ),
                                 ),
                               ),
@@ -90,9 +90,9 @@ class ResultsScreen extends StatelessWidget {
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: spoonacularController.recipeSearchResult?.results.length,
+                      itemCount: spoonacularService.recipeSearchResult?.results.length,
                       itemBuilder: (_, index) {
-                        final recipe = spoonacularController.recipeSearchResult?.results[index];
+                        final recipe = spoonacularService.recipeSearchResult?.results[index];
 
                         if (recipe != null) {
                           return AnimatedListView(
@@ -100,13 +100,13 @@ class ResultsScreen extends StatelessWidget {
                             child: RecipeResult(
                               title: recipe.title.length > 24 ? '${recipe.title.substring(0, 24)}...' : recipe.title,
                               description: Get.height < 700
-                                  ? '${spoonacularController.cleanDescription(index).substring(0, 64)}...'
-                                  : '${spoonacularController.cleanDescription(index).substring(0, 80)}...',
+                                  ? '${spoonacularService.cleanDescription(index).substring(0, 64)}...'
+                                  : '${spoonacularService.cleanDescription(index).substring(0, 80)}...',
                               image: recipe.image,
-                              color: themeController.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                              clockColor: spoonacularController.clockColor(index),
+                              color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                              clockColor: spoonacularService.clockColor(index),
                               onTap: () {
-                                spoonacularController.getRecipeInformation(recipe.id);
+                                spoonacularService.getRecipeInformation(recipe.id);
                                 Get.to(RecipeScreen.new);
                               },
                               minutes: recipe.readyInMinutes,

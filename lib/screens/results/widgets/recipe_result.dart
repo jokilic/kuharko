@@ -37,7 +37,7 @@ class RecipeResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return InkWell(
       onTap: onTap,
@@ -46,7 +46,7 @@ class RecipeResult extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 20),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+            color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
             borderRadius: BorderRadius.circular(16),
             boxShadow: Shadows.myShadow,
           ),
@@ -86,7 +86,7 @@ class RecipeResult extends StatelessWidget {
                           Text(
                             description,
                             style: MyTextStyles.resultDescription.copyWith(
-                              color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
+                              color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
                             ),
                           ),
                         ],

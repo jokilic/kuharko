@@ -32,7 +32,7 @@ class MinutesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,
@@ -45,7 +45,7 @@ class MinutesDialog extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height < 768 ? Get.height * 0.35 : Get.height * 0.25,
               width: Get.width * 0.8,
@@ -67,7 +67,7 @@ class MinutesDialog extends StatelessWidget {
                             () => Text(
                               title,
                               style: MyTextStyles.searchDialogHeadingText.copyWith(
-                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                             ),
                           ),
@@ -94,7 +94,7 @@ class MinutesDialog extends StatelessWidget {
                           () => Text(
                             '$minutes',
                             style: MyTextStyles.searchDialogMinuteText.copyWith(
-                              color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             ),
                           ),
                         ),

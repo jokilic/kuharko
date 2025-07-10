@@ -1,5 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,9 +12,11 @@ import '../constants/meal_type.dart';
 import '../models/recipe/recipe.dart';
 import '../models/recipe/recipe_search_result.dart';
 import 'network_service.dart';
+import 'theme_service.dart';
 
 class SpoonacularService extends GetxService {
   final network = Get.find<NetworkService>();
+  final themeService = Get.find<ThemeService>();
 
   ///
   /// REACTIVE VARIABLES
@@ -168,17 +172,17 @@ class SpoonacularService extends GetxService {
 
   Future<void> getRandomRecipes(int number) async {
     final fetchedRandomRecipes = await network.getRandomRecipes(number: number);
-    randomRecipes = fetchedRandomRecipes;
+    randomRecipes = fetchedRandomRecipes ?? [];
   }
 
   Future<void> getCuisineRecipes(int number, String tag) async {
     final fetchedCuisineRecipes = await network.getRandomRecipes(number: number, tag: tag);
-    cuisineRecipes = fetchedCuisineRecipes;
+    cuisineRecipes = fetchedCuisineRecipes ?? [];
   }
 
   Future<void> getMealTypeRecipes(int number, String tag) async {
     final fetchedMealTypeRecipes = await network.getRandomRecipes(number: number, tag: tag);
-    mealTypeRecipes = fetchedMealTypeRecipes;
+    mealTypeRecipes = fetchedMealTypeRecipes ?? [];
   }
 
   Future<void> searchRecipes(String query) async {
@@ -321,7 +325,7 @@ class SpoonacularService extends GetxService {
     await sharedPreferences.setStringList('${favoritedRecipe.id}', favoritedRecipeList);
   }
 
-  String? getFavoriteRecipe(String key) => sharedPreferences.getString(key);
+  List<String>? getFavoriteRecipe(String key) => sharedPreferences.getStringList(key);
 
   Future<bool> removeFavoriteRecipe(String key) async => sharedPreferences.remove(key);
 
@@ -345,5 +349,43 @@ class SpoonacularService extends GetxService {
   /// URL LAUNCHER
   ///
 
-  void launchURL(String url) => launchUrl(Uri.parse(url));
+  void openUrlExternalBrowser({required String? url}) {
+    if (url != null) {
+      /// Use `url_launcher` if on web and not Android / iOS
+      if (kIsWeb || (defaultTargetPlatform != TargetPlatform.android && defaultTargetPlatform != TargetPlatform.iOS)) {
+        final uri = Uri.tryParse(url);
+
+        if (uri != null) {
+          launchUrl(uri, mode: LaunchMode.externalApplication);
+        }
+
+        return;
+      }
+
+      /// Use external browser
+      final color = themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor;
+      final backgroundColor = themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor;
+
+      FlutterWebBrowser.openWebPage(
+        url: url,
+        customTabsOptions: CustomTabsOptions(
+          defaultColorSchemeParams: CustomTabsColorSchemeParams(
+            toolbarColor: color,
+            navigationBarColor: color,
+            secondaryToolbarColor: color,
+            navigationBarDividerColor: color,
+          ),
+          showTitle: true,
+          urlBarHidingEnabled: true,
+        ),
+        safariVCOptions: SafariViewControllerOptions(
+          barCollapsingEnabled: true,
+          preferredBarTintColor: color,
+          preferredControlTintColor: backgroundColor,
+          dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
+          modalPresentationCapturesStatusBarAppearance: true,
+        ),
+      );
+    }
+  }
 }

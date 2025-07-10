@@ -61,8 +61,8 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final spoonacularController = Get.find<SpoonacularService>();
-    final themeController = Get.find<ThemeService>();
+    final spoonacularService = Get.find<SpoonacularService>();
+    final themeService = Get.find<ThemeService>();
 
     if (widget.title?.isEmpty ?? true) {
       return Center(
@@ -70,8 +70,8 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
           child: GestureDetector(
             onLongPress: () {
-              themeController.toggleTheme();
-              spoonacularController.audioPlayer.resume();
+              themeService.toggleTheme();
+              spoonacularService.audioPlayer.resume();
             },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
@@ -99,7 +99,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
                   () => Text(
                     widget.title!,
                     style: MyTextStyles.headline2Text.copyWith(
-                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                     ),
                   ),
                 ),
@@ -112,7 +112,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
                     () => Text(
                       widget.subtitle!,
                       style: MyTextStyles.headline3Text.copyWith(
-                        color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                       ),
                     ),
                   ),
@@ -124,8 +124,8 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
             turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
             child: GestureDetector(
               onLongPress: () {
-                themeController.toggleTheme();
-                spoonacularController.audioPlayer.resume();
+                themeService.toggleTheme();
+                spoonacularService.audioPlayer.resume();
               },
               behavior: HitTestBehavior.translucent,
               child: PressableDough(
@@ -153,7 +153,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
                 () => Text(
                   widget.title!,
                   style: MyTextStyles.headline1Text.copyWith(
-                    color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                    color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                   ),
                 ),
               ),
@@ -166,7 +166,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
                   () => Text(
                     widget.subtitle!,
                     style: MyTextStyles.headline3Text.copyWith(
-                      color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                     ),
                   ),
                 ),
@@ -178,8 +178,8 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
           child: GestureDetector(
             onLongPress: () {
-              themeController.toggleTheme();
-              spoonacularController.audioPlayer.resume();
+              themeService.toggleTheme();
+              spoonacularService.audioPlayer.resume();
             },
             behavior: HitTestBehavior.translucent,
             child: PressableDough(

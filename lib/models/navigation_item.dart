@@ -39,7 +39,7 @@ class NavigationItem {
   int get hashCode => page.hashCode ^ title.hashCode ^ icon.hashCode ^ iconActive.hashCode;
 
   static List<NavigationItem> get items {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return <NavigationItem>[
       NavigationItem(
@@ -48,13 +48,13 @@ class NavigationItem {
           MyIcons.home,
           width: 40,
           height: 40,
-          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
+          color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.home,
           width: 48,
           height: 48,
-          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          color: themeService.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Home',
       ),
@@ -64,13 +64,13 @@ class NavigationItem {
           MyIcons.search,
           width: 40,
           height: 40,
-          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
+          color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.search,
           width: 48,
           height: 48,
-          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          color: themeService.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Search',
       ),
@@ -80,13 +80,13 @@ class NavigationItem {
           MyIcons.categories,
           width: 40,
           height: 40,
-          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
+          color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.categories,
           width: 48,
           height: 48,
-          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          color: themeService.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Categories',
       ),
@@ -96,13 +96,13 @@ class NavigationItem {
           MyIcons.heart,
           width: 40,
           height: 40,
-          color: themeController.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
+          color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.2) : LightColors.backgroundColor.withValues(alpha: 0.2),
         ),
         iconActive: Image.asset(
           MyIcons.heart,
           width: 48,
           height: 48,
-          color: themeController.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
+          color: themeService.darkTheme ? DarkColors.textColor : LightColors.backgroundColor,
         ),
         title: 'Favorites',
       ),

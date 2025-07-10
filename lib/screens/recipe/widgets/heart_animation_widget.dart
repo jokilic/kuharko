@@ -21,7 +21,6 @@ class HeartAnimationWidget extends StatefulWidget {
 class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> sizeAnimation;
-  final SpoonacularService _spoonacularController = Get.find<SpoonacularService>();
 
   @override
   void initState() {
@@ -59,12 +58,13 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final spoonacularService = Get.find<SpoonacularService>();
+    final themeService = Get.find<ThemeService>();
 
     return AnimatedBuilder(
       animation: animationController,
       builder: (_, child) {
-        _spoonacularController.recipeIsFavorited ? animationController.forward() : animationController.reset();
+        spoonacularService.recipeIsFavorited ? animationController.forward() : animationController.reset();
 
         return PressableDough(
           child: Container(
@@ -72,7 +72,7 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
             height: 74,
             padding: EdgeInsets.all(sizeAnimation.value),
             decoration: BoxDecoration(
-              color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+              color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               shape: BoxShape.circle,
               boxShadow: Shadows.myShadow,
             ),

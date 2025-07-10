@@ -16,7 +16,7 @@ class RecipeInstructionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 32),
@@ -30,7 +30,7 @@ class RecipeInstructionWidget extends StatelessWidget {
               () => Text(
                 '$number',
                 style: MyTextStyles.recipeDirectionNumber.copyWith(
-                  color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                  color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                 ),
               ),
             ),
@@ -40,7 +40,7 @@ class RecipeInstructionWidget extends StatelessWidget {
             () => Container(
               width: 4,
               height: 36,
-              color: themeController.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
+              color: themeService.darkTheme ? DarkColors.greenColor : LightColors.greenColor,
             ),
           ),
           const SizedBox(width: 16),
@@ -49,7 +49,7 @@ class RecipeInstructionWidget extends StatelessWidget {
               () => Text(
                 step,
                 style: MyTextStyles.recipeDirectionText.copyWith(
-                  color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                  color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                 ),
               ),
             ),

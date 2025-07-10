@@ -19,7 +19,7 @@ class ErrorDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -30,7 +30,7 @@ class ErrorDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+        color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
         child: Stack(
           alignment: Alignment.center,
           clipBehavior: Clip.none,
@@ -50,11 +50,11 @@ class ErrorDialog extends StatelessWidget {
                     title ?? 'Sadly, the limit for fetching recipes has been reached.',
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
-                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             fontSize: 18,
                           )
                         : MyTextStyles.errorDialogText.copyWith(
-                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                   ),
                   const SizedBox(height: 16),
@@ -62,11 +62,11 @@ class ErrorDialog extends StatelessWidget {
                     subtitle ?? 'Please try again tomorrow, when the quota gets reset.',
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
-                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                             fontSize: 18,
                           )
                         : MyTextStyles.errorDialogText.copyWith(
-                            color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                   ),
                 ],

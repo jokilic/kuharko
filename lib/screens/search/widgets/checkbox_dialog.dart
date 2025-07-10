@@ -27,7 +27,7 @@ class CheckboxDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeService>();
+    final themeService = Get.find<ThemeService>();
 
     return Material(
       type: MaterialType.transparency,
@@ -39,7 +39,7 @@ class CheckboxDialog extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: themeController.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
+                color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
               ),
               height: Get.height * 0.6,
               width: Get.width * 0.8,
@@ -61,7 +61,7 @@ class CheckboxDialog extends StatelessWidget {
                             () => Text(
                               title,
                               style: MyTextStyles.searchDialogHeadingText.copyWith(
-                                color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                               ),
                             ),
                           ),
@@ -115,7 +115,7 @@ class CheckboxDialog extends StatelessWidget {
                                       () => Text(
                                         value,
                                         style: MyTextStyles.searchDialogText.copyWith(
-                                          color: themeController.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                           fontWeight: chosenControllerList.contains(value) ? FontWeight.w800 : FontWeight.w500,
                                         ),
                                       ),
