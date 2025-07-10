@@ -22,7 +22,7 @@ import 'widgets/recipe_instruction_widget.dart';
 class RecipeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final spoonaculaService = Get.find<SpoonacularService>();
+    final spoonacularService = Get.find<SpoonacularService>();
     final themeService = Get.find<ThemeService>();
 
     return Scaffold(
@@ -31,7 +31,7 @@ class RecipeScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Obx(
           () {
-            final recipe = spoonaculaService.recipeInformation;
+            final recipe = spoonacularService.recipeInformation;
 
             if (recipe == null) {
               return SizedBox(
@@ -119,7 +119,7 @@ class RecipeScreen extends StatelessWidget {
                                       RecipeGridWidget(
                                         color: themeService.darkTheme ? DarkColors.blueRecipeColor : LightColors.blueRecipeColor,
                                         icon: MyIcons.money,
-                                        text: spoonaculaService.getIngredientPrice(recipe.pricePerServing),
+                                        text: spoonacularService.getIngredientPrice(recipe.pricePerServing),
                                       ),
                                     ],
                                   ),
@@ -167,15 +167,15 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                if (spoonaculaService.cleanSummary(recipe.summary).length > 256 && !spoonaculaService.showMoreSummary) ...[
+                                if (spoonacularService.cleanSummary(recipe.summary).length > 256 && !spoonacularService.showMoreSummary) ...[
                                   Text(
-                                    '${spoonaculaService.cleanSummary(recipe.summary).substring(0, 256)}...',
+                                    '${spoonacularService.cleanSummary(recipe.summary).substring(0, 256)}...',
                                     style: MyTextStyles.recipeSummary.copyWith(
                                       color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
                                   GestureDetector(
-                                    onTap: spoonaculaService.enableShowMoreSummary,
+                                    onTap: spoonacularService.enableShowMoreSummary,
                                     behavior: HitTestBehavior.translucent,
                                     child: Container(
                                       height: 48,
@@ -192,7 +192,7 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ] else
                                   Text(
-                                    spoonaculaService.cleanSummary(recipe.summary),
+                                    spoonacularService.cleanSummary(recipe.summary),
                                     style: MyTextStyles.recipeSummary.copyWith(
                                       color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
@@ -219,7 +219,7 @@ class RecipeScreen extends StatelessWidget {
                                       return AnimatedListView(
                                         index: index,
                                         child: IngredientWidget(
-                                          image: spoonaculaService.getIngredientImage(
+                                          image: spoonacularService.getIngredientImage(
                                             ingredient.image,
                                           ),
                                           title: ingredient.name,
@@ -270,7 +270,7 @@ class RecipeScreen extends StatelessWidget {
                                 const SizedBox(height: 16),
                                 KuharkoButton(
                                   text: 'See original recipe',
-                                  onTap: () => spoonaculaService.openUrlExternalBrowser(
+                                  onTap: () => spoonacularService.openUrlExternalBrowser(
                                     url: recipe.sourceUrl,
                                   ),
                                 ),
@@ -281,10 +281,10 @@ class RecipeScreen extends StatelessWidget {
                             right: 46,
                             top: -40,
                             child: GestureDetector(
-                              onTap: () => spoonaculaService.toggleFavoriteRecipe(recipe),
+                              onTap: () => spoonacularService.toggleFavoriteRecipe(recipe),
                               behavior: HitTestBehavior.translucent,
                               child: HeartAnimationWidget(
-                                heartIcon: spoonaculaService.recipeIsFavorited ? MyIcons.favoriteFull : MyIcons.favoriteOutline,
+                                heartIcon: spoonacularService.recipeIsFavorited ? MyIcons.favoriteFull : MyIcons.favoriteOutline,
                               ),
                             ),
                           ),

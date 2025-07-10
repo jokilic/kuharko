@@ -41,7 +41,7 @@ class NavigationItem {
   static List<NavigationItem> get items {
     final themeService = Get.find<ThemeService>();
 
-    return <NavigationItem>[
+    return [
       NavigationItem(
         page: HomeScreen(),
         icon: Image.asset(

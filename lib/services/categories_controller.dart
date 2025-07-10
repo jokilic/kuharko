@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/icons.dart';
-import '../../models/category.dart';
-import '../../services/theme_service.dart';
+import '../constants/colors.dart';
+import '../constants/icons.dart';
+import '../models/category.dart';
+import 'theme_service.dart';
 
-class CategoriesController extends GetxController {
+class CategoriesService extends GetxService {
   final themeService = Get.find<ThemeService>();
 
   ///

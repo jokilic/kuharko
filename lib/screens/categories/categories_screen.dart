@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
+import '../../services/categories_controller.dart';
 import '../../services/spoonacular_service.dart';
 import '../../services/theme_service.dart';
 import '../../widgets/animated_column.dart';
 import '../../widgets/header_widget.dart';
 import '../results/results_screen.dart';
-import 'categories_controller.dart';
 import 'widgets/category_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final spoonacularService = Get.find<SpoonacularService>();
     final themeService = Get.find<ThemeService>();
-    final categoriesController = Get.find<CategoriesController>();
+    final categoriesService = Get.find<CategoriesService>();
 
     return Scaffold(
       backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
@@ -30,14 +30,14 @@ class CategoriesScreen extends StatelessWidget {
                 const HeaderWidget(title: 'Search by category'),
                 const SizedBox(height: 24),
                 GridView.builder(
-                  itemCount: categoriesController.categories.length,
+                  itemCount: categoriesService.categories.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
                   itemBuilder: (_, index) {
-                    final category = categoriesController.categories[index];
+                    final category = categoriesService.categories[index];
 
                     return CategoryWidget(
                       color: category.color,

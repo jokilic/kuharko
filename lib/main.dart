@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'services/categories_controller.dart';
 import 'services/logger_service.dart';
 import 'services/network_service.dart';
 import 'services/spoonacular_service.dart';
@@ -13,7 +14,8 @@ void main() {
     ..put(LoggerService())
     ..put(ThemeService())
     ..put(NetworkService())
-    ..put(SpoonacularService());
+    ..put(SpoonacularService())
+    ..put(CategoriesService());
 
   /// Run `Kuharko`
   runApp(Kuharko());

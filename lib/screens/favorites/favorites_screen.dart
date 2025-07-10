@@ -24,6 +24,7 @@ class FavoritesScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: AnimatedColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -74,7 +75,7 @@ class FavoritesScreen extends StatelessWidget {
 
                       return RecipeWidget(
                         color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
-                        title: favoriteRecipe[1].length > 24 ? '${favoriteRecipe[1].substring(0, 24)}...' : favoriteRecipe[1],
+                        title: favoriteRecipe[1],
                         image: favoriteRecipe[2],
                         onTap: () {
                           spoonacularService.getRecipeInformation(int.parse(favoriteRecipe[0]));
