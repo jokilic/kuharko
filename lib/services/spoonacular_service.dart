@@ -1,8 +1,8 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -144,7 +144,7 @@ class SpoonacularService extends GetxService {
     super.onInit();
 
     sharedPreferences = await SharedPreferences.getInstance();
-    await audioPlayer.setSource(AssetSource('boom.wav'));
+    await audioPlayer.setAsset('assets/boom.wav');
     getFavoriteRecipes();
     randomCuisineName = randomCuisine;
     randomMealTypeName = randomMealType;
@@ -234,11 +234,14 @@ class SpoonacularService extends GetxService {
     return cleanSummary;
   }
 
-  String getIngredientImage(String ingredientImage) {
-    const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
-    final fullUrl = '$baseUrl$ingredientImage';
+  String? getIngredientImage(String? ingredientImage) {
+    if (ingredientImage?.isNotEmpty ?? false) {
+      const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
+      final fullUrl = '$baseUrl$ingredientImage';
 
-    return fullUrl;
+      return fullUrl;
+    }
+    return null;
   }
 
   String getIngredientPrice(double price) {
@@ -301,6 +304,12 @@ class SpoonacularService extends GetxService {
   void disableLongPress() => longpressActive = false;
 
   void enableShowMoreSummary() => showMoreSummary = true;
+
+  Future<void> changeThemePlaySound() async {
+    await themeService.toggleTheme();
+    await audioPlayer.seek(Duration.zero);
+    await audioPlayer.play();
+  }
 
   ///
   /// SHARED PREFERENCES

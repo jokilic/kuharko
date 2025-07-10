@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
+import '../../../constants/images.dart';
 import '../../../constants/shadows.dart';
 import '../../../constants/text_styles.dart';
 import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
 
 class IngredientWidget extends StatelessWidget {
-  final String image;
+  final String? image;
   final String title;
   final double amount;
   final String unit;
@@ -36,10 +37,15 @@ class IngredientWidget extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
-            ),
+            child: (image?.isNotEmpty ?? false)
+                ? Image.network(
+                    image!,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    MyImages.foodPlaceholder,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         const SizedBox(height: 10),

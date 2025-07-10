@@ -36,6 +36,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
       duration: const Duration(milliseconds: 1600),
       vsync: this,
     )..forward();
+
     curve = CurvedAnimation(
       parent: chefAnimationController,
       curve: Curves.easeInOutBack,
@@ -70,10 +71,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
         child: RotationTransition(
           turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
           child: GestureDetector(
-            onLongPress: () {
-              themeService.toggleTheme();
-              spoonacularService.audioPlayer.resume();
-            },
+            onLongPress: spoonacularService.changeThemePlaySound,
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
               child: Image.asset(
@@ -124,10 +122,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
           RotationTransition(
             turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
             child: GestureDetector(
-              onLongPress: () {
-                themeService.toggleTheme();
-                spoonacularService.audioPlayer.resume();
-              },
+              onLongPress: spoonacularService.changeThemePlaySound,
               behavior: HitTestBehavior.translucent,
               child: PressableDough(
                 child: Image.asset(
@@ -178,10 +173,7 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
         RotationTransition(
           turns: Tween<double>(begin: 0, end: 0.03).animate(curve),
           child: GestureDetector(
-            onLongPress: () {
-              themeService.toggleTheme();
-              spoonacularService.audioPlayer.resume();
-            },
+            onLongPress: spoonacularService.changeThemePlaySound,
             behavior: HitTestBehavior.translucent,
             child: PressableDough(
               child: Image.asset(

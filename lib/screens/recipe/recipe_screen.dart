@@ -219,7 +219,9 @@ class RecipeScreen extends StatelessWidget {
                                       return AnimatedListView(
                                         index: index,
                                         child: IngredientWidget(
-                                          image: spoonaculaService.getIngredientImage(ingredient.image),
+                                          image: spoonaculaService.getIngredientImage(
+                                            ingredient.image,
+                                          ),
                                           title: ingredient.name,
                                           amount: ingredient.amount,
                                           unit: ingredient.unit,
