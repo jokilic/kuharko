@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,15 +19,6 @@ class ThemeService extends GetxService {
   late final SharedPreferences sharedPreferences;
 
   ///
-  /// METHODS
-  ///
-
-  Future<void> toggleTheme() async {
-    darkTheme = !darkTheme;
-    await sharedPreferences.setBool('darkTheme', darkTheme);
-  }
-
-  ///
   /// INIT
   ///
 
@@ -36,5 +29,30 @@ class ThemeService extends GetxService {
     sharedPreferences = await SharedPreferences.getInstance();
 
     sharedPreferences.containsKey('darkTheme') ? darkTheme = sharedPreferences.getBool('darkTheme') ?? false : await sharedPreferences.setBool('darkTheme', darkTheme);
+
+    updateStatusBar();
+  }
+
+  ///
+  /// METHODS
+  ///
+
+  Future<void> toggleTheme() async {
+    darkTheme = !darkTheme;
+    await sharedPreferences.setBool('darkTheme', darkTheme);
+    updateStatusBar();
+  }
+
+  void updateStatusBar() {
+    final brightness = darkTheme ? Brightness.dark : Brightness.light;
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: brightness,
+        statusBarIconBrightness: brightness,
+        systemNavigationBarIconBrightness: brightness,
+      ),
+    );
   }
 }

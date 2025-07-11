@@ -25,6 +25,7 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
   @override
   void initState() {
     super.initState();
+
     animationController = AnimationController(
       duration: const Duration(milliseconds: 400),
       vsync: this,
@@ -64,7 +65,9 @@ class _HeartAnimationWidgetState extends State<HeartAnimationWidget> with Single
     return AnimatedBuilder(
       animation: animationController,
       builder: (_, child) {
-        spoonacularService.recipeIsFavorited ? animationController.forward() : animationController.reset();
+        if (mounted) {
+          spoonacularService.recipeIsFavorited ? animationController.forward() : animationController.reset();
+        }
 
         return PressableDough(
           child: Container(
