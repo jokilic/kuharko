@@ -4,9 +4,10 @@ import '../constants/icons.dart';
 import '../constants/shadows.dart';
 import '../constants/text_styles.dart';
 import 'animated_column.dart';
+import 'kuharko_image.dart';
 
 class RecipeWidget extends StatelessWidget {
-  final String image;
+  final String? image;
   final int readyInMinutes;
   final String title;
   final Color color;
@@ -83,10 +84,7 @@ class RecipeWidget extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: Image.network(
-                image,
-                fit: BoxFit.cover,
-              ),
+              child: KuharkoImage(image),
             ),
           ),
         ),

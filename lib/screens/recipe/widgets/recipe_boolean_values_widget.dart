@@ -18,7 +18,6 @@ class RecipeBooleanValuesWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     height: 55,
     width: 170,
-    margin: const EdgeInsets.only(right: 16),
     decoration: BoxDecoration(
       color: color,
       borderRadius: BorderRadius.circular(36),

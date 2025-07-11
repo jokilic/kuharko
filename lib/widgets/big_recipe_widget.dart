@@ -6,10 +6,11 @@ import '../constants/icons.dart';
 import '../constants/text_styles.dart';
 import '../services/theme_service.dart';
 import 'animated_column.dart';
+import 'kuharko_image.dart';
 
 class BigRecipeWidget extends StatelessWidget {
   final Function() onTap;
-  final String image;
+  final String? image;
   final String title;
   final String mealType;
   final int readyInMinutes;
@@ -36,9 +37,8 @@ class BigRecipeWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(24),
-              child: Image.network(
+              child: KuharkoImage(
                 image,
-                fit: BoxFit.cover,
                 height: double.infinity,
                 width: double.infinity,
               ),

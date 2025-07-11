@@ -10,11 +10,12 @@ class Recipe {
   final int id;
   final String title;
   final int readyInMinutes;
+  final double spoonacularScore;
   final String sourceUrl;
-  final String image;
+  final String? image;
   final String summary;
   final List<dynamic> dishTypes;
-  final String instructions;
+  final String? instructions;
   final List<dynamic> analyzedInstructions;
 
   Recipe({
@@ -27,6 +28,7 @@ class Recipe {
     required this.id,
     required this.title,
     required this.readyInMinutes,
+    required this.spoonacularScore,
     required this.sourceUrl,
     required this.image,
     required this.summary,
@@ -49,17 +51,18 @@ class Recipe {
     id: map['id'] as int,
     title: map['title'] as String,
     readyInMinutes: map['readyInMinutes'] as int,
+    spoonacularScore: map['spoonacularScore'] as double,
     sourceUrl: map['sourceUrl'] as String,
-    image: map['image'] as String,
+    image: map['image'] != null ? map['image'] as String : null,
     summary: map['summary'] as String,
     dishTypes: List<dynamic>.from(map['dishTypes'] as List<dynamic>),
-    instructions: map['instructions'] as String,
+    instructions: map['instructions'] != null ? map['instructions'] as String : null,
     analyzedInstructions: List<dynamic>.from(map['analyzedInstructions'] as List<dynamic>),
   );
 
   @override
   String toString() =>
-      'Recipe(vegan: $vegan, veryHealthy: $veryHealthy, cheap: $cheap, veryPopular: $veryPopular, pricePerServing: $pricePerServing, extendedIngredients: $extendedIngredients, id: $id, title: $title, readyInMinutes: $readyInMinutes, sourceUrl: $sourceUrl, image: $image, summary: $summary, dishTypes: $dishTypes, instructions: $instructions, analyzedInstructions: $analyzedInstructions)';
+      'Recipe(vegan: $vegan, veryHealthy: $veryHealthy, cheap: $cheap, veryPopular: $veryPopular, pricePerServing: $pricePerServing, extendedIngredients: $extendedIngredients, id: $id, title: $title, readyInMinutes: $readyInMinutes, spoonacularScore: $spoonacularScore, sourceUrl: $sourceUrl, image: $image, summary: $summary, dishTypes: $dishTypes, instructions: $instructions, analyzedInstructions: $analyzedInstructions)';
 
   @override
   bool operator ==(covariant Recipe other) {
@@ -76,6 +79,7 @@ class Recipe {
         other.id == id &&
         other.title == title &&
         other.readyInMinutes == readyInMinutes &&
+        other.spoonacularScore == spoonacularScore &&
         other.sourceUrl == sourceUrl &&
         other.image == image &&
         other.summary == summary &&
@@ -95,6 +99,7 @@ class Recipe {
       id.hashCode ^
       title.hashCode ^
       readyInMinutes.hashCode ^
+      spoonacularScore.hashCode ^
       sourceUrl.hashCode ^
       image.hashCode ^
       summary.hashCode ^

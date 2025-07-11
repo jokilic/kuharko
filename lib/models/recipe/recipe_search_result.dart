@@ -42,7 +42,7 @@ class RecipeSearchResults {
   final int id;
   final String title;
   final int readyInMinutes;
-  final String image;
+  final String? image;
   final String summary;
 
   RecipeSearchResults({
@@ -65,7 +65,7 @@ class RecipeSearchResults {
     id: map['id'] as int,
     title: map['title'] as String,
     readyInMinutes: map['readyInMinutes'] as int,
-    image: map['image'] as String,
+    image: map['image'] != null ? map['image'] as String : null,
     summary: map['summary'] as String,
   );
 

@@ -13,6 +13,7 @@ import '../../widgets/animated_column.dart';
 import '../../widgets/animated_list_view.dart';
 import '../../widgets/header_widget.dart';
 import '../../widgets/kuharko_button.dart';
+import '../../widgets/kuharko_image.dart';
 import 'widgets/heart_animation_widget.dart';
 import 'widgets/ingredient_widget.dart';
 import 'widgets/recipe_boolean_values_widget.dart';
@@ -66,11 +67,10 @@ class RecipeScreen extends StatelessWidget {
                   children: [
                     Transform.scale(
                       scale: 1.2,
-                      child: Image.network(
+                      child: KuharkoImage(
                         recipe.image,
                         width: double.infinity,
                         height: Get.height * 0.5,
-                        fit: BoxFit.cover,
                       ),
                     ),
                     Container(
@@ -115,7 +115,7 @@ class RecipeScreen extends StatelessWidget {
                                         child: RecipeGridWidget(
                                           color: themeService.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
                                           icon: MyIcons.popular,
-                                          text: '${recipe.readyInMinutes}',
+                                          text: recipe.spoonacularScore.toStringAsFixed(0),
                                         ),
                                       ),
                                       const SizedBox(width: 16),
@@ -123,7 +123,9 @@ class RecipeScreen extends StatelessWidget {
                                         child: RecipeGridWidget(
                                           color: themeService.darkTheme ? DarkColors.blueRecipeColor : LightColors.blueRecipeColor,
                                           icon: MyIcons.money,
-                                          text: spoonacularService.getIngredientPrice(recipe.pricePerServing),
+                                          text: spoonacularService.getIngredientPrice(
+                                            recipe.pricePerServing,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -144,7 +146,9 @@ class RecipeScreen extends StatelessWidget {
                                 const SizedBox(height: 16),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
+                                  child: Wrap(
+                                    spacing: 16,
+                                    runSpacing: 16,
                                     children: [
                                       if (recipe.cheap)
                                         RecipeBooleanValuesWidget(
@@ -244,7 +248,7 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 4),
-                                if (recipe.analyzedInstructions.isNotEmpty || recipe.instructions.isNotEmpty)
+                                if (recipe.analyzedInstructions.isNotEmpty || (recipe.instructions?.isNotEmpty ?? false))
                                   Obx(
                                     () => Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -276,12 +280,12 @@ class RecipeScreen extends StatelessWidget {
                                     },
                                     separatorBuilder: (_, __) => const SizedBox(height: 24),
                                   ),
-                                if (recipe.analyzedInstructions.isEmpty)
+                                if (recipe.analyzedInstructions.isEmpty && (recipe.instructions?.isNotEmpty ?? false))
                                   Obx(
                                     () => Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 16),
                                       child: Text(
-                                        recipe.instructions,
+                                        recipe.instructions!,
                                         style: MyTextStyles.recipeDirectionText.copyWith(
                                           color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                         ),

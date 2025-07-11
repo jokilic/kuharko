@@ -7,11 +7,12 @@ import '../../../constants/shadows.dart';
 import '../../../constants/text_styles.dart';
 import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
+import '../../../widgets/kuharko_image.dart';
 
 class RecipeResult extends StatelessWidget {
   final String title;
   final String description;
-  final String image;
+  final String? image;
   final Function() onTap;
   final Color color;
   final Color clockColor;
@@ -60,10 +61,7 @@ class RecipeResult extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: SizedBox.expand(
-                      child: Image.network(
-                        image,
-                        fit: BoxFit.cover,
-                      ),
+                      child: KuharkoImage(image),
                     ),
                   ),
                 ),

@@ -7,6 +7,7 @@ import '../../../constants/shadows.dart';
 import '../../../constants/text_styles.dart';
 import '../../../services/theme_service.dart';
 import '../../../widgets/animated_column.dart';
+import '../../../widgets/kuharko_image.dart';
 
 class IngredientWidget extends StatelessWidget {
   final String? image;
@@ -37,10 +38,7 @@ class IngredientWidget extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: (image?.isNotEmpty ?? false)
-                ? Image.network(
-                    image!,
-                    fit: BoxFit.cover,
-                  )
+                ? KuharkoImage(image)
                 : Image.asset(
                     MyImages.foodPlaceholder,
                     fit: BoxFit.cover,

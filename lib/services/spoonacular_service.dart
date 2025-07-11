@@ -327,7 +327,7 @@ class SpoonacularService extends GetxService {
     final favoritedRecipeList = [
       '${favoritedRecipe.id}',
       favoritedRecipe.title,
-      favoritedRecipe.image,
+      favoritedRecipe.image ?? '',
       '${favoritedRecipe.readyInMinutes}',
     ];
 
