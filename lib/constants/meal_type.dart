@@ -1,4 +1,4 @@
-const mealTypes = [
+var mealTypes = [
   'main course',
   'side dish',
   'dessert',

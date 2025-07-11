@@ -1,4 +1,4 @@
-const diets = [
+var diets = [
   'gluten free',
   'ketogenic',
   'vegetarian',

@@ -1,4 +1,4 @@
-const cuisines = [
+var cuisines = [
   'african',
   'american',
   'british',

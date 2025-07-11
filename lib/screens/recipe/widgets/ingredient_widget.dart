@@ -31,7 +31,6 @@ class IngredientWidget extends StatelessWidget {
         Container(
           width: 140,
           height: 140,
-          margin: const EdgeInsets.only(right: 24),
           decoration: BoxDecoration(
             boxShadow: Shadows.myShadow,
           ),

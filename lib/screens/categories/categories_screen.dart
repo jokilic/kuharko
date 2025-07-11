@@ -20,39 +20,40 @@ class CategoriesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: AnimatedColumn(
-              children: [
-                const SizedBox(height: 36),
-                const HeaderWidget(title: 'Search by category'),
-                const SizedBox(height: 24),
-                GridView.builder(
-                  itemCount: categoriesService.categories.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemBuilder: (_, index) {
-                    final category = categoriesService.categories[index];
-
-                    return CategoryWidget(
-                      color: category.color,
-                      icon: category.icon,
-                      title: category.title,
-                      onTap: () {
-                        spoonacularService.searchRecipes(category.title.toLowerCase());
-                        Get.to(ResultsScreen.new);
-                      },
-                    );
-                  },
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: AnimatedColumn(
+            children: [
+              const SizedBox(height: 36),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: HeaderWidget(title: 'Search by category'),
+              ),
+              const SizedBox(height: 24),
+              GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                itemCount: categoriesService.categories.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
                 ),
-                const SizedBox(height: 24),
-              ],
-            ),
+                itemBuilder: (_, index) {
+                  final category = categoriesService.categories[index];
+
+                  return CategoryWidget(
+                    color: category.color,
+                    icon: category.icon,
+                    title: category.title,
+                    onTap: () {
+                      spoonacularService.searchRecipes(category.title.toLowerCase());
+                      Get.to(ResultsScreen.new);
+                    },
+                  );
+                },
+              ),
+              const SizedBox(height: 24),
+            ],
           ),
         ),
       ),

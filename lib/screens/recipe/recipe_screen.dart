@@ -83,60 +83,67 @@ class RecipeScreen extends StatelessWidget {
                         clipBehavior: Clip.none,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 36,
-                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 36),
                             child: AnimatedColumn(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Obx(
-                                  () => Text(
-                                    recipe.title,
-                                    style: MyTextStyles.headline1Text.copyWith(
-                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                  () => Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                                    child: Text(
+                                      recipe.title,
+                                      style: MyTextStyles.headline1Text.copyWith(
+                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: 24),
-                                SingleChildScrollView(
-                                  physics: const BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Row(
                                     children: [
-                                      RecipeGridWidget(
-                                        color: themeService.darkTheme ? DarkColors.greenRecipeColor : LightColors.greenRecipeColor,
-                                        icon: MyIcons.clock,
-                                        text: '${recipe.readyInMinutes} MIN',
+                                      Expanded(
+                                        child: RecipeGridWidget(
+                                          color: themeService.darkTheme ? DarkColors.greenRecipeColor : LightColors.greenRecipeColor,
+                                          icon: MyIcons.clock,
+                                          text: '${recipe.readyInMinutes} MIN',
+                                        ),
                                       ),
                                       const SizedBox(width: 16),
-                                      RecipeGridWidget(
-                                        color: themeService.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
-                                        icon: MyIcons.popular,
-                                        text: '${recipe.readyInMinutes}',
+                                      Expanded(
+                                        child: RecipeGridWidget(
+                                          color: themeService.darkTheme ? DarkColors.yellowRecipeColor : LightColors.yellowRecipeColor,
+                                          icon: MyIcons.popular,
+                                          text: '${recipe.readyInMinutes}',
+                                        ),
                                       ),
                                       const SizedBox(width: 16),
-                                      RecipeGridWidget(
-                                        color: themeService.darkTheme ? DarkColors.blueRecipeColor : LightColors.blueRecipeColor,
-                                        icon: MyIcons.money,
-                                        text: spoonacularService.getIngredientPrice(recipe.pricePerServing),
+                                      Expanded(
+                                        child: RecipeGridWidget(
+                                          color: themeService.darkTheme ? DarkColors.blueRecipeColor : LightColors.blueRecipeColor,
+                                          icon: MyIcons.money,
+                                          text: spoonacularService.getIngredientPrice(recipe.pricePerServing),
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 24),
                                 Obx(
-                                  () => Text(
-                                    'Summary',
-                                    style: MyTextStyles.headline2Text.copyWith(
-                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                  () => Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                                    child: Text(
+                                      'Summary',
+                                      style: MyTextStyles.headline2Text.copyWith(
+                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                SingleChildScrollView(
-                                  physics: const BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Row(
                                     children: [
                                       if (recipe.cheap)
@@ -167,13 +174,18 @@ class RecipeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                if (spoonacularService.cleanSummary(recipe.summary).length > 256 && !spoonacularService.showMoreSummary) ...[
-                                  Text(
-                                    '${spoonacularService.cleanSummary(recipe.summary).substring(0, 256)}...',
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Text(
+                                    spoonacularService.cleanSummary(recipe.summary),
+                                    maxLines: !spoonacularService.showMoreSummary ? 4 : null,
+                                    overflow: !spoonacularService.showMoreSummary ? TextOverflow.ellipsis : null,
                                     style: MyTextStyles.recipeSummary.copyWith(
                                       color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                                     ),
                                   ),
+                                ),
+                                if (!spoonacularService.showMoreSummary)
                                   GestureDetector(
                                     onTap: spoonacularService.enableShowMoreSummary,
                                     behavior: HitTestBehavior.translucent,
@@ -181,35 +193,35 @@ class RecipeScreen extends StatelessWidget {
                                       height: 48,
                                       alignment: Alignment.centerLeft,
                                       child: Obx(
-                                        () => Text(
-                                          'see more',
-                                          style: MyTextStyles.showMoreSummaryButton.copyWith(
-                                            color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                                        () => Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                                          child: Text(
+                                            'see more',
+                                            style: MyTextStyles.showMoreSummaryButton.copyWith(
+                                              color: themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ] else
-                                  Text(
-                                    spoonacularService.cleanSummary(recipe.summary),
-                                    style: MyTextStyles.recipeSummary.copyWith(
-                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
-                                    ),
-                                  ),
                                 const SizedBox(height: 24),
                                 Obx(
-                                  () => Text(
-                                    'Ingredients',
-                                    style: MyTextStyles.headline2Text.copyWith(
-                                      color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                  () => Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                                    child: Text(
+                                      'Ingredients',
+                                      style: MyTextStyles.headline2Text.copyWith(
+                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 SizedBox(
                                   height: 250,
-                                  child: ListView.builder(
+                                  child: ListView.separated(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16),
                                     scrollDirection: Axis.horizontal,
                                     physics: const BouncingScrollPhysics(),
                                     itemCount: recipe.extendedIngredients.length,
@@ -228,21 +240,26 @@ class RecipeScreen extends StatelessWidget {
                                         ),
                                       );
                                     },
+                                    separatorBuilder: (_, __) => const SizedBox(width: 24),
                                   ),
                                 ),
                                 const SizedBox(height: 4),
                                 if (recipe.analyzedInstructions.isNotEmpty || recipe.instructions.isNotEmpty)
                                   Obx(
-                                    () => Text(
-                                      'Directions',
-                                      style: MyTextStyles.headline2Text.copyWith(
-                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                    () => Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                                      child: Text(
+                                        'Directions',
+                                        style: MyTextStyles.headline2Text.copyWith(
+                                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 const SizedBox(height: 16),
                                 if (recipe.analyzedInstructions.isNotEmpty)
-                                  ListView.builder(
+                                  ListView.separated(
+                                    padding: const EdgeInsets.all(16),
                                     physics: const NeverScrollableScrollPhysics(),
                                     itemCount: recipe.analyzedInstructions[0]['steps'].length ?? 0,
                                     shrinkWrap: true,
@@ -257,13 +274,17 @@ class RecipeScreen extends StatelessWidget {
                                         ),
                                       );
                                     },
+                                    separatorBuilder: (_, __) => const SizedBox(height: 24),
                                   ),
                                 if (recipe.analyzedInstructions.isEmpty)
                                   Obx(
-                                    () => Text(
-                                      recipe.instructions,
-                                      style: MyTextStyles.recipeDirectionText.copyWith(
-                                        color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                    () => Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                                      child: Text(
+                                        recipe.instructions,
+                                        style: MyTextStyles.recipeDirectionText.copyWith(
+                                          color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                                        ),
                                       ),
                                     ),
                                   ),

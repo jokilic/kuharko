@@ -69,7 +69,7 @@ class CheckboxDialog extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 36),
-                    ListView.builder(
+                    ListView.separated(
                       itemCount: chosenEnums.length,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -106,7 +106,6 @@ class CheckboxDialog extends StatelessWidget {
                             behavior: HitTestBehavior.translucent,
                             child: Obx(
                               () => Container(
-                                margin: const EdgeInsets.only(bottom: 8),
                                 padding: const EdgeInsets.all(8),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,6 +132,7 @@ class CheckboxDialog extends StatelessWidget {
                           ),
                         );
                       },
+                      separatorBuilder: (_, __) => const SizedBox(height: 8),
                     ),
                   ],
                 ),

@@ -1,4 +1,4 @@
-const intolerances = [
+var intolerances = [
   'dairy',
   'egg',
   'gluten',

@@ -124,14 +124,13 @@ class SearchDialog extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Obx(
-                      () => ListView.builder(
+                      () => ListView.separated(
                         itemCount: chosenControllerList.length,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (_, index) => AnimatedListView(
                           index: index,
                           child: Container(
-                            margin: const EdgeInsets.only(bottom: 8),
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,6 +163,7 @@ class SearchDialog extends StatelessWidget {
                             ),
                           ),
                         ),
+                        separatorBuilder: (_, __) => const SizedBox(height: 8),
                       ),
                     ),
                   ],

@@ -29,21 +29,24 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: AnimatedColumn(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 36),
-                const HeaderWidget(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: AnimatedColumn(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 36),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: HeaderWidget(
                   title: 'Ask Kuharko Marko...',
                   subtitle: 'Colored words can be tapped',
                 ),
-                const SizedBox(height: 36),
-                Obx(
-                  () => RichText(
+              ),
+              const SizedBox(height: 36),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
                     text: TextSpan(
                       text: 'I want recipes from ',
                       style: MyTextStyles.searchText.copyWith(
@@ -93,9 +96,12 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Obx(
-                  () => RichText(
+              ),
+              const SizedBox(height: 16),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
                     text: TextSpan(
                       text: "I'm ",
                       style: MyTextStyles.searchText.copyWith(
@@ -125,19 +131,22 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36),
-                Center(
-                  child: PressableDough(
-                    child: Image.asset(
-                      MyIcons.randomIllustration,
-                      height: 142,
-                      width: 142,
-                    ),
+              ),
+              const SizedBox(height: 36),
+              Center(
+                child: PressableDough(
+                  child: Image.asset(
+                    MyIcons.randomIllustration,
+                    height: 142,
+                    width: 142,
                   ),
                 ),
-                const SizedBox(height: 36),
-                Obx(
-                  () => RichText(
+              ),
+              const SizedBox(height: 36),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
                     text: TextSpan(
                       text: 'The ingredients I have in my kitchen are ',
                       style: MyTextStyles.searchText.copyWith(
@@ -169,9 +178,12 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Obx(
-                  () => RichText(
+              ),
+              const SizedBox(height: 16),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
                     text: TextSpan(
                       text: "I don't want ",
                       style: MyTextStyles.searchText.copyWith(
@@ -203,19 +215,22 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36),
-                Center(
-                  child: PressableDough(
-                    child: Image.asset(
-                      MyIcons.randomIllustration,
-                      height: 142,
-                      width: 142,
-                    ),
+              ),
+              const SizedBox(height: 36),
+              Center(
+                child: PressableDough(
+                  child: Image.asset(
+                    MyIcons.randomIllustration,
+                    height: 142,
+                    width: 142,
                   ),
                 ),
-                const SizedBox(height: 36),
-                Obx(
-                  () => RichText(
+              ),
+              const SizedBox(height: 36),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
                     text: TextSpan(
                       text: "I'm trying to find ",
                       style: MyTextStyles.searchText.copyWith(
@@ -246,9 +261,12 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Obx(
-                  () => RichText(
+              ),
+              const SizedBox(height: 16),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RichText(
                     text: TextSpan(
                       text: 'I want my food to be ready in ',
                       style: MyTextStyles.searchText.copyWith(
@@ -284,17 +302,17 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 56),
-                KuharkoButton(
-                  text: 'Find recipes'.toUpperCase(),
-                  onTap: () {
-                    spoonacularService.complexRecipeSearch();
-                    Get.to(ResultsScreen.new);
-                  },
-                ),
-                const SizedBox(height: 56),
-              ],
-            ),
+              ),
+              const SizedBox(height: 56),
+              KuharkoButton(
+                text: 'Find recipes'.toUpperCase(),
+                onTap: () {
+                  spoonacularService.complexRecipeSearch();
+                  Get.to(ResultsScreen.new);
+                },
+              ),
+              const SizedBox(height: 56),
+            ],
           ),
         ),
       ),

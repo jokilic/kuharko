@@ -43,133 +43,130 @@ class RecipeResult extends StatelessWidget {
       onTap: onTap,
       child: Obx(
         () => Container(
-          margin: const EdgeInsets.only(bottom: 20),
           width: double.infinity,
           decoration: BoxDecoration(
             color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor,
             borderRadius: BorderRadius.circular(16),
             boxShadow: Shadows.myShadow,
           ),
-          child: Row(
-            children: [
-              Container(
-                height: 130,
-                width: 110,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    image,
-                    fit: BoxFit.cover,
+          child: IntrinsicHeight(
+            child: Row(
+              children: [
+                Container(
+                  width: 110,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: SizedBox.expand(
+                      child: Image.network(
+                        image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: AnimatedColumn(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AnimatedColumn(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            title,
-                            style: MyTextStyles.resultTitle.copyWith(
-                              color: color,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: AnimatedColumn(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AnimatedColumn(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              title,
+                              style: MyTextStyles.resultTitle.copyWith(
+                                color: color,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            description,
-                            style: MyTextStyles.resultDescription.copyWith(
-                              color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
+                            const SizedBox(height: 4),
+                            Text(
+                              description,
+                              style: MyTextStyles.resultDescription.copyWith(
+                                color: themeService.darkTheme ? DarkColors.textColor.withValues(alpha: 0.8) : LightColors.textColor.withValues(alpha: 0.8),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: clockColor,
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
-                            ),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  MyIcons.clock,
-                                  color: LightColors.backgroundColor,
-                                  height: 16,
-                                  width: 16,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  '$minutes min',
-                                  style: MyTextStyles.resultMinutes.copyWith(
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: clockColor,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    MyIcons.clock,
                                     color: LightColors.backgroundColor,
+                                    height: 16,
+                                    width: 16,
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    '$minutes min',
+                                    style: MyTextStyles.resultMinutes.copyWith(
+                                      color: LightColors.backgroundColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              if (isVegan)
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 4),
-                                  child: Image.asset(
-                                    MyIcons.vegan,
-                                    height: 22,
-                                    width: 22,
-                                  ),
-                                ),
-                              if (isHealthy)
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 4),
-                                  child: Image.asset(
-                                    MyIcons.healthy,
-                                    height: 22,
-                                    width: 22,
-                                  ),
-                                ),
-                              if (isCheap)
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 4),
-                                  child: Image.asset(
-                                    MyIcons.cheap,
-                                    height: 22,
-                                    width: 22,
-                                  ),
-                                ),
-                              if (isPopular)
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 4),
-                                  child: Image.asset(
-                                    MyIcons.popular,
-                                    height: 22,
-                                    width: 22,
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                            Flexible(
+                              child: Wrap(
+                                spacing: 4,
+                                runSpacing: 4,
+                                children: [
+                                  if (isVegan)
+                                    Image.asset(
+                                      MyIcons.vegan,
+                                      height: 22,
+                                      width: 22,
+                                    ),
+                                  if (isHealthy)
+                                    Image.asset(
+                                      MyIcons.healthy,
+                                      height: 22,
+                                      width: 22,
+                                    ),
+                                  if (isCheap)
+                                    Image.asset(
+                                      MyIcons.cheap,
+                                      height: 22,
+                                      width: 22,
+                                    ),
+                                  if (isPopular)
+                                    Image.asset(
+                                      MyIcons.popular,
+                                      height: 22,
+                                      width: 22,
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

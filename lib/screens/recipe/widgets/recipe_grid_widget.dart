@@ -17,7 +17,6 @@ class RecipeGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     height: 160,
-    width: 135,
     decoration: BoxDecoration(
       color: color.withValues(alpha: 0.15),
       borderRadius: BorderRadius.circular(16),
