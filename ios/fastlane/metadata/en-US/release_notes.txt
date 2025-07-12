@@ -1,2 +1,1 @@
-* Fix 'See original recipe' button
-* Splash screen active until initial recipes fetch
+* Better error messages
