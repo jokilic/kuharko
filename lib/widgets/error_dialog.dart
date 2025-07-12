@@ -9,10 +9,12 @@ import './header_widget.dart';
 import 'animated_column.dart';
 
 class ErrorDialog extends StatelessWidget {
-  final String title;
+  final String text1;
+  final String? text2;
 
   const ErrorDialog({
-    required this.title,
+    required this.text1,
+    this.text2,
   });
 
   @override
@@ -36,8 +38,9 @@ class ErrorDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(32),
               child: AnimatedColumn(
-                mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HeaderWidget(
                     title: 'Problems fetching recipes...',
@@ -45,7 +48,7 @@ class ErrorDialog extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    title,
+                    text1,
                     style: Get.height < 700
                         ? MyTextStyles.errorDialogText.copyWith(
                             color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
@@ -55,6 +58,20 @@ class ErrorDialog extends StatelessWidget {
                             color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
                           ),
                   ),
+                  if (text2?.isNotEmpty ?? false) ...[
+                    const SizedBox(height: 12),
+                    Text(
+                      text2!,
+                      style: Get.height < 700
+                          ? MyTextStyles.errorDialogText.copyWith(
+                              color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                              fontSize: 18,
+                            )
+                          : MyTextStyles.errorDialogText.copyWith(
+                              color: themeService.darkTheme ? DarkColors.textColor : LightColors.textColor,
+                            ),
+                    ),
+                  ],
                 ],
               ),
             ),

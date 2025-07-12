@@ -15,65 +15,140 @@ class NetworkService extends GetxService {
   /// VARIABLES
   ///
 
-  final baseUrl = 'https://api.spoonacular.com';
   final apiKey = Env.apiKey;
 
-  final dio = Dio()..interceptors.add(LoggerInterceptor());
-
-  ///
-  /// METHODS
-  ///
-
-  Future<Response?> get(String path) async {
-    try {
-      final response = await dio.get('$baseUrl/${path}apiKey=$apiKey');
-      return response;
-    } catch (e) {
-      logger.e('$e');
-      return null;
-    }
-  }
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: 'https://api.spoonacular.com',
+      validateStatus: (_) => true,
+    ),
+  )..interceptors.add(LoggerInterceptor());
 
   ///
   // API Calls
   ///
 
-  Future<Recipe?> getRecipeInformation(int id) async {
+  Future<List<Recipe>?> getRandomRecipes({int number = 6, String tag = ''}) async {
     try {
-      final response = await get('recipes/$id/information?');
-      final recipe = Recipe.fromMap(response?.data);
+      final response = await dio.get('/recipes/random?number=$number&tags=$tag&apiKey=$apiKey');
 
-      return recipe;
+      switch (response.statusCode) {
+        /// Daily quota reached
+        case 402:
+          final error = 'NetworkService -> getRandomRecipes() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: "Today's recipe limit has been reached",
+              text2: 'Check back tomorrow for more recipes.',
+            ),
+          );
+          return null;
+
+        /// Rate limit
+        case 429:
+          final error = 'NetworkService -> getRandomRecipes() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: 'Rate limit has been hit.',
+              text2: 'Wait a moment and then try again.',
+            ),
+          );
+          return null;
+
+        default:
+          final List responseList = response.data['recipes'];
+          final recipes = responseList.map((recipe) => Recipe.fromMap(recipe)).toList();
+
+          return recipes;
+      }
     } catch (e) {
-      logger.e('$e');
-      await Get.dialog(ErrorDialog(title: '$e'));
+      final error = 'NetworkService -> getRandomRecipes() -> $e';
+      logger.e(error);
+      await Get.dialog(ErrorDialog(text1: error));
       return null;
     }
   }
 
-  Future<List<Recipe>?> getRandomRecipes({int number = 6, String tag = ''}) async {
+  Future<Recipe?> getRecipeInformation(int id) async {
     try {
-      final response = await get('/recipes/random?number=$number&tags=$tag&');
-      final List responseList = response?.data['recipes'];
-      final recipes = responseList.map((recipe) => Recipe.fromMap(recipe)).toList();
+      final response = await dio.get('recipes/$id/information?apiKey=$apiKey');
 
-      return recipes;
+      switch (response.statusCode) {
+        /// Daily quota reached
+        case 402:
+          final error = 'NetworkService -> getRecipeInformation() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: "Today's recipe limit has been reached",
+              text2: 'Check back tomorrow for more recipes.',
+            ),
+          );
+          return null;
+
+        /// Rate limit
+        case 429:
+          final error = 'NetworkService -> getRecipeInformation() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: 'Rate limit has been hit.',
+              text2: 'Wait a moment and then try again.',
+            ),
+          );
+          return null;
+
+        default:
+          final recipe = Recipe.fromMap(response.data);
+          return recipe;
+      }
     } catch (e) {
-      logger.e('$e');
-      await Get.dialog(ErrorDialog(title: '$e'));
+      final error = 'NetworkService -> getRecipeInformation() -> $e';
+      logger.e(error);
+      await Get.dialog(ErrorDialog(text1: error));
       return null;
     }
   }
 
   Future<RecipeSearchResult?> searchRecipes(String query, {int number = 10}) async {
     try {
-      final response = await get('/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&sort=random&');
-      final recipeSearchResult = RecipeSearchResult.fromMap(response?.data);
+      final response = await dio.get('/recipes/complexSearch?query=$query&number=$number&addRecipeInformation=true&sort=random&apiKey=$apiKey');
 
-      return recipeSearchResult;
+      switch (response.statusCode) {
+        /// Daily quota reached
+        case 402:
+          final error = 'NetworkService -> searchRecipes() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: "Today's recipe limit has been reached",
+              text2: 'Check back tomorrow for more recipes.',
+            ),
+          );
+          return null;
+
+        /// Rate limit
+        case 429:
+          final error = 'NetworkService -> searchRecipes() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: 'Rate limit has been hit.',
+              text2: 'Wait a moment and then try again.',
+            ),
+          );
+          return null;
+
+        default:
+          final recipeSearchResult = RecipeSearchResult.fromMap(response.data);
+          return recipeSearchResult;
+      }
     } catch (e) {
-      logger.e('$e');
-      await Get.dialog(ErrorDialog(title: '$e'));
+      final error = 'NetworkService -> searchRecipes() -> $e';
+      logger.e(error);
+      await Get.dialog(ErrorDialog(text1: error));
       return null;
     }
   }
@@ -88,18 +163,46 @@ class NetworkService extends GetxService {
     int? minutes,
     int number = 10,
   }) async {
-    final properMinutes = minutes == null ? '' : '&maxReadyTime=$minutes';
-
     try {
-      final response = await get(
-        '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients$properMinutes&excludeIngredients=$excludeIngredients&type=$type&number=10&addRecipeInformation=true&sort=random&',
-      );
-      final recipeSearchResult = RecipeSearchResult.fromMap(response?.data);
+      final properMinutes = minutes == null ? '' : '&maxReadyTime=$minutes';
 
-      return recipeSearchResult;
+      final response = await dio.get(
+        '/recipes/complexSearch?&cuisine=$cuisine&diet=$diet&intolerances=$intolerances&includeIngredients=$includeIngredients$properMinutes&excludeIngredients=$excludeIngredients&type=$type&number=10&addRecipeInformation=true&sort=random&apiKey=$apiKey',
+      );
+
+      switch (response.statusCode) {
+        /// Daily quota reached
+        case 402:
+          final error = 'NetworkService -> complexRecipeSearch() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: "Today's recipe limit has been reached",
+              text2: 'Check back tomorrow for more recipes.',
+            ),
+          );
+          return null;
+
+        /// Rate limit
+        case 429:
+          final error = 'NetworkService -> complexRecipeSearch() -> ${response.statusCode}';
+          logger.e(error);
+          await Get.dialog(
+            const ErrorDialog(
+              text1: 'Rate limit has been hit.',
+              text2: 'Wait a moment and then try again.',
+            ),
+          );
+          return null;
+
+        default:
+          final recipeSearchResult = RecipeSearchResult.fromMap(response.data);
+          return recipeSearchResult;
+      }
     } catch (e) {
-      logger.e('$e');
-      await Get.dialog(ErrorDialog(title: '$e'));
+      final error = 'NetworkService -> complexRecipeSearch() -> $e';
+      logger.e(error);
+      await Get.dialog(ErrorDialog(text1: error));
       return null;
     }
   }

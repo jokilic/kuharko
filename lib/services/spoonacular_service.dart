@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -12,10 +11,12 @@ import '../constants/cuisine.dart';
 import '../constants/meal_type.dart';
 import '../models/recipe/recipe.dart';
 import '../models/recipe/recipe_search_result.dart';
+import 'logger_service.dart';
 import 'network_service.dart';
 import 'theme_service.dart';
 
 class SpoonacularService extends GetxService {
+  final logger = Get.find<LoggerService>();
   final network = Get.find<NetworkService>();
   final themeService = Get.find<ThemeService>();
 
@@ -149,12 +150,9 @@ class SpoonacularService extends GetxService {
     getFavoriteRecipes();
     randomCuisineName = randomCuisine;
     randomMealTypeName = randomMealType;
-    await getRandomRecipes(6);
-    await getCuisineRecipes(6, randomCuisineName);
-    await getMealTypeRecipes(6, randomMealTypeName);
-
-    /// Remove splash screen
-    FlutterNativeSplash.remove();
+    await getRandomRecipes(4);
+    await getCuisineRecipes(4, randomCuisineName);
+    await getMealTypeRecipes(4, randomMealTypeName);
   }
 
   ///
