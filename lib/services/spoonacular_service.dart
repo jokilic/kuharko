@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -151,6 +152,9 @@ class SpoonacularService extends GetxService {
     await getRandomRecipes(6);
     await getCuisineRecipes(6, randomCuisineName);
     await getMealTypeRecipes(6, randomMealTypeName);
+
+    /// Remove splash screen
+    FlutterNativeSplash.remove();
   }
 
   ///

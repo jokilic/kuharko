@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -15,7 +16,9 @@ import 'util/env.dart';
 import 'widgets/bottom_navigation.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  /// Initialize Flutter related tasks
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   /// Make sure the orientation is only `portrait`
   unawaited(

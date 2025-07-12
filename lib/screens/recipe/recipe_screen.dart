@@ -295,12 +295,9 @@ class RecipeScreen extends StatelessWidget {
                                 const SizedBox(height: 16),
                                 KuharkoButton(
                                   text: 'See original recipe',
-                                  onTap: () {
-                                    throw StateError('This is test exception');
-                                  },
-                                  // onTap: () => spoonacularService.openUrlExternalBrowser(
-                                  //   url: recipe.sourceUrl,
-                                  // ),
+                                  onTap: () => spoonacularService.openUrlExternalBrowser(
+                                    url: recipe.sourceUrl,
+                                  ),
                                 ),
                               ],
                             ),
