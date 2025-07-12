@@ -44,12 +44,14 @@ class _HeaderWidgetState extends State<HeaderWidget> with SingleTickerProviderSt
 
     chefAnimationController.addStatusListener(
       (status) async {
-        if (mounted) {
-          if (status == AnimationStatus.completed) {
-            await Future.delayed(const Duration(seconds: 3));
+        if (status == AnimationStatus.completed) {
+          await Future.delayed(const Duration(seconds: 3));
+          if (mounted) {
             await chefAnimationController.reverse();
-          } else if (status == AnimationStatus.dismissed) {
-            await Future.delayed(const Duration(seconds: 3));
+          }
+        } else if (status == AnimationStatus.dismissed) {
+          await Future.delayed(const Duration(seconds: 3));
+          if (mounted) {
             await chefAnimationController.forward();
           }
         }

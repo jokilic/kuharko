@@ -13,8 +13,8 @@ import 'widgets/recipes_widget.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final spoonacularService = Get.put<SpoonacularService>(SpoonacularService());
     final themeService = Get.find<ThemeService>();
+    final spoonacularService = Get.find<SpoonacularService>();
 
     return Obx(
       () => Scaffold(
