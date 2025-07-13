@@ -1,1 +1,1 @@
-* Better error messages
+* Fix Recipe information API
