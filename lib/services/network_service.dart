@@ -73,7 +73,7 @@ class NetworkService extends GetxService {
 
   Future<Recipe?> getRecipeInformation(int id) async {
     try {
-      final response = await dio.get('recipes/$id/information?apiKey=$apiKey');
+      final response = await dio.get('/recipes/$id/information?apiKey=$apiKey');
 
       switch (response.statusCode) {
         /// Daily quota reached

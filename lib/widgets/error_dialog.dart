@@ -35,7 +35,8 @@ class ErrorDialog extends StatelessWidget {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
-            Padding(
+            SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.all(32),
               child: AnimatedColumn(
                 mainAxisSize: MainAxisSize.min,
