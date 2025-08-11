@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Kuharko Debug",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
+        {
+            "name": "Kuharko Release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

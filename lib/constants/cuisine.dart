@@ -1,0 +1,26 @@
+var cuisines = [
+  'african',
+  'american',
+  'british',
+  'cajun',
+  'chinese',
+  'eastern european',
+  'european',
+  'french',
+  'german',
+  'greek',
+  'indian',
+  'irish',
+  'italian',
+  'japanese',
+  'korean',
+  'latin american',
+  'mediterranean',
+  'middle eastern',
+  'southern',
+  'spanish',
+  'thai',
+  'vietnamese',
+];
+
+String get randomCuisine => (List.from(cuisines)..shuffle()).first;

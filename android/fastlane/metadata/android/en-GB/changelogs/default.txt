@@ -1,0 +1,2 @@
+* Some naming fixes
+* Upgrade dependencies
