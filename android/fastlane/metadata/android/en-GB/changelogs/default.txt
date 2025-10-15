@@ -1,2 +1,3 @@
-* Some naming fixes
+* Remove error logging
 * Upgrade dependencies
+* Refresh icon & splash screen

@@ -1,7 +1,7 @@
 name: kuharko
 description: Flutter application for checking out cool recipes
 publish_to: 'none'
-version: 2.1.0+210
+version: 2.1.1+211
 
 #
 # DEPLOYING APP

@@ -5,37 +5,32 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000248">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000263">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: puro flutter clean" time="3.458196">
+      <testcase classname="fastlane.lanes" name="1: puro flutter clean" time="3.191819">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: puro flutter pub get" time="4.033598">
+      <testcase classname="fastlane.lanes" name="2: puro flutter pub get" time="2.934609">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: puro flutter build apk --target-platform=android-arm64" time="53.363551">
+      <testcase classname="fastlane.lanes" name="3: puro flutter build appbundle" time="96.274179">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: mv ../../build/app/outputs/flutter-apk/app-release.apk ../../build/app/outputs/flutter-apk/kuharko.apk" time="0.004715">
+      <testcase classname="fastlane.lanes" name="4: supply" time="42.966749">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: set_github_release" time="8.733284">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="6: notification" time="0.366732">
+      <testcase classname="fastlane.lanes" name="5: notification" time="1.954472">
         
       </testcase>
     
