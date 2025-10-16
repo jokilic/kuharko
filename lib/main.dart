@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,14 +15,14 @@ Future<void> main() async {
     [DeviceOrientation.portraitUp],
   );
 
-  /// Initialize required services
-  await initializeServices();
-
   /// Use `edge-to-edge` display
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   /// Set refresh rate to high
   await setDisplayMode();
+
+  /// Initialize required services
+  await initializeServices();
 
   /// Run [Kuharko]
   runApp(Kuharko());
@@ -35,7 +33,6 @@ class Kuharko extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
     title: 'Kuharko',
     theme: ThemeData(
-      primarySwatch: Colors.blue,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       fontFamily: 'ProductSans',
     ),

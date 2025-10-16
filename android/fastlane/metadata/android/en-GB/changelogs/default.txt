@@ -1,3 +1,3 @@
-* Remove error logging
-* Upgrade dependencies
-* Refresh icon & splash screen
+* Use high refresh rate
+* Refactor initialization logic
+* Properly update status bar colors when switching themes
