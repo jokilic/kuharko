@@ -5,6 +5,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeService extends GetxService {
   ///
+  /// CONSTRUCTOR
+  ///
+
+  final SharedPreferences sharedPreferences;
+
+  ThemeService({
+    required this.sharedPreferences,
+  });
+
+  ///
   /// REACTIVE VARIABLES
   ///
 
@@ -13,21 +23,10 @@ class ThemeService extends GetxService {
   set darkTheme(bool value) => _darkTheme.value = value;
 
   ///
-  /// VARIABLES
-  ///
-
-  late final SharedPreferences sharedPreferences;
-
-  ///
   /// INIT
   ///
 
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-
-    sharedPreferences = await SharedPreferences.getInstance();
-
+  Future<void> init() async {
     sharedPreferences.containsKey('darkTheme') ? darkTheme = sharedPreferences.getBool('darkTheme') ?? false : await sharedPreferences.setBool('darkTheme', darkTheme);
 
     updateStatusBar();
@@ -46,6 +45,7 @@ class ThemeService extends GetxService {
   void updateStatusBar() {
     final brightness = darkTheme ? Brightness.dark : Brightness.light;
 
+    // TODO
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

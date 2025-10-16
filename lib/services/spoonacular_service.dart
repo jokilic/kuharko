@@ -16,9 +16,21 @@ import 'network_service.dart';
 import 'theme_service.dart';
 
 class SpoonacularService extends GetxService {
-  final logger = Get.find<LoggerService>();
-  final network = Get.find<NetworkService>();
-  final themeService = Get.find<ThemeService>();
+  ///
+  /// CONSTRUCTOR
+  ///
+
+  final SharedPreferences sharedPreferences;
+  final LoggerService logger;
+  final NetworkService network;
+  final ThemeService theme;
+
+  SpoonacularService({
+    required this.sharedPreferences,
+    required this.logger,
+    required this.network,
+    required this.theme,
+  });
 
   ///
   /// REACTIVE VARIABLES
@@ -132,7 +144,6 @@ class SpoonacularService extends GetxService {
   /// VARIABLES
   ///
 
-  late final SharedPreferences sharedPreferences;
   final audioPlayer = AudioPlayer();
   final ingredientsInKitchenController = TextEditingController();
   final unwantedIngredientsInKitchenController = TextEditingController();
@@ -141,11 +152,7 @@ class SpoonacularService extends GetxService {
   /// INIT
   ///
 
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-
-    sharedPreferences = await SharedPreferences.getInstance();
+  Future<void> init() async {
     await audioPlayer.setAsset('assets/boom.wav');
     getFavoriteRecipes();
     randomCuisineName = randomCuisine;
@@ -308,7 +315,7 @@ class SpoonacularService extends GetxService {
   void enableShowMoreSummary() => showMoreSummary = true;
 
   Future<void> changeThemePlaySound() async {
-    await themeService.toggleTheme();
+    await theme.toggleTheme();
     await audioPlayer.seek(Duration.zero);
     await audioPlayer.play();
   }
@@ -374,8 +381,8 @@ class SpoonacularService extends GetxService {
       }
 
       /// Use external browser
-      final color = themeService.darkTheme ? DarkColors.randomColor : LightColors.randomColor;
-      final backgroundColor = themeService.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor;
+      final color = theme.darkTheme ? DarkColors.randomColor : LightColors.randomColor;
+      final backgroundColor = theme.darkTheme ? DarkColors.bodyColor : LightColors.bodyColor;
 
       FlutterWebBrowser.openWebPage(
         url: url,

@@ -9,7 +9,15 @@ import '../widgets/error_dialog.dart';
 import 'logger_service.dart';
 
 class NetworkService extends GetxService {
-  final logger = Get.find<LoggerService>();
+  ///
+  /// CONSTRUCTOR
+  ///
+
+  final LoggerService logger;
+
+  NetworkService({
+    required this.logger,
+  });
 
   ///
   /// VARIABLES
