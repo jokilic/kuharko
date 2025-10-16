@@ -9,6 +9,7 @@ import 'services/logger_service.dart';
 import 'services/network_service.dart';
 import 'services/spoonacular_service.dart';
 import 'services/theme_service.dart';
+import 'util/display_mode.dart';
 import 'widgets/bottom_navigation.dart';
 
 Future<void> main() async {
@@ -29,6 +30,12 @@ Future<void> main() async {
     ..put(NetworkService())
     ..put(SpoonacularService())
     ..put(CategoriesService());
+
+  /// Use `edge-to-edge` display
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+  /// Set refresh rate to high
+  await setDisplayMode();
 
   /// Run [Kuharko]
   runApp(Kuharko());
