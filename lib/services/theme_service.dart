@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -43,15 +44,16 @@ class ThemeService extends GetxService {
   }
 
   void updateStatusBar() {
-    final brightness = darkTheme ? Brightness.dark : Brightness.light;
+    final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+    final brightness = (isIOS ? darkTheme : !darkTheme) ? Brightness.dark : Brightness.light;
 
-    // TODO
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarBrightness: brightness,
         statusBarIconBrightness: brightness,
         systemNavigationBarIconBrightness: brightness,
+        systemNavigationBarColor: Colors.transparent,
       ),
     );
   }
