@@ -1,3 +1,4 @@
 * Use high refresh rate
 * Refactor initialization logic
 * Properly update status bar colors when switching themes
+* Update sizing of bottom navigation bar

@@ -45,13 +45,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
           child: NavigationItem.items[currentIndex].page,
         ),
-        bottomNavigationBar: SizedBox(
-          height: 80,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(16),
-              topLeft: Radius.circular(16),
-            ),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(16),
+            topLeft: Radius.circular(16),
+          ),
+          child: Container(
+            alignment: const Alignment(0, -0.25),
+            color: themeService.darkTheme ? DarkColors.bodyColor : LightColors.textColor,
+            height: 68 + MediaQuery.paddingOf(context).bottom,
             child: GNav(
               padding: const EdgeInsets.symmetric(horizontal: 14),
               backgroundColor: themeService.darkTheme ? DarkColors.bodyColor : LightColors.textColor,
