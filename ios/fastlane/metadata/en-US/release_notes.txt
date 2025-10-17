@@ -1,4 +1,5 @@
-* Use high refresh rate
-* Refactor initialization logic
-* Properly update status bar colors when switching themes
-* Update sizing of bottom navigation bar
+* Remove error logging
+* Dependency updates
+* High refresh rate
+* Refresh icons and splash screen
+* Update status bar and navigation bar colors
